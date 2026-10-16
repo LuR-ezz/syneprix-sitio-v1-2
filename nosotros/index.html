@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNEPRIX — Nosotros</title>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+    <!-- Tema global -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <script src="../assets/js/responsive.js" defer></script>
+    <!-- Componentes Dinámicos (Navbar/Footer) -->
+    <script src="/assets/js/loadComponents.js" defer></script>
+    
+    <style>
+        :root {
+            --bg-1: #0D0428; 
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --border-hi: rgba(255,255,255,0.15);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        body {
+            background: var(--bg);
+            font-family: 'InterVariable', 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* --- Estilos base de Botones y Componentes del Home --- */
+        .glass-panel { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+        .btn-primary { background: var(--gradient); color: var(--text); border: none; box-shadow: 0 4px 15px rgba(89, 29, 203, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(89, 29, 203, 0.6); }
+
+        /* --- NAVBAR ESTILOS (Para que loadComponents funcione visualmente igual) --- */
+        header { position: sticky; top: 0; z-index: 1000; background: var(--glass-solid); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); padding: 15px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; }
+        .logo span { color: var(--accent2); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: color 0.3s; color: var(--text); text-decoration: none; }
+        .nav-links a:hover { color: var(--accent2); }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background-color: rgba(5,5,8,0.95); min-width: 300px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid var(--border); border-radius: 12px; z-index: 1000; top: 100%; left: 0; padding: 10px 0; backdrop-filter: blur(15px); }
+        .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-out; }
+        .dropdown-content a { color: var(--muted) !important; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+        .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--text) !important; padding-left: 25px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- ANIMACIONES GLOBALES (Igual al Home) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            filter: blur(12px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform, filter;
+            transform: translateY(60px) scale(0.95);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0, 0) scale(1) !important;
+        }
+        .slide-up-stagger {
+            transform: translateY(60px) scale(0.9);
+            opacity: 0;
+            filter: blur(12px);
+        }
+        .slide-up-stagger.visible {
+            transform: translateY(0) scale(1) !important;
+            opacity: 1 !important;
+            filter: blur(0) !important;
+        }
+        /* Efecto Ola (Staggered Text Reveal) */
+        .efecto-ola .text-wave-word {
+            display: inline-block; opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .efecto-ola.visible .text-wave-word { opacity: 1; transform: translateY(0); }
+        @keyframes lineReveal {
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        /* --- HERO NOSOTROS --- */
+        .hero-nosotros {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #0D0428;
+            padding-top: 60px;
+        }
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+        .hero-orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(89,29,203,0.5), transparent 70%); top: -100px; left: -100px; animation: orbFloat 8s ease-in-out infinite; }
+        .hero-orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(208,77,205,0.4), transparent 70%); bottom: -100px; right: -50px; animation: orbFloat 10s ease-in-out infinite reverse; }
+        @keyframes orbFloat { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.05); } }
+
+        .hero-nosotros-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            width: 100%;
+        }
+        @media (max-width: 992px) {
+            .hero-nosotros-inner { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        .hero-nosotros-text { z-index: 10; display: flex; flex-direction: column; align-items: flex-start; }
+        @media (max-width: 992px) { .hero-nosotros-text { align-items: center; } }
+        
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 7px 18px;
+            background: rgba(89,29,203,0.15); border: 1px solid rgba(89,29,203,0.5);
+            border-radius: 50px; font-size: 0.8rem; font-weight: 700; color: var(--accent3);
+            letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        @keyframes badgePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(89,29,203,0); } 50% { box-shadow: 0 0 20px rgba(89,29,203,0.3); } }
+        
+        .hero-nosotros-text h1 {
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 900; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px;
+        }
+        .hero-nosotros-text h1 .line {
+            display: block; opacity: 0; transform: translateY(40px);
+            animation: lineReveal 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .hero-nosotros-text h1 .line:nth-child(1) { animation-delay: 0.1s; }
+        .hero-nosotros-text h1 .line:nth-child(2) { animation-delay: 0.25s; }
+        .hero-nosotros-text h1 .line:nth-child(3) { animation-delay: 0.4s; }
+
+        .hero-nosotros-sub {
+            font-size: 1.15rem; color: var(--muted); line-height: 1.8; margin-bottom: 36px;
+            opacity: 0; animation: lineReveal 0.7s 0.6s cubic-bezier(0.16,1,0.3,1) forwards; max-width: 550px;
+        }
+        
+        @keyframes heroImageReveal {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-nosotros-img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroImageReveal 1.8s 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .hero-nosotros-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom right;
+            filter: drop-shadow(0 -20px 50px rgba(89,29,203,0.5));
+        }
+
+        /* --- MODELO DE NEGOCIO BANNER --- */
+        .business-model-banner { background: linear-gradient(90deg, rgba(89,29,203,0.1), rgba(20,15,35,0.8), rgba(89,29,203,0.1)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; }
+        .bmb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
+        .bmb-item { position: relative; }
+        .bmb-item:not(:last-child)::after { content: ''; position: absolute; right: -10px; top: 10%; height: 80%; width: 1px; background: var(--border); }
+        .bmb-item h4 { color: var(--accent2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-weight: 700; }
+        .bmb-item p { color: var(--text); font-size: 1.1rem; margin: 0; font-weight: 500; }
+        @media (max-width: 768px) { 
+            .bmb-grid { grid-template-columns: 1fr; gap: 30px; } 
+            .bmb-item:not(:last-child)::after { display: none; }
+        }
+
+
+        /* --- NUESTRA HISTORIA (STICKY SCROLL) --- */
+        .story-section { background: var(--bg); position: relative; border-top: 1px solid var(--border); padding-top: 120px; padding-bottom: 120px; }
+        .story-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1200px; margin: 0 auto; align-items: flex-start; }
+        
+        .story-left { position: sticky; top: 120px; }
+        .story-left h2 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: #fff; letter-spacing: -1px; }
+        .story-left p { color: var(--muted); font-size: 1.2rem; line-height: 1.7; max-width: 450px; }
+        
+        .story-right { display: flex; flex-direction: column; gap: 40px; }
+        
+        .story-card { background: rgba(20, 15, 35, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 50px 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+        .story-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent2); }
+        .story-card:hover { border-color: rgba(89,29,203,0.3); transform: translateY(-5px); }
+        
+        .story-date { color: var(--accent2); font-weight: 800; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 3px; text-transform: uppercase; }
+        .story-title { font-size: 2rem; font-weight: 800; margin-bottom: 20px; color: #fff; }
+        .story-text { color: var(--muted); line-height: 1.8; font-size: 1.1rem; }
+        
+        @media (max-width: 992px) {
+            .story-container { grid-template-columns: 1fr; gap: 40px; }
+            .story-left { position: relative; top: 0; text-align: center; }
+            .story-left p { margin: 0 auto; }
+        }
+
+        /* --- VALORES CORPORATIVOS (BENTO GRID) --- */
+        .core-values-section { padding: 120px 0; background: var(--bg); border-top: 1px solid var(--border); }
+        .bento-grid { margin-top: 60px; max-width: 1200px; margin-left: auto; margin-right: auto; display: grid; grid-template-columns: repeat(6, 1fr); gap: 25px; }
+        
+        .bento-card { background: rgba(20, 15, 35, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; position: relative; overflow: hidden; transition: all 0.5s ease; display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px; }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(89,29,203,0.15); border-color: rgba(89,29,203,0.3); }
+        
+        .bento-icon { width: 50px; height: 50px; color: var(--accent2); margin-bottom: auto; }
+        .bento-icon svg { width: 100%; height: 100%; }
+        
+        .bento-card h3 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 15px; line-height: 1.2; }
+        .bento-card p { font-size: 1.05rem; color: var(--muted); line-height: 1.7; margin: 0; }
+        
+        /* Tamaños asimétricos */
+        .bento-1 { grid-column: span 3; } /* Mitad superior izq */
+        .bento-2 { grid-column: span 3; } /* Mitad superior der */
+        .bento-3 { grid-column: span 2; } /* Tercio inferior 1 */
+        .bento-4 { grid-column: span 2; } /* Tercio inferior 2 */
+        .bento-5 { grid-column: span 2; } /* Tercio inferior 3 */
+        
+        /* Variaciones de estilo */
+        .bento-card.active-bento { background: linear-gradient(135deg, rgba(89,29,203,0.2), rgba(20,15,35,0.4)); border-color: rgba(89,29,203,0.4); box-shadow: 0 10px 30px rgba(89,29,203,0.1); }
+        .bento-2::after { content: ''; position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--accent1); filter: blur(80px); opacity: 0.3; z-index: -1; }
+        
+        @media (max-width: 992px) {
+            .bento-1, .bento-2 { grid-column: span 6; }
+            .bento-3, .bento-4, .bento-5 { grid-column: span 3; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { display: flex; flex-direction: column; }
+            .bento-card { min-height: auto; }
+        }
+        /* --- SIGNIFICADO DEL NOMBRE (OPCION F: MINIMALISMO) --- */
+        .significado { padding: 180px 0; background: var(--bg); position: relative; border-top: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh; text-align: center; }
+        
+        .sig-f-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.4; transition: background 1s ease; }
+        
+        .sig-f-bg-grid {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1; pointer-events: none;
+            -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
+            mask-image: radial-gradient(circle at center, black 0%, transparent 60%);
+            animation: panGrid 20s linear infinite;
+        }
+        @keyframes panGrid { 0% { background-position: 0 0; } 100% { background-position: 40px 40px; } }
+
+        /* The container holding everything */
+        .sig-f-container { position: relative; z-index: 2; max-width: 900px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; align-items: center;}
+        
+        /* The big morphing text */
+        .sig-f-word-wrapper { position: relative; height: 120px; width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 60px; }
+        
+        .sig-f-word { position: absolute; font-size: 6rem; font-weight: 900; letter-spacing: -3px; color: #fff; opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); filter: blur(10px); }
+        .sig-f-word.active { opacity: 1; transform: translateY(0); filter: blur(0); }
+        .sig-f-word.prev { opacity: 0; transform: translateY(-30px); filter: blur(10px); }
+        
+        /* Styling per word to give them slight character */
+        .word-sinapsis { text-shadow: 0 0 40px rgba(89,29,203,0.4); }
+        .word-aprix { text-shadow: 0 0 40px rgba(255,189,46,0.2); }
+        .word-syneprix { background: linear-gradient(90deg, #fff, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 60px rgba(208,77,205,0.4); }
+        
+        /* The explanation text */
+        .sig-f-desc-wrapper { position: relative; height: 100px; width: 100%; }
+        .sig-f-desc { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; font-size: 1.3rem; line-height: 1.7; color: var(--muted); font-weight: 400; opacity: 0; transition: opacity 0.8s ease; pointer-events: none; }
+        .sig-f-desc.active { opacity: 1; pointer-events: auto; }
+        
+        /* Navigation dots */
+        .sig-f-nav { display: flex; justify-content: center; gap: 15px; margin-top: 80px; }
+        .sig-f-dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s ease; }
+        .sig-f-dot.active { background: var(--accent2); border-color: var(--accent2); box-shadow: 0 0 10px var(--accent2); transform: scale(1.2); }
+
+        @media (max-width: 992px) {
+            .sig-f-word { font-size: 4rem; }
+            .sig-f-desc { font-size: 1.1rem; }
+            .sig-f-word-wrapper { height: 80px; }
+        }
+        @media (max-width: 576px) {
+            .sig-f-word { font-size: 2.8rem; }
+            .sig-f-word-wrapper { margin-bottom: 40px; height: 60px; }
+            .sig-f-desc-wrapper { height: 150px; }
+        }
+
+
+        /* --- CTA FINAL --- */
+        .cta-final { padding: 100px 0; background: linear-gradient(0deg, rgba(89,29,203,0.1) 0%, transparent 100%); text-align: center; border-top: 1px solid var(--border); }
+        .cta-final h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 25px; color: #fff; line-height: 1.1; letter-spacing: -1px; }
+        .cta-final p { font-size: 1.2rem; color: var(--muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn-cta-large { display: inline-flex; padding: 18px 40px; font-size: 1.1rem; border-radius: 50px; background: var(--gradient); color: var(--text); font-weight: 700; text-decoration: none; box-shadow: 0 10px 30px rgba(89,29,203,0.4); transition: transform 0.3s, box-shadow 0.3s; }
+        .btn-cta-large:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(89,29,203,0.6); }
+
+        /* Footer estilos globales ya cargados en loadComponents.js */
+        footer { padding: 60px 0 30px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.5); }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; color: var(--accent3); }
+        .footer-col ul { list-style: none; padding:0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: var(--muted); transition: color 0.3s; font-size: 0.9rem; text-decoration: none; }
+        .footer-col ul li a:hover { color: var(--text); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    
+    <!-- NAVBAR DINÁMICO -->
+    <div data-component="navbar"></div>
+
+    <!-- HERO NOSOTROS -->
+    <section class="hero-nosotros">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+
+        <!-- Imagen en posicion absoluta escalada al tamaño requerido -->
+        <div class="hero-nosotros-img">
+            <img src="../assets/img/humanoyrobot.png" alt="Profesional SYNEPRIX con Inteligencia Artificial">
+        </div>
+
+        <div class="container">
+            <div class="hero-nosotros-inner">
+                <div class="hero-nosotros-text">
+                    <h1>
+                        <span class="line">El corazón detrás</span>
+                        <span class="line">de la <span class="text-gradient">educación digital.</span></span>
+                    </h1>
+                    <p class="hero-nosotros-sub">
+                        Impulsamos el talento tecnológico de LATAM democratizando la educación en Inteligencia Artificial y desarrollo de software de alto nivel.
+                    </p>
+                </div>
+                <!-- El segundo bloque de la grilla queda vacío para darle espacio a la imagen absoluta -->
+                <div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODELO DE NEGOCIO (TRANSPARENCIA) -->
+    <section class="business-model-banner">
+        <div class="container">
+            <div class="bmb-grid">
+                <div class="bmb-item animate-on-scroll slide-up">
+                    <h4>Para quién</h4>
+                    <p>Talento técnico y líderes en LATAM</p>
+                </div>
+                <div class="bmb-item animate-on-scroll slide-up" style="transition-delay: 0.1s;">
+                    <h4>Cómo enseñamos</h4>
+                    <p>Proyectos 100% reales de IA y Software</p>
+                </div>
+                <div class="bmb-item animate-on-scroll slide-up" style="transition-delay: 0.2s;">
+                    <h4>Qué logramos</h4>
+                    <p>Profesionales que escalan empresas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUESTRA HISTORIA (STICKY SCROLL) -->
+    <section id="historia" class="story-section">
+        <div class="container">
+            <div class="story-container">
+                <!-- Lado Izquierdo (Fijo) -->
+                <div class="story-left animate-on-scroll slide-up">
+                    <h2>Cómo nace <br><span class="text-gradient">SYNEPRIX</span></h2>
+                    <p>No nacimos de una tendencia de mercado. Nacimos de una observación precisa sobre la realidad operativa y tecnológica de las organizaciones en LATAM.</p>
+                </div>
+                
+                <!-- Lado Derecho (Scroll) -->
+                <div class="story-right">
+                    <div class="story-card animate-on-scroll slide-up">
+                        <div class="story-date">El Problema</div>
+                        <h3 class="story-title">La Brecha Estructural</h3>
+                        <p class="story-text">Los mercados latinoamericanos llevan años absorbiendo tecnología sin capacitación estructurada. Las empresas invierten en herramientas costosas, pero sus equipos carecen de los marcos conceptuales y técnicos para extraer su valor real y aplicarlo en el día a día.</p>
+                    </div>
+                    
+                    <div class="story-card animate-on-scroll slide-up">
+                        <div class="story-date">La Solución</div>
+                        <h3 class="story-title">Especialización Aplicada</h3>
+                        <p class="story-text">Creamos SYNEPRIX para cerrar exactamente esa brecha. Construimos una academia desde la lógica empresarial hacia adentro: comprendiendo decisiones de negocio, identificando fricciones operativas y transformando profesionales tradicionales en verdaderos agentes de cambio.</p>
+                    </div>
+                    
+                    <div class="story-card animate-on-scroll slide-up">
+                        <div class="story-date">El Futuro</div>
+                        <h3 class="story-title">El Ecosistema SPX</h3>
+                        <p class="story-text">No somos un proveedor de cursos en video, somos un socio de transformación. Nuestro objetivo es construir el estándar de referencia en Latinoamérica (Certificaciones SPX) para garantizar el nivel de los profesionales en Inteligencia Artificial y automatización de procesos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES CORPORATIVOS (BENTO GRID) -->
+    <section id="valores" class="core-values-section">
+        <div class="container">
+            <div style="text-align: center;" class="animate-on-scroll slide-up">
+                <h2 style="font-size: 3rem; font-weight: 900; margin-bottom: 20px;">Nuestros <span class="text-gradient">Valores</span></h2>
+                <p style="color: var(--muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem;">Principios inquebrantables que guían cada línea de código y cada clase impartida en SYNEPRIX.</p>
+            </div>
+            
+            <div class="bento-grid">
+                
+                <div class="bento-card bento-1 animate-on-scroll slide-up">
+                    <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <h3>Rigor Aplicado</h3>
+                    <p>La excelencia sin aplicabilidad es academicismo vacío. Cada concepto tiene una aplicación concreta y requiere demostración de competencia, no solo memorización.</p>
+                </div>
+                
+                <div class="bento-card bento-2 animate-on-scroll slide-up" style="transition-delay: 0.1s;">
+                    <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+                    <h3>Relevancia Permanente</h3>
+                    <p>En Inteligencia Artificial, el conocimiento de hace 18 meses es obsoleto. Mantenemos nuestros programas actualizados sistemáticamente con casos del mercado laboral actual.</p>
+                </div>
+                
+                <div class="bento-card bento-3 animate-on-scroll slide-up" style="transition-delay: 0.2s;">
+                    <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+                    <h3>Integridad Académica</h3>
+                    <p>No vendemos certificaciones. Solo se otorgan tras una evaluación rigurosa. Es la única forma de construir confianza y prestigio.</p>
+                </div>
+                
+                <div class="bento-card bento-4 animate-on-scroll slide-up" style="transition-delay: 0.3s;">
+                    <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <h3>Orientación al Impacto</h3>
+                    <p>Medimos nuestro éxito en automatizaciones implementadas, procesos rediseñados y el ROI real generado en las empresas cliente.</p>
+                </div>
+                
+                <div class="bento-card bento-5 animate-on-scroll slide-up" style="transition-delay: 0.4s;">
+                    <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <h3>Comunidad de Especialistas</h3>
+                    <p>La academia termina, la comunidad nunca. Construimos espacios activos de colaboración y redes de contacto de muy alto nivel.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SIGNIFICADO DEL NOMBRE (OPCION F: MINIMALISMO) -->
+    <section class="significado new-design">
+        <div class="sig-f-bg" id="sigBg"></div>
+        <div class="sig-f-bg-grid"></div>
+        
+        <div class="sig-f-container animate-on-scroll slide-up">
+            
+            <div class="sig-f-word-wrapper">
+                <div class="sig-f-word word-sinapsis active" data-index="0">SINAPSIS</div>
+                <div class="sig-f-word word-aprix" data-index="1">APRIX</div>
+                <div class="sig-f-word word-syneprix" data-index="2">SYNEPRIX</div>
+            </div>
+            
+            <div class="sig-f-desc-wrapper">
+                <div class="sig-f-desc active" data-index="0">
+                    El talento en bruto. Representa el impulso eléctrico inicial que detona el aprendizaje, la curiosidad y la capacidad analítica natural de nuestros estudiantes.
+                </div>
+                <div class="sig-f-desc" data-index="1">
+                    La práctica aplicada. El catalizador metodológico que toma ese talento y lo expone a casos reales, problemas de negocio y tecnologías de automatización.
+                </div>
+                <div class="sig-f-desc" data-index="2">
+                    La transformación. Cuando el impulso y la práctica convergen, el estudiante se convierte en el perfil que transforma datos en decisiones y lidera el cambio en su organización.
+                </div>
+            </div>
+            
+            <div class="sig-f-nav">
+                <div class="sig-f-dot active" onclick="goToSlide(0)"></div>
+                <div class="sig-f-dot" onclick="goToSlide(1)"></div>
+                <div class="sig-f-dot" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container animate-on-scroll slide-up">
+            <h2>El próximo paso es <span class="text-gradient">tuyo.</span></h2>
+            <p>Deja de ser un espectador en la revolución tecnológica. Únete a SYNEPRIX y conviértete en el perfil que lidera el cambio.</p>
+            <a href="../index.html#cursos-destacados" class="btn-cta-large">Descubre nuestros programas</a>
+        </div>
+    </section>
+
+
+    <!-- FOOTER DINÁMICO -->
+    <div data-component="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animaciones de Scroll (Aparición de secciones)
+            const scrollObserverOptions = { root: null, rootMargin: '200px 0px 0px 0px', threshold: 0.15 };
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, scrollObserverOptions);
+
+            document.querySelectorAll('.animate-on-scroll, .slide-up-stagger').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // Auto-apply ola effect to all major text elements inside sections
+            document.querySelectorAll('section h1, section h2, section h3, section h4, section p').forEach(el => {
+                if (!el.classList.contains('efecto-ola') && !el.closest('.stat-counter') && !el.closest('.hero-btns') && !el.closest('.btn') && !el.closest('.map-tooltip') && !el.closest('.testimonios')) {
+                    el.classList.add('efecto-ola');
+                }
+            });
+
+            // Efecto Ola Seguro (Conserva las etiquetas HTML internas como span, br, strong)
+            const waveObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, scrollObserverOptions);
+
+            document.querySelectorAll('.efecto-ola').forEach(el => {
+                let delayIndex = 0;
+                function traverse(node) {
+                    if (node.nodeType === 3) { 
+                        const text = node.nodeValue;
+                        if (text.trim().length > 0) {
+                            const words = text.split(/(\s+)/);
+                            const fragment = document.createDocumentFragment();
+                            words.forEach((word) => {
+                                if (word.trim().length > 0) {
+                                    const span = document.createElement('span');
+                                    span.innerText = word;
+                                    span.className = 'text-wave-word';
+                                    span.style.transitionDelay = `${Math.min(delayIndex * 0.03, 1.2)}s`;
+                                    delayIndex++;
+                                    fragment.appendChild(span);
+                                } else {
+                                    fragment.appendChild(document.createTextNode(word));
+                                }
+                            });
+                            node.parentNode.replaceChild(fragment, node);
+                        }
+                    } else if (node.nodeType === 1 && !node.classList.contains('text-wave-word')) { 
+                        if (node.classList.contains('text-gradient')) {
+                            node.classList.add('text-wave-word');
+                            node.style.transitionDelay = `${Math.min(delayIndex * 0.03, 1.2)}s`;
+                            delayIndex++;
+                        } else {
+                            Array.from(node.childNodes).forEach(traverse);
+                        }
+                    }
+                }
+                
+                if (!el.querySelector('.text-wave-word')) {
+                    Array.from(el.childNodes).forEach(traverse);
+                }
+                waveObserver.observe(el);
+            });
+
+            // Animación de contadores de números
+            const counters = document.querySelectorAll('.stat-counter');
+            const speed = 200; // Constante de velocidad
+
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
+            
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const updateCount = () => {
+                            const target = +counter.getAttribute('data-target');
+                            const suffix = counter.getAttribute('data-suffix') || '';
+                            const count = +counter.innerText.replace(/\D/g, '');
+                            const inc = target / speed;
+
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + inc) + suffix;
+                                setTimeout(updateCount, 15);
+                            } else {
+                                counter.innerText = target + suffix;
+                            }
+                        };
+                        updateCount();
+                        observer.unobserve(counter); // Anima solo una vez
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+            
+            // Animación cíclica de brillo para los valores (bento-cards)
+            const bentoCards = document.querySelectorAll('.bento-card');
+            if (bentoCards.length > 0) {
+                let currentBento = 0;
+                bentoCards[currentBento].classList.add('active-bento');
+                
+                setInterval(() => {
+                    bentoCards[currentBento].classList.remove('active-bento');
+                    currentBento = (currentBento + 1) % bentoCards.length;
+                    bentoCards[currentBento].classList.add('active-bento');
+                }, 3000); // Cambia el brillo cada 3 segundos
+            }
+            
+            // --- Option F: Animación de Palabras ---
+            let currentSlide = 0;
+            const words = document.querySelectorAll('.sig-f-word');
+            const descs = document.querySelectorAll('.sig-f-desc');
+            const dots = document.querySelectorAll('.sig-f-dot');
+            const bg = document.getElementById('sigBg');
+            let slideInterval;
+
+            function updateSlides(index) {
+                words.forEach(w => {
+                    w.classList.remove('active', 'prev');
+                    if(parseInt(w.getAttribute('data-index')) < index) w.classList.add('prev');
+                });
+                descs.forEach(d => d.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                
+                words[index].classList.add('active');
+                descs[index].classList.add('active');
+                dots[index].classList.add('active');
+                
+                // Subtle background change
+                if(index === 0) bg.style.background = 'radial-gradient(circle at center, rgba(89,29,203,0.15) 0%, transparent 60%)';
+                else if(index === 1) bg.style.background = 'radial-gradient(circle at center, rgba(255,189,46,0.1) 0%, transparent 60%)';
+                else bg.style.background = 'radial-gradient(circle at center, rgba(208,77,205,0.2) 0%, transparent 70%)';
+                
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                let next = (currentSlide + 1) % 3;
+                updateSlides(next);
+            }
+
+            window.goToSlide = function(index) {
+                clearInterval(slideInterval);
+                updateSlides(index);
+                slideInterval = setInterval(nextSlide, 4000);
+            };
+
+            if(document.querySelector('.sig-f-word')) {
+                const nameSection = document.querySelector('.significado.new-design');
+                let nameAnimStarted = false;
+                
+                const nameObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting && !nameAnimStarted) {
+                            nameAnimStarted = true;
+                            updateSlides(0); // Empezar siempre desde el principio
+                            slideInterval = setInterval(nextSlide, 4000);
+                        }
+                    });
+                }, { threshold: 0.3 }); // Se activa cuando al menos el 30% es visible
+                
+                if(nameSection) {
+                    nameObserver.observe(nameSection);
+                }
+            }
+        });
+
+        // Funcionalidad para las pestañas de Valores (Estilo 42.fr)
+        function openValue(evt, valName) {
+            var i, tabcontent, tablinks;
+            // Ocultar todos los contenidos de pestaña
+            tabcontent = document.getElementsByClassName("value-pane");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].className = tabcontent[i].className.replace(" active", "");
+            }
+            // Quitar clase active a todos los botones
+            tablinks = document.getElementsByClassName("value-tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            // Mostrar la pestaña actual y agregar clase active al botón que la abrió
+            document.getElementById(valName).className += " active";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <script src="../js/scroll-animations.js"></script>
+    <script src="/js/auth-state.js"></script>
+</body>
+</html>

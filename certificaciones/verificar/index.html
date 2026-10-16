@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Credencial | SYNEPRIX</title>
+    <meta name="description" content="Verifica la autenticidad de una certificación SPX de SYNEPRIX.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(circle at 50% 0%, rgba(89, 29, 203, 0.15), transparent 50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 3rem;
+            align-self: flex-start;
+        }
+
+        .breadcrumb a {
+            color: var(--accent3);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* Search Box */
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 3rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent2);
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 1rem 1.5rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-box button {
+            background: var(--gradient);
+            color: var(--text);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+        }
+
+        .search-box button:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* Result Card Simulated */
+        .result-card {
+            width: 100%;
+            background: var(--success-bg);
+            border: 1px solid var(--success);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .result-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        .result-info h3 {
+            color: var(--success);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-info p {
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .result-info span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Info box */
+        .info-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            width: 100%;
+        }
+
+        .info-box h4 {
+            color: var(--accent3);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .search-box { flex-direction: column; border-radius: 16px; padding: 1rem;}
+            .search-box button { width: 100%; border-radius: 8px;}
+            .result-card { flex-direction: column; text-align: center; }
+        }
+
+    
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Inicio</a> &gt; <a href="/certificaciones/">Certificaciones</a> &gt; <span>Verificar Credencial</span>
+        </div>
+
+        <h1>Verifica una credencial SPX</h1>
+        <p class="subtitle">Ingresa el ID de la credencial o el enlace directo para verificar la autenticidad y validez de la certificación otorgada por SYNEPRIX.</p>
+
+        <form class="search-box" action="/certificaciones/verificar/" method="get">
+            <label for="credential-id" class="sr-only">ID de la credencial</label>
+            <input id="credential-id" name="id" type="text" required placeholder="Ej: SPX-9876-ABCD">
+            <button type="submit">Verificar</button>
+        </form>
+
+        <!-- Simulación de resultado exitoso -->
+        <div class="result-card" id="credential-result" hidden>
+            <div class="result-icon">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div class="result-info">
+                <h3 id="credential-title"></h3>
+                <p id="credential-course"></p>
+                <span id="credential-meta"></span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h4>Para Empleadores y Reclutadores</h4>
+            <p>Las certificaciones SYNEPRIX (SPX) garantizan que el portador ha superado rigurosas evaluaciones prácticas y teóricas. Nuestras credenciales están protegidas criptográficamente para prevenir falsificaciones. Si tienes dudas sobre un perfil, contáctanos en verification@syneprix.com.</p>
+        </div>
+
+    </div>
+
+    <script>
+      const credentials = {
+        'SPX-9876-ABCD': { course: 'Frontend Foundations SPX', owner: 'Juan Pérez', date: '10 Mayo 2026' },
+        'SPX-4521-XYZW': { course: 'Automatización Inteligente', owner: 'María Torres', date: '18 Junio 2026' }
+      };
+      const requestedId = (new URLSearchParams(window.location.search).get('id') || '').trim().toUpperCase();
+      const credentialInput = document.getElementById('credential-id');
+      const result = document.getElementById('credential-result');
+      if (requestedId && credentialInput && result) {
+        credentialInput.value = requestedId;
+        result.hidden = false;
+        const credential = credentials[requestedId];
+        document.getElementById('credential-title').textContent = credential ? 'Certificado válido y auténtico' : 'Credencial no encontrada';
+        document.getElementById('credential-course').textContent = credential
+          ? `${credential.course} — Emitido a ${credential.owner}`
+          : 'Revisa el ID ingresado o contacta a verification@syneprix.com.';
+        document.getElementById('credential-meta').textContent = credential
+          ? `ID: ${requestedId} • Emitido: ${credential.date} • Estado: Activo`
+          : `ID consultado: ${requestedId}`;
+        if (!credential) result.style.borderColor = '#ef4444';
+      }
+    </script>
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

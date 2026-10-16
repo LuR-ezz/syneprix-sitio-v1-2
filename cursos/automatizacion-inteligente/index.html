@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso: Automatización Inteligente y RPA | SYNEPRIX</title>
+    <meta name="description" content="Aprende Automatización Inteligente y RPA. Domina herramientas top del mercado.">
+    <style>
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'InterVariable', 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-panel { background: var(--glass); border: 1px solid var(--border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+        .btn-primary { background: var(--gradient); color: var(--text); border: none; box-shadow: 0 4px 15px rgba(89, 29, 203, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(89, 29, 203, 0.6); }
+        .btn-outline { border: 1px solid var(--accent3); color: var(--text); background: transparent; }
+        .btn-outline:hover { background: rgba(127, 119, 221, 0.1); transform: translateY(-2px); }
+        
+        /* Navbar */
+        header { position: sticky; top: 0; z-index: 1000; background: var(--glass-solid); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); padding: 15px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; }
+        .logo span { color: var(--accent2); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent2); }
+
+        /* Layout del Curso */
+        .course-layout { display: flex; gap: 50px; padding: 60px 0 100px; position: relative; align-items: flex-start; }
+        .course-main { width: 65%; }
+        .course-sidebar { width: 35%; position: sticky; top: 100px; padding: 40px; }
+        
+        @media (max-width: 992px) {
+            .course-layout { flex-direction: column; }
+            .course-main, .course-sidebar { width: 100%; position: static; }
+            .nav-links { display: none; }
+        }
+
+        /* Contenido Main */
+        .breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+        .breadcrumb a { color: var(--accent3); }
+        .course-title { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        .course-subtitle { font-size: 1.2rem; color: var(--muted); margin-bottom: 40px; }
+        
+        .section-box { margin-bottom: 50px; }
+        .section-box h2 { font-size: 1.8rem; margin-bottom: 20px; color: var(--accent2); }
+        .para-quien li { margin-bottom: 10px; display: flex; gap: 10px; align-items: flex-start; }
+        .para-quien li::before { content: '✓'; color: var(--accent3); font-weight: bold; }
+
+        /* Acordeón Syllabus */
+        .accordion-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 15px; overflow: hidden; background: var(--glass); }
+        .accordion-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; font-size: 1.1rem; }
+        .accordion-header:hover { background: var(--glass-panel-bg); }
+        .accordion-content { padding: 0 20px 20px; color: var(--muted); font-size: 0.95rem; display: none; }
+        .accordion-item.active .accordion-content { display: block; }
+        
+        /* Instructor & Testimonios */
+        .instructor-card { display: flex; gap: 20px; align-items: center; padding: 30px; border-radius: 16px; background: var(--glass); border: 1px solid var(--border); }
+        .instructor-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent1); }
+        .testimonial { padding: 30px; border-left: 4px solid var(--accent2); background: var(--glass); font-style: italic; color: var(--muted); margin-top: 20px; }
+        
+        /* Sidebar Sticky */
+        .sidebar-price { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+        .sidebar-features { margin: 30px 0; }
+        .sidebar-features li { margin-bottom: 15px; font-size: 0.95rem; color: var(--muted); display: flex; gap: 10px; }
+        .sidebar-features li::before { content: '⚡'; }
+
+        /* CTA Final */
+        .cta-final { padding: 80px 0; text-align: center; background: radial-gradient(circle at center, rgba(89,29,203,0.2) 0%, var(--bg) 100%); border-top: 1px solid var(--border); }
+        
+        footer { padding: 30px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 0.9rem; }
+    
+    /* Dropdown CSS */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { 
+        display: none; position: absolute; background-color: rgba(5,5,8,0.95); 
+        min-width: 300px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid var(--border);
+        border-radius: 12px; z-index: 1000; top: 100%; left: 0; padding: 10px 0; backdrop-filter: blur(15px);
+    }
+    .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-out; }
+    .dropdown-content a { 
+        color: var(--muted) !important; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+    }
+    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--text) !important; padding-left: 25px; }
+    .dropdown-content .icon { margin-right: 10px; font-size: 1.1rem; vertical-align: middle;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+    <div data-component="navbar"></div>
+
+    <div class="container course-layout">
+        <main class="course-main">
+            <div class="breadcrumb">
+                <a href="/">Inicio</a> &gt; <a href="/#cursos-destacados">Cursos</a> &gt; <span>Automatización</span>
+            </div>
+            
+            <h1 class="course-title">Automatización Inteligente <span class="text-gradient">& RPA</span></h1>
+            <p class="course-subtitle">Deja que los robots hagan el trabajo repetitivo. Aprende a diseñar, desarrollar y desplegar soluciones de automatización empresarial end-to-end con UiPath y Python.</p>
+
+            <div class="section-box">
+                <h2>¿Para quién es este curso?</h2>
+                <ul class="para-quien">
+                    <li>Profesionales de operaciones y finanzas que buscan optimizar sus procesos diarios.</li>
+                    <li>Desarrolladores Junior que desean entrar al lucrativo mundo del RPA.</li>
+                    <li>Líderes de transformación digital encargados de innovar en sus corporaciones.</li>
+                    <li>Cualquier persona cansada del trabajo manual en Excel y sistemas legacy.</li>
+                </ul>
+            </div>
+
+            <div class="section-box">
+                <h2>Syllabus del Programa</h2>
+                
+                <div class="accordion-item active">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Módulo 1: Fundamentos de RPA</span> <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        Introducción a la automatización. Identificación de procesos automatizables. Cálculo de ROI. Primer contacto con UiPath Studio y conceptos básicos de flujos de trabajo.
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Módulo 2: Desarrollo Avanzado en UiPath</span> <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        Manejo de selectores dinámicos, automatización web y de escritorio, lectura de PDFs, y manipulación masiva de datos en Excel y bases de datos.
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Módulo 3: Automatización Cognitiva (IA + RPA)</span> <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        Integración de modelos de Machine Learning. Uso de OCR avanzado (Document Understanding) para leer facturas y recibos no estructurados.
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">
+                        <span>Módulo 4: Arquitectura y Orquestación</span> <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        Uso del Framework REFramework (Robotic Enterprise Framework). Manejo de excepciones, colas (Queues) y despliegue en Orchestrator.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h2>Tu Instructor</h2>
+                <div class="instructor-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Instructor" class="instructor-img">
+                    <div>
+                        <h3 style="font-size:1.3rem; margin-bottom:5px;">Carlos Mendoza</h3>
+                        <p style="color:var(--accent3); font-weight:600; font-size:0.9rem; margin-bottom:10px;">Lead RPA Architect</p>
+                        <p style="color:var(--muted); font-size:0.95rem;">Más de 8 años de experiencia implementando centros de excelencia (CoE) en automatización para Fortune 500. Especialista certificado en UiPath y Automation Anywhere.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h2>Lo que dicen nuestros alumnos</h2>
+                <div class="testimonial">
+                    "Antes pasaba 4 horas al día reconciliando datos entre SAP y Excel. Con lo que aprendí en el módulo 2, logré automatizar esa tarea por completo. Ahora me enfoco en análisis estratégico y conseguí un ascenso."
+                    <div style="margin-top:15px; font-weight:bold; color: var(--text);">- Andrea Gómez, Analista Financiera</div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h2>Preguntas Frecuentes (FAQ)</h2>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color: var(--text); margin-bottom:5px;">¿Necesito saber programar?</h4>
+                    <p style="color:var(--muted); font-size:0.95rem;">No es estrictamente necesario para empezar, pero nociones de lógica de programación (variables, bucles) te ayudarán a avanzar mucho más rápido.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--text); margin-bottom:5px;">¿Otorgan certificado?</h4>
+                    <p style="color:var(--muted); font-size:0.95rem;">Sí, al completar el proyecto final recibirás la Certificación SPX Nivel 2 (Professional).</p>
+                </div>
+            </div>
+
+        </main>
+
+        <aside class="course-sidebar glass-panel">
+            <div class="sidebar-price">$299 <span style="font-size:1rem; color:var(--muted); font-weight:normal;">USD</span></div>
+
+            
+            <a href="/contacto/?asunto=Inscripción%20Automatización%20Inteligente" class="btn btn-primary" style="width:100%; margin-bottom:10px;">Solicitar inscripción</a>
+            <a href="demo.html" class="btn btn-outline" style="width:100%; margin-bottom:15px;">▶ Ver Demo del Curso</a>
+            <p style="text-align:center; font-size:0.8rem; color:var(--muted);">Garantía de devolución de 7 días</p>
+            
+            <ul class="sidebar-features">
+                <li>40 horas de video bajo demanda</li>
+                <li>Proyectos prácticos reales</li>
+                <li>Mentoria 1 a 1 semanal</li>
+                <li>Acceso a la comunidad privada Discord</li>
+                <li>Certificado con valor curricular</li>
+            </ul>
+        </aside>
+    </div>
+
+    <section class="cta-final">
+        <div class="container">
+            <h2 style="font-size:2.5rem; margin-bottom:20px;">¿Listo para evolucionar tu carrera?</h2>
+            <p style="color:var(--muted); margin-bottom:30px; font-size:1.1rem;">Las empresas están buscando talento en automatización hoy. No te quedes atrás.</p>
+            <a href="/contacto/?asunto=Inscripción%20Automatización%20Inteligente" class="btn btn-primary" style="font-size:1.1rem; padding: 15px 40px;">Solicitar inscripción</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            &copy; 2026 SYNEPRIX. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

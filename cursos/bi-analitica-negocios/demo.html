@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Demo: BI & Analítica | SYNEPRIX</title>
+    <style>
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'InterVariable', 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Nav Simple */
+        header { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; }
+        .back-link { color: var(--muted); font-size: 0.9rem; transition: color 0.3s; }
+        .back-link:hover { color: var(--text); }
+        
+        /* Hero Demo (Centrado del usuario) */
+        .demo-hero { text-align: center; padding: 40px 0 20px; }
+        .badge { display: inline-block; padding: 5px 15px; border: 1px solid var(--accent2); background: rgba(208, 77, 205, 0.1); border-radius: 4px; font-size: 0.8rem; color: var(--accent2); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .demo-hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+        .demo-hero p { font-size: 1.05rem; color: var(--muted); max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        /* Video Area (Centrado gigante) */
+        .video-wrapper { margin: 40px auto; width: 100%; aspect-ratio: 16/9; background: #0a0a0a; border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        .video-thumbnail { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .play-btn { position: absolute; width: 80px; height: 80px; background: rgba(0,0,0,0.6); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
+        .play-btn:hover { transform: scale(1.1); background: var(--accent2); border-color: var(--accent2); box-shadow: 0 0 30px rgba(208, 77, 205, 0.6); }
+        .play-btn::after { content: ''; width: 0; height: 0; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 20px solid white; margin-left: 5px; }
+
+        /* Tabs (Cursos) */
+        .demo-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 20px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; color: var(--muted); cursor: pointer; transition: all 0.3s; background: transparent; }
+        .tab-btn:hover { border-color: var(--accent3); color: var(--text); }
+        .tab-btn.active { border-color: var(--accent2); color: var(--text); background: rgba(208, 77, 205, 0.1); }
+
+        /* Fusión: Contenido Inferior (Grid con Sticky CTA) */
+        .bottom-section { background-color: var(--card-bg); padding: 60px 0; border-top: 1px solid var(--border); }
+        .bottom-grid { display: flex; gap: 60px; align-items: flex-start; }
+        .content-left { flex: 1; }
+        .sidebar-right { width: 380px; position: sticky; top: 40px; }
+
+        /* Detalles de Aprendizaje (Idea del usuario) */
+        .learning-list { background: var(--glass); border: 1px solid var(--border); border-radius: 12px; padding: 40px; margin-bottom: 30px; }
+        .learning-list h2 { font-size: 1.3rem; margin-bottom: 25px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        .learning-list ul { list-style: none; }
+        .learning-list li { font-size: 0.95rem; margin-bottom: 20px; padding-left: 25px; position: relative; color: var(--muted); line-height: 1.6; }
+        .learning-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent3); font-weight: bold; }
+
+        /* Instructor (Mi idea aportando autoridad) */
+        .instructor-mini { display: flex; align-items: center; gap: 20px; padding: 30px; background: var(--glass); border: 1px solid var(--border); border-radius: 12px; }
+        .instructor-img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent2); }
+
+        /* CTA Box Sticky (Mi idea de conversión aplicada al diseño del usuario) */
+        .cta-box { border: 1px solid var(--accent2); padding: 40px; text-align: center; border-radius: 12px; background: linear-gradient(180deg, rgba(208,77,205,0.05) 0%, rgba(0,0,0,0) 100%); }
+        .cta-box h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--accent2); }
+        .offer-price { font-size: 3.5rem; font-weight: 800; line-height: 1; margin-bottom: 5px; color: var(--text); }
+        .offer-price span { font-size: 1rem; color: var(--muted); font-weight: 400; }
+        
+        .btn-blue { display: inline-block; width: 100%; padding: 18px; background-color: #2563eb; color: var(--text); border: none; border-radius: 6px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; margin: 25px 0 15px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); }
+        .btn-blue:hover { background-color: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6); }
+        
+        .offer-guarantee { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+        @media (max-width: 900px) {
+            .bottom-grid { flex-direction: column; }
+            .sidebar-right { width: 100%; position: static; }
+            .demo-hero h1 { font-size: 2rem; }
+        }
+    
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+    <header class="container">
+        <div class="logo">SYNEPRIX</div>
+        <a href="index.html" class="back-link">← Volver al curso</a>
+    </header>
+
+    <div class="container">
+        <!-- Hero Centrado (Idea del usuario) -->
+        <div class="demo-hero">
+            <div class="badge">Demo Gratuita</div>
+            <h1>Clase Demo: BI & Analítica de Negocios</h1>
+            <p>Transforma datos crudos en Dashboards interactivos y toma decisiones estratégicas con Power BI y SQL.</p>
+        </div>
+
+        <!-- Video Gigante (Fusión) -->
+        <div class="video-wrapper">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop" alt="Video Thumbnail" class="video-thumbnail">
+            <div class="play-btn"></div>
+        </div>
+
+        <!-- Pestañas de Navegación (Idea del usuario) -->
+        <div class="demo-tabs">
+            <a href="../automatizacion-inteligente/demo.html" class="tab-btn">Automatización Inteligente</a>
+            <a href="demo.html" class="tab-btn active">BI & Analítica</a>
+            <button class="tab-btn" type="button" disabled>IA Empresarial</button>
+            <button class="tab-btn" type="button" disabled>Gestión Digital</button>
+        </div>
+    </div>
+
+    <!-- Contenido Inferior Dividido (Fusión Conversión + UI Limpia) -->
+    <div class="bottom-section">
+        <div class="container bottom-grid">
+            
+            <div class="content-left">
+                <!-- Lo que aprenderás (Idea del usuario) -->
+                <div class="learning-list">
+                    <h2>¿Qué aprenderás en este programa?</h2>
+                    <ul>
+                        <li>Conexión e importación de múltiples fuentes de datos locales y cloud.</li>
+                        <li>Transformación y limpieza avanzada de datos usando Power Query.</li>
+                        <li>Modelado de relaciones y creación de métricas complejas con DAX.</li>
+                        <li>Diseño de reportes interactivos y publicación segura en la nube.</li>
+                    </ul>
+                </div>
+                
+                <!-- Autoridad (Mi idea) -->
+                <div class="instructor-mini">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop" alt="Elena Ruiz" class="instructor-img">
+                    <div>
+                        <h4 style="font-size:1.1rem; margin-bottom:5px;">Elena Ruiz</h4>
+                        <p style="font-size:0.9rem; color:var(--muted);">Senior Data Analyst. Creadora de dashboards para el sector financiero.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sticky CTA (Mi idea de conversión) -->
+            <aside class="sidebar-right">
+                <div class="cta-box">
+                    <h3>Especialización en BI & Analítica</h3>
+                    <div class="offer-price">$249 <span>USD</span></div>
+                    <p style="color: var(--text); font-size:0.9rem; margin-top:5px;">Pago único.</p>
+
+                    <a href="/contacto/?asunto=Inscripción%20BI%20y%20Analítica" class="btn-blue">Solicitar inscripción</a>
+                    
+                    <p class="offer-guarantee">🔒 Pago 100% seguro y encriptado<br>Garantía de devolución de 7 días.</p>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../assets/audio/Voz_Syneprix.mp3"></audio>
+    <script src="/js/auth-state.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* Scroll Animations (Estilo GCORE Tech) */
+.animate-on-scroll {
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+}
+.animate-on-scroll.shoji-left {
+    transform: translateX(-100px) scale(0.95);
+}
+.animate-on-scroll.shoji-right {
+    transform: translateX(100px) scale(0.95);
+}
+.animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+    transform: translateY(60px) scale(0.95);
+}
+.animate-on-scroll.visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0) scale(1) !important;
+}
+
+/* Staggered Slide Up with Scale (Estilo GCORE Grid) */
+.slide-up-stagger {
+    transform: translateY(60px) scale(0.9);
+    opacity: 0;
+    filter: blur(12px);
+}
+.slide-up-stagger.visible {
+    transform: translateY(0) scale(1) !important;
+    opacity: 1 !important;
+    filter: blur(0) !important;
+}
+
+/* Efecto Ola (Staggered Text Reveal) */
+.efecto-ola .text-wave-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.efecto-ola.visible .text-wave-word {
+    opacity: 1;
+    transform: translateY(0);
+}

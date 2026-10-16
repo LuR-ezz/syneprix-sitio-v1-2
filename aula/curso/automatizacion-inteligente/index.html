@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reproductor — SYNEPRIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html, body { height: 100%; font-family: 'InterVariable', 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+
+    /* NAVBAR */
+    .aula-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--navbar);
+      background: rgba(0,0,0,0.85); border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .back-btn { color: var(--muted); text-decoration: none; font-size: 1.2rem; font-weight: bold; }
+    .back-btn:hover { color: var(--text); }
+    .course-title { font-size: 0.95rem; font-weight: 700; }
+    .course-title span { color: var(--accent3); font-weight: 500; font-size: 0.85rem; margin-left: 8px;}
+    
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .btn-logout { padding: 7px 14px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 0.8rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-logout:hover { border-color: var(--border-hover); color: var(--text); }
+
+    /* LAYOUT */
+    .player-body { display: flex; margin-top: var(--navbar); height: calc(100vh - var(--navbar)); }
+
+    /* SIDEBAR MODULES */
+    .sidebar-modules { width: var(--sidebar); background: #050508; border-right: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; }
+    .module-header { padding: 20px; border-bottom: 1px solid var(--border); background: var(--glass); }
+    .module-header h3 { font-size: 0.9rem; margin-bottom: 5px; }
+    .module-progress { font-size: 0.75rem; color: var(--muted); }
+    
+    .lesson-item { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; cursor: pointer; transition: background 0.2s; }
+    .lesson-item:hover { background: var(--glass); }
+    .lesson-item.active { background: rgba(89,29,203,0.15); border-left: 4px solid var(--accent2); }
+    .lesson-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+    .lesson-item.completed .lesson-icon { background: #22c55e; color: #000; }
+    .lesson-item.active .lesson-icon { background: var(--gradient); color: var(--text); }
+    .lesson-item.locked .lesson-icon { background: rgba(255,255,255,0.1); color: var(--muted); }
+    .lesson-info h4 { font-size: 0.85rem; margin-bottom: 4px; font-weight: 600; }
+    .lesson-item.locked .lesson-info h4 { color: var(--muted); }
+    .lesson-duration { font-size: 0.7rem; color: var(--muted); }
+
+    /* MAIN VIDEO AREA */
+    .course-player-container { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: #000; }
+    .video-wrapper { width: 100%; aspect-ratio: 16 / 9; background: #111; position: relative; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .video-placeholder { font-size: 4rem; opacity: 0.5; }
+    
+    .lesson-content { padding: 40px; max-width: 900px; margin: 0 auto; width: 100%; }
+    .lesson-content h1 { font-size: 1.8rem; margin-bottom: 10px; }
+    .lesson-content p { color: var(--muted); font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6; }
+
+    /* TABS */
+    .lesson-tabs { display: flex; gap: 30px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+    .tab { padding-bottom: 10px; color: var(--muted); font-weight: 600; cursor: pointer; transition: color 0.2s; font-size: 0.9rem; }
+    .tab.active { color: var(--text); border-bottom: 2px solid var(--accent2); }
+    .tab:hover { color: var(--text); }
+
+    .tab-content { font-size: 0.9rem; color: #d0d8e8; }
+  
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+<nav class="aula-nav">
+  <div class="nav-left">
+    <a href="../../index.html" class="back-btn">←</a>
+    <div class="course-title">Automatización Inteligente <span>Módulo 1: Fundamentos RPA</span></div>
+  </div>
+  <div class="nav-right">
+    <a href="../../../login/index.html" class="btn-logout">Cerrar sesión</a>
+  </div>
+</nav>
+
+<div class="player-body">
+  <!-- SIDEBAR MODULES -->
+  <aside class="sidebar-modules">
+    <div class="module-header">
+      <h3>Módulo 1: Introducción</h3>
+      <div class="module-progress">1 / 4 completadas</div>
+    </div>
+    
+    <div class="lesson-item completed" onclick="switchLesson(1, this)">
+      <div class="lesson-icon">✓</div>
+      <div class="lesson-info">
+        <h4>1.1 ¿Qué es la automatización?</h4>
+        <div class="lesson-duration">05:20 • Video</div>
+      </div>
+    </div>
+    
+    <div class="lesson-item active" onclick="switchLesson(2, this)">
+      <div class="lesson-icon">▶</div>
+      <div class="lesson-info">
+        <h4>1.2 Herramientas RPA del mercado</h4>
+        <div class="lesson-duration">12:45 • Video</div>
+      </div>
+    </div>
+    
+    <div class="lesson-item" onclick="switchLesson(3, this)">
+      <div class="lesson-icon">💻</div>
+      <div class="lesson-info">
+        <h4>1.3 Tu primer bot en UiPath</h4>
+        <div class="lesson-duration">25:10 • Proyecto</div>
+      </div>
+    </div>
+
+    <div class="lesson-item" onclick="switchLesson(4, this)">
+      <div class="lesson-icon">📝</div>
+      <div class="lesson-info">
+        <h4>1.4 Quiz del Módulo 1</h4>
+        <div class="lesson-duration">10 Preguntas</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="course-player-container" id="main-content">
+    
+    <!-- VISTA 2: VIDEO (Por defecto) -->
+    <div id="view-2" class="lesson-view" style="display: block;">
+      <div class="video-wrapper">
+        <div class="video-placeholder">▶️</div>
+        <div style="position: absolute; bottom: 20px; right: 20px; background: var(--glass-solid); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">Video Player</div>
+      </div>
+      
+      <div class="lesson-content">
+        <h1>1.2 Herramientas RPA del mercado</h1>
+        <div class="lesson-tabs">
+        <div class="tab active" onclick="switchTab('desc', this)">Descripción</div>
+        <div class="tab" onclick="switchTab('rec', this)">Recursos (2)</div>
+        <div class="tab" onclick="switchTab('foro', this)">Foro de discusión</div>
+      </div>
+      
+      <div id="tab-desc" class="tab-content-panel" style="display: block; font-size: 0.9rem; color: #d0d8e8;">
+        <p>En esta lección exploraremos las principales plataformas de automatización robótica de procesos (RPA), comparando UiPath, Automation Anywhere y Blue Prism. Analizaremos sus diferencias clave, modelos de licenciamiento y por qué hemos seleccionado herramientas específicas para este programa.</p>
+        <button style="padding: 10px 20px; background: transparent; border: 1px solid var(--accent2); color: var(--text); border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; transition: background 0.2s;" onmouseover="this.style.background='rgba(208,77,205,0.1)'" onmouseout="this.style.background='transparent'" onclick="marcarCompletado(2)">Siguiente Lección →</button>
+      </div>
+
+      <div id="tab-rec" class="tab-content-panel" style="display: none;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+           <div aria-disabled="true" style="background: var(--glass); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 10px; color: var(--muted);">
+             <span style="font-size: 1.5rem;">📄</span>
+             <div>
+               <div style="font-weight: 600;">Cuadro_Comparativo_RPA.pdf</div>
+               <div style="font-size: 0.8rem; color: var(--muted);">No disponible en esta versión de prueba</div>
+             </div>
+           </div>
+           <a href="https://docs.uipath.com/" target="_blank" rel="noopener noreferrer" style="background: var(--glass); border: 1px solid var(--border); padding: 15px; border-radius: 8px; display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='var(--glass)'">
+             <span style="font-size: 1.5rem;">🔗</span>
+             <div>
+               <div style="font-weight: 600;">Documentación Oficial UiPath</div>
+               <div style="font-size: 0.8rem; color: var(--muted);">Enlace externo</div>
+             </div>
+           </a>
+        </div>
+      </div>
+
+      <div id="tab-foro" class="tab-content-panel" style="display: none;">
+        <div style="margin-bottom: 20px;">
+           <textarea disabled aria-label="Foro próximamente" placeholder="El foro estará disponible próximamente" style="width: 100%; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 8px; color: var(--text); outline: none; resize: vertical; min-height: 80px; font-family: 'InterVariable', 'Inter', sans-serif; font-size: 0.9rem;"></textarea>
+           <div style="text-align: right; margin-top: 10px;">
+             <button type="button" disabled title="Foro disponible próximamente" style="padding: 10px 20px; background: var(--accent1); border: none; color: var(--text); border-radius: 8px; font-weight: 600; opacity: .55;">Foro próximamente</button>
+           </div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+           <div style="background: var(--glass); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+               <div style="width: 30px; height: 30px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">CM</div>
+               <div>
+                 <div style="font-size: 0.9rem; font-weight: 600;">Carlos Mendoza</div>
+                 <div style="font-size: 0.7rem; color: var(--muted);">Hace 2 horas</div>
+               </div>
+             </div>
+             <p style="font-size: 0.9rem; color: #d0d8e8; margin-bottom: 10px;">¿Alguien sabe si la versión Community de UiPath tiene límite de robots desatendidos?</p>
+             <div style="padding-left: 15px; border-left: 2px solid rgba(255,255,255,0.1);">
+               <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                 <div style="width: 20px; height: 20px; background: var(--accent1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: bold;">⭐</div>
+                 <div style="font-size: 0.8rem; font-weight: 600; color: var(--accent3);">Mentor SYNEPRIX</div>
+               </div>
+               <p style="font-size: 0.85rem; color: var(--muted);">Hola Carlos, sí. La versión Community no incluye licencias para robots desatendidos de producción. Solo para pruebas locales.</p>
+             </div>
+           </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- VISTA 3: PROYECTO -->
+    <div id="view-3" class="lesson-view" style="display: none;">
+      <div class="lesson-content" style="max-width: 800px; margin-top: 40px;">
+        <div style="background: rgba(208,77,205,0.1); border: 1px solid var(--accent2); padding: 20px; border-radius: 12px; margin-bottom: 30px;">
+          <h2 style="color: var(--accent2); margin-bottom: 10px;">💻 Proyecto Práctico: Tu primer bot en UiPath</h2>
+          <p style="color: var(--muted); font-size: 0.9rem;">Los proyectos prácticos son evaluados por mentores y su calificación impacta directamente en tu barra de Progreso General y la obtención de tu certificado.</p>
+        </div>
+        
+        <h3 style="margin-bottom: 15px;">Instrucciones:</h3>
+        <p style="color: #d0d8e8; margin-bottom: 20px; line-height: 1.6;">Descarga el archivo base desde los recursos. Tu misión es construir un robot en UiPath que lea la tabla de clientes en Excel, navegue a la web del CRM y registre automáticamente cada fila. Debes enviar el archivo <code>.xaml</code> empaquetado.</p>
+        
+        <div style="background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 12px; margin-bottom: 30px;">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+            <div style="font-size: 2.5rem;">🐙</div>
+            <div>
+              <h4 style="margin-bottom: 5px;">Entrega vía GitHub</h4>
+              <p style="color: var(--muted); font-size: 0.85rem;">No aceptamos archivos locales. Sube tu código a un repositorio público y pega la URL aquí para revisión.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <input type="url" placeholder="https://github.com/tu-usuario/spx-uipath-bot" style="flex: 1; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 8px; color: var(--text); outline: none; font-family: monospace; font-size: 0.9rem;">
+          </div>
+        </div>
+
+        <button style="padding: 15px 30px; background: var(--gradient); border: none; color: var(--text); border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem;" onclick="marcarCompletado(3)">Validar URL y Enviar Proyecto</button>
+      </div>
+    </div>
+
+    <!-- VISTA 4: QUIZ -->
+    <div id="view-4" class="lesson-view" style="display: none;">
+      <div class="lesson-content" style="max-width: 800px; margin-top: 40px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px;">
+          <h2>📝 Quiz del Módulo 1</h2>
+          <span style="color: var(--muted); font-weight: bold;">Pregunta 1 de 10</span>
+        </div>
+
+        <div style="background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 12px;">
+          <h3 style="margin-bottom: 25px; line-height: 1.4;">¿Cuál de las siguientes características es el diferenciador principal de la RPA frente a un script tradicional de código duro (hardcode)?</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            <label style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+              <input type="radio" name="q1" style="transform: scale(1.2);">
+              <span>Interactúa con las aplicaciones a nivel de la interfaz de usuario (UI), simulando a un humano.</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+              <input type="radio" name="q1" style="transform: scale(1.2);">
+              <span>Requiere modificar el código fuente de los sistemas legados.</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 15px; padding: 15px 20px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: background 0.2s;">
+              <input type="radio" name="q1" style="transform: scale(1.2);">
+              <span>Solo funciona con bases de datos SQL.</span>
+            </label>
+          </div>
+
+          <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+            <button style="padding: 12px 25px; background: var(--gradient); border: none; color: var(--text); border-radius: 8px; cursor: pointer; font-weight: bold;" onclick="marcarCompletado(4)">Siguiente Pregunta →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function switchTab(tabId, element) {
+    document.querySelectorAll('.lesson-tabs .tab').forEach(t => t.classList.remove('active'));
+    element.classList.add('active');
+
+    document.querySelectorAll('.tab-content-panel').forEach(p => p.style.display = 'none');
+    document.getElementById('tab-' + tabId).style.display = 'block';
+  }
+
+  function switchLesson(id, element) {
+    // Si la lección está clickeada en la lección 1 que no armé vista, la ignoro para el demo
+    if(id === 1) return;
+
+    // Cambiar estado activo en el sidebar
+    document.querySelectorAll('.lesson-item').forEach(el => {
+      el.classList.remove('active');
+      if(!el.classList.contains('completed')) {
+        let icon = el.querySelector('.lesson-icon');
+        // Reset iconos si no estan completados
+        if(icon.innerText === '▶') icon.innerText = el.querySelector('h4').innerText.includes('Proyecto') ? '💻' : 
+                                                    el.querySelector('h4').innerText.includes('Quiz') ? '📝' : '▶';
+      }
+    });
+    
+    element.classList.add('active');
+    let activeIcon = element.querySelector('.lesson-icon');
+    if(!element.classList.contains('completed')) activeIcon.innerText = '▶';
+
+    // Ocultar todas las vistas y mostrar la seleccionada
+    document.querySelectorAll('.lesson-view').forEach(view => {
+      view.style.display = 'none';
+    });
+    document.getElementById('view-' + id).style.display = 'block';
+  }
+
+  function marcarCompletado(id) {
+    localStorage.setItem(`spx_lesson_${id}_completed`, 'true');
+    let status = document.getElementById('lesson-action-status');
+    if (!status) {
+      status = document.createElement('p');
+      status.id = 'lesson-action-status';
+      status.setAttribute('role', 'status');
+      status.style.cssText = 'margin: 1rem; color: var(--accent2); text-align: center;';
+      document.querySelector('.main-content')?.prepend(status);
+    }
+    status.textContent = 'Progreso guardado en este navegador.';
+    let item = document.querySelectorAll('.lesson-item')[id-1];
+    item.classList.remove('active');
+    item.classList.add('completed');
+    item.querySelector('.lesson-icon').innerText = '✓';
+    
+    // Pasar a la siguiente leccion si existe
+    if(id < 4) {
+      let nextItem = document.querySelectorAll('.lesson-item')[id];
+      switchLesson(id+1, nextItem);
+    }
+  }
+</script>
+
+<script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

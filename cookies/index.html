@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies - SYNEPRIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    * { box-sizing: border-box; }
+    a { color: var(--accent3); text-decoration: none; }
+    a:hover { color: var(--accent2); text-decoration: underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+    
+    .glass-panel {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h1 { font-size: 3rem; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -1px; }
+    h2 { font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text); }
+    p { color: var(--muted); }
+    
+    .date-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(127, 119, 221, 0.1);
+      color: var(--accent3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    
+    table { width: 100%; border-collapse: collapse; margin-top: 2rem; margin-bottom: 2rem; }
+    th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--text); font-weight: 600; background: var(--glass); }
+    td { color: var(--muted); }
+    
+    /* Cookie Banner Preview */
+    .cookie-banner-preview {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    .cookie-banner-preview p { margin: 0; font-size: 0.9rem; }
+    .cookie-btns { display: flex; gap: 1rem; flex-shrink: 0; }
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--gradient); color: var(--text); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 4rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    footer a { margin: 0 1rem; }
+    
+    @media (max-width: 768px) {
+      .container { padding: 2rem 1.5rem; }
+      .glass-panel { padding: 1.5rem; }
+      h1 { font-size: 2.5rem; }
+      .cookie-banner-preview { flex-direction: column; text-align: center; }
+    }
+  
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" style="display: inline-block; margin-bottom: 2rem;">← Volver al Inicio</a>
+    
+    <h1>Política de <span class="text-gradient">Cookies</span></h1>
+    <span class="date-badge">Última actualización: Junio 2026</span>
+
+    <div class="glass-panel">
+      <h2>¿Qué son las cookies?</h2>
+      <p>Las cookies son pequeños archivos de texto que los sitios web almacenan en su dispositivo cuando los visita. Se utilizan ampliamente para hacer que los sitios web funcionen, o funcionen de manera más eficiente, así como para proporcionar información a los propietarios del sitio.</p>
+
+      <h2>¿Cómo utilizamos las cookies?</h2>
+      <p>SYNEPRIX utiliza cookies para mejorar su experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido y los anuncios. Almacenamos cookies esenciales necesarias para el funcionamiento del sitio web, así como cookies opcionales para fines analíticos y de marketing.</p>
+
+      <h2>Tipos de cookies que utilizamos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Propósito</th>
+            <th>Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: var(--text);">Esenciales</td>
+            <td>Necesarias para que el sitio web funcione correctamente (ej. inicio de sesión, seguridad). No se pueden desactivar.</td>
+            <td>Sesión</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text);">Analíticas</td>
+            <td>Nos ayudan a entender cómo los visitantes interactúan con el sitio web mediante la recopilación de datos anónimos.</td>
+            <td>1 año</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text);">Funcionales</td>
+            <td>Permiten recordar sus preferencias (como el idioma o la región) para una experiencia personalizada.</td>
+            <td>6 meses</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Gestión de sus preferencias</h2>
+      <p>Puede cambiar sus preferencias de cookies en cualquier momento utilizando nuestro panel de configuración. A continuación, se muestra una vista previa del banner de cookies que verá en nuestro sitio:</p>
+      
+      <div class="cookie-banner-preview">
+        <p>Usamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar contenido. Puedes aceptar todas las cookies o gestionar tus preferencias.</p>
+        <div class="cookie-btns">
+          <button type="button" class="btn btn-outline" id="essential-cookies">Usar solo esenciales</button>
+          <button type="button" class="btn btn-primary" id="accept-cookies">Aceptar todas</button>
+        </div>
+        <p id="cookie-status" role="status" style="margin-top: 1rem;"></p>
+      </div>
+    </div>
+
+    <footer>
+      <a href="../privacidad/index.html">Política de Privacidad</a>
+      <a href="../terminos/index.html">Términos y Condiciones</a>
+      <a href="../contacto/index.html">Contacto</a>
+      <p style="margin-top: 1rem;">© 2026 SYNEPRIX.</p>
+    </footer>
+  </div>
+    <script>
+      const saveCookiePreference = (preference) => {
+        localStorage.setItem('spx_cookie_preference', preference);
+        document.getElementById('cookie-status').textContent = preference === 'all'
+          ? 'Preferencia guardada: todas las cookies.'
+          : 'Preferencia guardada: solo cookies esenciales.';
+      };
+      document.getElementById('essential-cookies')?.addEventListener('click', () => saveCookiePreference('essential'));
+      document.getElementById('accept-cookies')?.addEventListener('click', () => saveCookiePreference('all'));
+    </script>
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

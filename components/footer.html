@@ -1,0 +1,50 @@
+<style>
+/* Footer Component Styles */
+footer { padding: 60px 0 30px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.5); }
+.footer-grid { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; color: var(--accent3); }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: var(--muted); transition: color 0.3s; font-size: 0.9rem; text-decoration: none; }
+.footer-col ul li a:hover { color: var(--text); }
+.footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 576px) {
+    .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom:20px;">
+                    <img src="/assets/img/Isotipo - Blanco.svg" alt="SYNEPRIX" style="height: 40px;">
+                </div>
+                <p style="color:var(--muted); font-size:0.9rem;">Formando a los líderes digitales del mañana con educación de vanguardia.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/#cursos-destacados">Catálogo</a></li>
+                    <li><a href="/rutas/">Rutas de aprendizaje</a></li>
+                    <li><a href="/nosotros/">Nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/terminos/">Términos de Servicio</a></li>
+                    <li><a href="/privacidad/">Política de Privacidad</a></li>
+                    <li><a href="/cookies/">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 SYNEPRIX. Todos los derechos reservados.
+        </div>
+    </div>
+</footer>

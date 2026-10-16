@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soluciones Empresariales B2B | SYNEPRIX</title>
+  <meta name="description" content="Programas de capacitación corporativa en IA y Automatización para equipos de operaciones, logística y manufactura en LATAM. ROI medible, certificación SPX."/>
+  <meta name="keywords" content="capacitación corporativa IA, automatización empresas LATAM, certificación SPX, Power BI empresas, n8n corporativo"/>
+  <meta property="og:title" content="Soluciones Empresariales B2B | SYNEPRIX"/>
+  <meta property="og:description" content="Transforma el capital humano de tu empresa con programas a medida en IA y Automatización."/>
+  <meta property="og:type" content="website"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'InterVariable', 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon { font-size: 1.4rem; }
+    .nav-logo-text { font-size: 1.2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { color: #ccc; text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links .dropdown { position: relative; cursor: pointer; }
+    .nav-links .dropdown-toggle { color: #ccc; font-size: .88rem; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    .btn-ghost { background: none; border: 1px solid var(--border); color: #ccc; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-family: 'InterVariable', 'Inter', sans-serif; font-size: .85rem; font-weight: 500; transition: all .2s; text-decoration: none; }
+    .btn-ghost:hover { border-color: var(--accent1); color: var(--text); }
+    .btn-primary { background: var(--gradient); color: var(--text); border: none; padding: 9px 20px; border-radius: 8px; cursor: pointer; font-family: 'InterVariable', 'Inter', sans-serif; font-size: .85rem; font-weight: 600; transition: all .25s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(89,29,203,.45); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { padding: 90px 5% 0; display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--muted); }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--accent3); }
+    .breadcrumb span { color: var(--accent3); }
+
+    /* ── HERO B2B ── */
+    .hero-b2b {
+      padding: 60px 5% 100px;
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-b2b::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 10% 50%, rgba(89,29,203,.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-b2b::after {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; right: 5%; top: 0;
+      background: radial-gradient(circle, rgba(208,77,205,.12) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(89,29,203,.2); border: 1px solid rgba(89,29,203,.4);
+      color: var(--accent3); padding: 6px 16px; border-radius: 50px;
+      font-size: .78rem; font-weight: 600; letter-spacing: .5px; text-transform: uppercase;
+      margin-bottom: 1.5rem; width: fit-content;
+      animation: fadeInUp .6s ease forwards;
+    }
+    .hero-b2b h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.1;
+      margin-bottom: 1.4rem;
+      animation: fadeInUp .7s ease .1s both;
+    }
+    .hero-b2b h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); max-width: 520px; line-height: 1.7;
+      margin-bottom: 2rem; animation: fadeInUp .7s ease .2s both;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeInUp .7s ease .3s both; margin-bottom: 2.5rem; }
+    .btn-secondary { background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--text); padding: 12px 24px; border-radius: 10px; cursor: pointer; font-family: 'InterVariable', 'Inter', sans-serif; font-size: .9rem; font-weight: 600; transition: all .25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--accent3); }
+    .btn-primary-lg { font-size: 1rem; padding: 14px 28px; border-radius: 10px; }
+    .hero-stats { display: flex; gap: 2.5rem; animation: fadeInUp .7s ease .4s both; }
+    .hero-stat-num { font-size: 1.8rem; font-weight: 900; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-stat-label { font-size: .75rem; color: var(--muted); font-weight: 500; }
+    .hero-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      animation: fadeInRight .8s ease .2s both;
+    }
+    .hero-corp-card {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem; width: 100%; max-width: 400px;
+      backdrop-filter: blur(10px);
+    }
+    .corp-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+    .corp-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .corp-card-header h3 { font-size: 1rem; font-weight: 700; }
+    .corp-card-header p { font-size: .78rem; color: var(--muted); }
+    .corp-metric { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .corp-metric:last-child { border-bottom: none; }
+    .corp-metric-label { font-size: .82rem; color: var(--muted); }
+    .corp-metric-value { font-size: .9rem; font-weight: 700; color: #4ade80; }
+    .corp-metric-value.warn { color: var(--accent3); }
+    .progress-bar { height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--gradient); border-radius: 2px; animation: progressAnim 1.5s ease .5s both; }
+
+    /* ── SECTIONS GENERAL ── */
+    section { padding: 90px 5%; }
+    .section-label { font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent3); margin-bottom: .8rem; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.15; }
+    .section-title span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.7; }
+
+    /* ── VALOR B2B ── */
+    .valor-b2b { background: rgba(255,255,255,.015); }
+    .valor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .valor-card {
+      background: var(--glass); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem 1.5rem; transition: all .3s; position: relative; overflow: hidden;
+    }
+    .valor-card::before { content: ''; position: absolute; inset: 0; background: var(--gradient); opacity: 0; transition: opacity .3s; }
+    .valor-card:hover { border-color: rgba(89,29,203,.5); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(89,29,203,.2); }
+    .valor-card:hover::before { opacity: .04; }
+    .valor-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+    .valor-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .6rem; }
+    .valor-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── SECTORES ── */
+    .sectores-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .sector-card {
+      border-radius: 20px; padding: 2.5rem 2rem; min-height: 280px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      text-decoration: none; color: var(--text); position: relative; overflow: hidden;
+      transition: all .35s; cursor: pointer; border: 1px solid transparent;
+    }
+    .sector-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,.5); border-color: rgba(255,255,255,.12); }
+    .sector-mineria { background: linear-gradient(145deg, #1a1a2e 0%, #2d1b6e 40%, #4a1570 100%); }
+    .sector-logistica { background: linear-gradient(145deg, #0d1b2e 0%, #1b3a6e 40%, #2d5299 100%); }
+    .sector-manufactura { background: linear-gradient(145deg, #1a0d2e 0%, #2e1a00 40%, #3d2600 100%); }
+    .sector-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,.6)); }
+    .sector-emoji { font-size: 3rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+    .sector-name { font-size: 1.4rem; font-weight: 800; margin-bottom: .5rem; position: relative; z-index: 1; }
+    .sector-desc { font-size: .88rem; color: rgba(255,255,255,.7); position: relative; z-index: 1; margin-bottom: 1rem; }
+    .sector-link { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 600; color: var(--accent3); position: relative; z-index: 1; transition: gap .2s; }
+    .sector-card:hover .sector-link { gap: 10px; }
+
+    /* ── PROCESO ── */
+    .proceso { background: rgba(255,255,255,.015); }
+    .proceso-timeline { display: flex; align-items: flex-start; gap: 0; position: relative; margin-top: 3rem; }
+    .proceso-timeline::before { content: ''; position: absolute; top: 32px; left: calc(10% + 10px); right: calc(10% + 10px); height: 2px; background: linear-gradient(90deg, var(--accent1), var(--accent2)); z-index: 0; }
+    .proceso-step { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; }
+    .paso-num {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--bg);
+      border: 2px solid var(--accent1); display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; font-weight: 900; background: var(--gradient);
+      margin-bottom: 1.2rem; flex-shrink: 0;
+    }
+    .paso-title { font-size: .9rem; font-weight: 700; margin-bottom: .4rem; }
+    .paso-desc { font-size: .78rem; color: var(--muted); max-width: 130px; line-height: 1.5; }
+
+    /* ── CASOS PREVIEW ── */
+    .casos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .caso-card {
+      background: var(--glass); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.8rem; transition: all .3s; position: relative; overflow: hidden;
+    }
+    .caso-card:hover { border-color: rgba(208,77,205,.4); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(208,77,205,.1); }
+    .caso-sector { display: inline-flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--accent3); margin-bottom: 1rem; }
+    .caso-result { font-size: 2rem; font-weight: 900; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: .8rem 0 .4rem; }
+    .caso-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+    .caso-link { font-size: .82rem; font-weight: 600; color: var(--accent3); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: gap .2s; }
+    .caso-link:hover { gap: 8px; }
+
+    /* ── CONTACTO B2B ── */
+    .contacto-b2b { background: rgba(255,255,255,.015); }
+    .contacto-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contacto-info h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .contacto-info h2 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .contacto-info p { font-size: .95rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.8rem; }
+    .benefit-list { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+    .benefit-list li { display: flex; align-items: center; gap: 10px; font-size: .9rem; color: #ccc; }
+    .benefit-list li::before { content: '✓'; color: #4ade80; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    .contact-form {
+      background: var(--glass); border: 1px solid var(--border); border-radius: 20px;
+      padding: 2.5rem; backdrop-filter: blur(10px);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: .8rem; font-weight: 600; color: #ccc; letter-spacing: .3px; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      border-radius: 10px; padding: 11px 14px; color: var(--text); font-family: 'InterVariable', 'Inter', sans-serif;
+      font-size: .88rem; transition: border-color .2s; outline: none; width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent1); background: rgba(89,29,203,.08); }
+    .form-group select option { background: #111; color: var(--text); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; border: none; background: var(--gradient); color: var(--text); font-family: 'InterVariable', 'Inter', sans-serif; transition: all .25s; margin-top: .5rem; }
+    .form-submit:hover { opacity: .88; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(89,29,203,.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(255,255,255,.015); border-top: 1px solid var(--border);
+      padding: 70px 5% 40px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand-desc { font-size: .85rem; color: var(--muted); line-height: 1.8; margin: 1rem 0; }
+    .footer-social { display: flex; gap: 10px; margin-top: 1.2rem; }
+    .social-btn { width: 36px; height: 36px; border-radius: 8px; background: var(--glass); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; transition: all .2s; }
+    .social-btn:hover { background: var(--accent1); border-color: var(--accent1); }
+    .footer-col h4 { font-size: .9rem; font-weight: 700; margin-bottom: 1.2rem; color: var(--text); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col ul li a { font-size: .83rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--accent3); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .footer-bottom p { font-size: .8rem; color: var(--muted); }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { font-size: .8rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-bottom-links a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes progressAnim { from { width: 0; } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-b2b { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .valor-grid { grid-template-columns: repeat(2, 1fr); }
+      .proceso-timeline::before { display: none; }
+      .proceso-timeline { flex-direction: column; gap: 1.5rem; }
+      .proceso-step { flex-direction: row; text-align: left; gap: 1rem; }
+      .paso-desc { max-width: 100%; }
+      .casos-grid { grid-template-columns: repeat(2, 1fr); }
+      .contacto-split { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .navbar { padding: 0 4%; }
+      .nav-links { display: none; }
+      .nav-actions .btn-ghost { display: none; }
+      section { padding: 60px 4%; }
+      .hero-b2b { padding: 40px 4% 70px; }
+      .valor-grid { grid-template-columns: 1fr 1fr; }
+      .sectores-grid { grid-template-columns: 1fr; }
+      .casos-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  
+    /* Dropdown CSS */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { 
+        display: none; position: absolute; background-color: rgba(5,5,8,0.95); 
+        min-width: 300px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid var(--border);
+        border-radius: 12px; z-index: 1000; top: 100%; left: 0; padding: 10px 0; backdrop-filter: blur(15px);
+    }
+    .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-out; }
+    .dropdown-content a { 
+        color: var(--muted) !important; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+    }
+    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--text) !important; padding-left: 25px; }
+    .dropdown-content .icon { margin-right: 10px; font-size: 1.1rem; vertical-align: middle;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div data-component="navbar"></div>
+  <div class="nav-actions">
+    <a href="../login/index.html" class="btn-ghost">Iniciar sesión</a>
+    <a href="propuesta/index.html" class="btn-primary">Hablemos →</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">Inicio</a> › <span>Soluciones Empresariales</span>
+</div>
+
+<!-- HERO B2B -->
+<section class="hero-b2b">
+  <div class="hero-content">
+    <div class="hero-badge">🏢 Capacitación Corporativa</div>
+    <h1>Transforma el <span>capital humano</span> de tu empresa</h1>
+    <p class="hero-sub">Programas a medida en IA y Automatización para equipos de operaciones, logística y manufactura en LATAM.</p>
+    <div class="hero-ctas">
+      <a href="propuesta/index.html" class="btn-primary btn-primary-lg">Solicitar propuesta →</a>
+      <a href="casos-exito/index.html" class="btn-secondary">Ver casos de éxito</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">+50</div>
+        <div class="hero-stat-label">empresas capacitadas</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">$2M+</div>
+        <div class="hero-stat-label">ahorro documentado</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">-80%</div>
+        <div class="hero-stat-label">tiempo en procesos</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-corp-card">
+      <div class="corp-card-header">
+        <div class="corp-icon">📊</div>
+        <div>
+          <h3>ROI Dashboard</h3>
+          <p>Empresa — Sector Minería</p>
+        </div>
+      </div>
+      <div class="corp-metric">
+        <span class="corp-metric-label">Tiempo de cierre mensual</span>
+        <span class="corp-metric-value">-89%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:89%"></div></div>
+      <div class="corp-metric" style="margin-top:.8rem">
+        <span class="corp-metric-label">Errores en conciliación</span>
+        <span class="corp-metric-value">0 → 0</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+      <div class="corp-metric" style="margin-top:.8rem">
+        <span class="corp-metric-label">Certificados SPX obtenidos</span>
+        <span class="corp-metric-value warn">12 personas</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALOR B2B -->
+<section class="valor-b2b">
+  <div class="section-label">Por qué elegirnos</div>
+  <h2 class="section-title">Nuestra <span>propuesta de valor</span></h2>
+  <p class="section-sub">Diseñada específicamente para el contexto empresarial LATAM, con resultados medibles desde el primer mes.</p>
+  <div class="valor-grid">
+    <div class="valor-card">
+      <span class="valor-icon">📊</span>
+      <div class="valor-title">ROI medible</div>
+      <div class="valor-desc">Resultados documentados con métricas reales. Antes y después de cada implementación.</div>
+    </div>
+    <div class="valor-card">
+      <span class="valor-icon">🎯</span>
+      <div class="valor-title">A medida</div>
+      <div class="valor-desc">Programas diseñados para tu sector, tus procesos y los flujos de trabajo de tu equipo.</div>
+    </div>
+    <div class="valor-card">
+      <span class="valor-icon">🏆</span>
+      <div class="valor-title">Certificación SPX</div>
+      <div class="valor-desc">Credencial verificable reconocida en la industria. Tu equipo obtiene una certificación real.</div>
+    </div>
+    <div class="valor-card">
+      <span class="valor-icon">🤝</span>
+      <div class="valor-title">Acompañamiento</div>
+      <div class="valor-desc">Soporte post-capacitación por 90 días. No te dejamos solo al finalizar el programa.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section>
+  <div class="section-label">Industrias</div>
+  <h2 class="section-title">Sectores que <span>atendemos</span></h2>
+  <p class="section-sub">Especializados en los desafíos operativos de industrias que requieren precisión y escala.</p>
+  <div class="sectores-grid">
+    <a href="sectores/mineria/index.html" class="sector-card sector-mineria">
+      <div>
+        <div class="sector-emoji">⛏</div>
+        <div class="sector-name">Minería</div>
+        <div class="sector-desc">Automatiza conciliaciones, reportes y KPIs operativos en operaciones mineras.</div>
+      </div>
+      <div class="sector-link">Explorar soluciones →</div>
+    </a>
+    <a href="sectores/logistica/index.html" class="sector-card sector-logistica">
+      <div>
+        <div class="sector-emoji">🚚</div>
+        <div class="sector-name">Logística</div>
+        <div class="sector-desc">Optimiza rutas, inventarios y dashboards de distribución en tiempo real.</div>
+      </div>
+      <div class="sector-link">Explorar soluciones →</div>
+    </a>
+    <a href="sectores/manufactura/index.html" class="sector-card sector-manufactura">
+      <div>
+        <div class="sector-emoji">🏭</div>
+        <div class="sector-name">Manufactura</div>
+        <div class="sector-desc">Conecta tu planta con datos en tiempo real y automatiza reportes de producción.</div>
+      </div>
+      <div class="sector-link">Explorar soluciones →</div>
+    </a>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="proceso">
+  <div class="section-label">Cómo trabajamos</div>
+  <h2 class="section-title">Proceso de <span>implementación</span></h2>
+  <p class="section-sub">Un proceso estructurado que garantiza resultados desde el diagnóstico hasta la certificación de tu equipo.</p>
+  <div class="proceso-timeline">
+    <div class="proceso-step">
+      <div class="paso-num">1</div>
+      <div>
+        <div class="paso-title">Diagnóstico</div>
+        <div class="paso-desc">Mapeamos tus procesos y oportunidades de mejora</div>
+      </div>
+    </div>
+    <div class="proceso-step">
+      <div class="paso-num">2</div>
+      <div>
+        <div class="paso-title">Propuesta</div>
+        <div class="paso-desc">Diseñamos el programa a medida para tu equipo</div>
+      </div>
+    </div>
+    <div class="proceso-step">
+      <div class="paso-num">3</div>
+      <div>
+        <div class="paso-title">Implementación</div>
+        <div class="paso-desc">Ejecutamos la capacitación con casos reales</div>
+      </div>
+    </div>
+    <div class="proceso-step">
+      <div class="paso-num">4</div>
+      <div>
+        <div class="paso-title">Seguimiento</div>
+        <div class="paso-desc">Monitoreamos resultados y ajustamos si es necesario</div>
+      </div>
+    </div>
+    <div class="proceso-step">
+      <div class="paso-num">5</div>
+      <div>
+        <div class="paso-title">Certificación</div>
+        <div class="paso-desc">Tu equipo obtiene la credencial SPX verificable</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS PREVIEW -->
+<section>
+  <div class="section-label">Resultados reales</div>
+  <h2 class="section-title">Casos de <span>éxito</span></h2>
+  <p class="section-sub">Empresas reales, resultados verificables. Todos los datos son documentados y auditables.</p>
+  <div class="casos-grid">
+    <div class="caso-card">
+      <div class="caso-sector">⛏ Minería · Perú</div>
+      <div style="font-size:1rem;font-weight:600;margin-bottom:.4rem">Conciliación automatizada</div>
+      <div class="caso-result">3 días → 4h</div>
+      <div class="caso-desc">Empresa minera mediana redujo su cierre contable mensual mediante automatización con n8n y Power BI.</div>
+      <a href="casos-exito/index.html" class="caso-link">Ver caso completo →</a>
+    </div>
+    <div class="caso-card">
+      <div class="caso-sector">🚚 Logística · Colombia</div>
+      <div style="font-size:1rem;font-weight:600;margin-bottom:.4rem">Dashboard operativo en tiempo real</div>
+      <div class="caso-result">+60% visibilidad</div>
+      <div class="caso-desc">Empresa de distribución eliminó reportes manuales e implementó dashboards Power BI integrados con su WMS.</div>
+      <a href="casos-exito/index.html" class="caso-link">Ver caso completo →</a>
+    </div>
+    <div class="caso-card">
+      <div class="caso-sector">🏭 Manufactura · México</div>
+      <div style="font-size:1rem;font-weight:600;margin-bottom:.4rem">Reporte automático de producción</div>
+      <div class="caso-result">-85% tiempo</div>
+      <div class="caso-desc">Planta industrial automatizó el reporte diario de producción de 2 horas a menos de 10 minutos.</div>
+      <a href="casos-exito/index.html" class="caso-link">Ver caso completo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO B2B -->
+<section class="contacto-b2b" id="contacto">
+  <div class="contacto-split">
+    <div class="contacto-info">
+      <div class="section-label">Contáctanos</div>
+      <h2>Hablemos sobre <span>tu empresa</span></h2>
+      <p>Cuéntanos el reto que enfrentas y en menos de 24 horas te enviamos una propuesta personalizada sin compromiso.</p>
+      <ul class="benefit-list">
+        <li>Diagnóstico inicial gratuito</li>
+        <li>Propuesta personalizada en 24h</li>
+        <li>Sin compromiso de contratación</li>
+        <li>Programa adaptado a tu sector</li>
+        <li>Soporte post-capacitación incluido</li>
+        <li>Certificación SPX para tu equipo</li>
+      </ul>
+    </div>
+    <div class="contact-form">
+      <form id="b2b-form" onsubmit="handleSubmit(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Ej: Carlos Mendoza" required/>
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" autocomplete="organization" placeholder="Nombre de tu empresa" required/>
+          </div>
+          <div class="form-group">
+            <label for="cargo">Cargo</label>
+            <input type="text" id="cargo" name="cargo" autocomplete="organization-title" placeholder="Ej: Gerente de Operaciones" required/>
+          </div>
+          <div class="form-group">
+            <label for="sector">Sector</label>
+            <select id="sector" name="sector" required>
+              <option value="">Selecciona tu sector</option>
+              <option>Minería</option>
+              <option>Logística</option>
+              <option>Manufactura</option>
+              <option>Retail</option>
+              <option>Servicios</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="empleados">Empleados a capacitar</label>
+            <select id="empleados" name="empleados" required>
+              <option value="">Selecciona rango</option>
+              <option>1 – 10</option>
+              <option>11 – 50</option>
+              <option>51 – 200</option>
+              <option>200+</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="mensaje">Describe tu reto</label>
+            <textarea id="mensaje" name="mensaje" required placeholder="¿Qué procesos quieres automatizar o mejorar?"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="form-submit">Solicitar propuesta →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="../index.html" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:8px">
+        <span style="font-size:1.3rem">⚡</span>
+        <span style="font-size:1.1rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Syneprix</span>
+      </a>
+      <p class="footer-brand-desc">Transformamos equipos operativos en LATAM con capacitación en IA y automatización que genera resultados medibles.</p>
+      <div class="footer-social"><a href="/contacto/" class="social-btn" aria-label="Contactar a Syneprix">✉</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Empresas</h4>
+      <ul>
+        <li><a href="index.html">Hub B2B</a></li>
+        <li><a href="sectores/mineria/index.html">Minería</a></li>
+        <li><a href="sectores/logistica/index.html">Logística</a></li>
+        <li><a href="sectores/manufactura/index.html">Manufactura</a></li>
+        <li><a href="casos-exito/index.html">Casos de éxito</a></li>
+        <li><a href="capacitacion/index.html">Planes corporativos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aprender</h4>
+      <ul>
+        <li><a href="../index.html#cursos-destacados">Todos los cursos</a></li>
+        <li><a href="../certificaciones/index.html">Certificaciones SPX</a></li>
+        <li><a href="../aula/index.html">Aula virtual</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Compañía</h4>
+      <ul>
+        <li><a href="../nosotros/index.html">Nosotros</a></li>
+        <li><a href="../contacto/index.html">Contacto</a></li>
+        <li><a href="../privacidad/index.html">Privacidad</a></li>
+        <li><a href="../terminos/index.html">Términos</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Syneprix. Todos los derechos reservados.</p>
+    <div class="footer-bottom-links">
+      <a href="../privacidad/index.html">Privacidad</a>
+      <a href="../terminos/index.html">Términos</a>
+      <a href="../cookies/index.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const data = new FormData(e.target);
+    const body = Array.from(data.entries()).map(([key, value]) => `${key}: ${value}`).join('\n');
+    btn.textContent = 'Abriendo correo…';
+    btn.disabled = true;
+    window.location.href = `mailto:empresas@syneprix.com?subject=${encodeURIComponent('Solicitud de propuesta corporativa')}&body=${encodeURIComponent(body)}`;
+    setTimeout(() => { btn.textContent = 'Solicitar propuesta →'; btn.disabled = false; }, 1500);
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if (el.isIntersecting) { el.target.style.opacity = '1'; el.target.style.transform = 'translateY(0)'; } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.valor-card, .sector-card, .caso-card, .proceso-step').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

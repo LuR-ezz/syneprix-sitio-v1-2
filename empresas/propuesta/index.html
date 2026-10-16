@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitar Propuesta - SYNEPRIX Empresas</title>
+  <meta name="description" content="Solicita una propuesta de capacitación corporativa en automatización, IA y análisis de datos para tu equipo.">
+  <style>
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'InterVariable', 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent3); text-decoration: none; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+    
+    header { padding: 20px 0; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+    .logo { font-weight: 700; font-size: 1.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .breadcrumb { margin-bottom: 30px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+    .breadcrumb a { color: var(--muted); }
+    
+    .hero-text { text-align: center; margin-bottom: 40px; }
+    .hero-text h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero-text p { color: var(--muted); font-size: 1.1rem; }
+
+    .form-container { background: var(--glass); padding: 40px; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 80px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    
+    .form-group { margin-bottom: 25px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: #ddd; }
+    
+    .form-control { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 1rem; transition: border-color 0.3s; }
+    .form-control:focus { outline: none; border-color: var(--accent3); background: rgba(0,0,0,0.5); }
+    
+    textarea.form-control { resize: vertical; min-height: 120px; }
+    
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .btn-submit { width: 100%; padding: 18px; background: var(--gradient); border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: opacity 0.3s; margin-top: 10px; }
+    .btn-submit:hover { opacity: 0.9; }
+
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; gap: 0; }
+      .form-container { padding: 25px; }
+    }
+  
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+  <div data-component="navbar"></div>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Inicio</a> > <a href="../index.html">Empresas</a> > Solicitar Propuesta
+    </div>
+
+    <div class="hero-text">
+      <h1>Impulsa tu equipo con IA y Datos</h1>
+      <p>Cuéntanos tus retos y diseñaremos una ruta de capacitación a medida.</p>
+    </div>
+
+    <div class="form-container">
+      <form action="mailto:empresas@syneprix.com" method="post" enctype="text/plain">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="nombre">Nombre Completo *</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="cargo">Cargo *</label>
+            <input type="text" id="cargo" name="cargo" autocomplete="organization-title" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="empresa">Empresa *</label>
+            <input type="text" id="empresa" name="empresa" autocomplete="organization" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="pais">País *</label>
+            <select id="pais" name="pais" class="form-control" required>
+              <option value="">Seleccione...</option>
+              <option value="Mexico">México</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Peru">Perú</option>
+              <option value="Chile">Chile</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="sector">Sector de la Empresa *</label>
+            <select id="sector" name="sector" class="form-control" required>
+              <option value="">Seleccione...</option>
+              <option value="Logistica">Logística</option>
+              <option value="Manufactura">Manufactura</option>
+              <option value="Retail">Retail</option>
+              <option value="Servicios">Servicios / Consultoría</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="empleados">Empleados a capacitar</label>
+            <select id="empleados" name="empleados" class="form-control" required>
+              <option value="">Seleccione...</option>
+              <option value="1-5">1 - 5 personas</option>
+              <option value="6-20">6 - 20 personas</option>
+              <option value="21-50">21 - 50 personas</option>
+              <option value="50+">Más de 50 personas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="area">Área Prioritaria *</label>
+            <select id="area" name="area" class="form-control" required>
+              <option value="">Seleccione...</option>
+              <option value="Automatizacion">Automatización (Power Automate, n8n)</option>
+              <option value="Datos">Análisis de Datos (Power BI, SQL)</option>
+              <option value="IA">Inteligencia Artificial (LLMs, Copilot)</option>
+              <option value="Integral">Integral / Múltiples áreas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="presupuesto">Presupuesto Estimado (USD)</label>
+            <select id="presupuesto" name="presupuesto" class="form-control">
+              <option value="">Seleccione...</option>
+              <option value="<1000">Menos de $1,000</option>
+              <option value="1000-5000">$1,000 - $5,000</option>
+              <option value="5000-10000">$5,000 - $10,000</option>
+              <option value=">10000">Más de $10,000</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reto">Descripción del Reto o Problema a Resolver *</label>
+          <textarea id="reto" name="reto" class="form-control" placeholder="Describe brevemente qué procesos te gustaría optimizar o automatizar..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Preparar solicitud por correo</button>
+        <p style="color: var(--muted); font-size: .9rem; text-align: center;">Se abrirá tu aplicación de correo para que revises y envíes la solicitud.</p>
+      </form>
+    </div>
+  </main>
+
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

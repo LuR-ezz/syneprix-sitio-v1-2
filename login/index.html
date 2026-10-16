@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticación - SYNEPRIX</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- CSS del Tema Global -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor Principal Split */
+        .auth-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Panel Visual (Izquierda) */
+        .auth-visual {
+            flex: 1.2;
+            position: relative;
+            background: url('../assets/img/auth-bg.png') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .auth-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(89, 29, 203, 0.4), rgba(208, 77, 205, 0.4));
+            z-index: 1;
+        }
+
+        .auth-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg) 100%);
+            z-index: 2;
+        }
+
+        .auth-visual-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .brand-logo img {
+            height: 40px;
+        }
+
+        .visual-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .visual-text p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 450px;
+        }
+
+        /* Panel Formulario (Derecha) */
+        .auth-panel {
+            flex: 1;
+            max-width: 650px;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+            z-index: 10;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.5);
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* Estilos de Input */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent2);
+            background: rgba(255,255,255,0.06);
+            box-shadow: 0 0 0 4px rgba(208, 77, 205, 0.15);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* Utilidades Formulario */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .forgot-pass {
+            color: var(--accent3);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .forgot-pass:hover {
+            color: var(--accent2);
+        }
+
+        /* Botón Principal */
+        .btn-auth {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 25px;
+        }
+
+        .btn-auth:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(208, 77, 205, 0.4);
+        }
+
+        /* Social Login */
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn-social {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-social:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+        }
+        .divider::before { margin-right: .5em; }
+        .divider::after { margin-left: .5em; }
+
+        /* Switch UI */
+        .form-switch {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .form-switch a {
+            color: var(--accent2);
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .auth-visual {
+                display: none; /* Oculta la imagen en móviles/tablets */
+            }
+            .auth-panel {
+                max-width: 100%;
+                padding: 40px 20px;
+                background: linear-gradient(135deg, rgba(13, 4, 40, 0.95), rgba(13, 4, 40, 0.98)), url('../assets/img/auth-bg.png') center/cover;
+            }
+            .form-container {
+                background: rgba(0,0,0,0.6);
+                padding: 40px 30px;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                backdrop-filter: blur(20px);
+            }
+        }
+        
+        /* Ocultar registro por defecto */
+        #register-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <!-- Panel Izquierdo Inmersivo -->
+        <div class="auth-visual">
+            <div class="auth-visual-content animate-on-scroll">
+                <div class="brand-logo">
+                    <a href="/">
+                        <img src="../assets/img/Logo - Principal - MyB.svg" alt="SYNEPRIX">
+                    </a>
+                </div>
+                <div class="visual-text">
+                    <h2>Desata tu<br><span class="text-gradient">Potencial</span></h2>
+                    <p>Accede a la plataforma educativa más avanzada y transforma tu carrera profesional con IA y tecnología vanguardista.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Derecho Formulario -->
+        <div class="auth-panel">
+            
+            <!-- SECCIÓN LOGIN -->
+            <div class="form-container" id="login-section">
+                <div class="form-header animate-on-scroll">
+                    <h1>Bienvenido de vuelta</h1>
+                    <p>Ingresa tus credenciales para continuar</p>
+                </div>
+
+                <!-- Formulario estructurado para compatibilidad futura con WP (name="log", name="pwd") -->
+                <form id="wp-login-form" action="/login/" method="POST" onsubmit="handleAuth(event)" class="animate-on-scroll slide-up-stagger" style="transition-delay: 0.3s;">
+                    <div class="input-group">
+                        <label for="log">Correo Electrónico o Usuario</label>
+                        <input type="text" id="log" name="log" placeholder="tu@correo.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="pwd">Contraseña</label>
+                        <input type="password" id="pwd" name="pwd" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-group">
+                            <input type="checkbox" name="rememberme" id="rememberme" aria-label="Recordarme" value="forever"> Recordarme
+                        </label>
+                        <a href="/recuperar-password/" class="forgot-pass">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="btn-auth">Iniciar Sesión</button>
+                </form>
+
+                <div class="form-switch animate-on-scroll slide-up-stagger" style="transition-delay: 0.4s;">
+                    ¿No tienes una cuenta? <button type="button" onclick="toggleForms()" style="background:none;border:0;color:var(--accent3);font:inherit;cursor:pointer;text-decoration:underline;">Regístrate ahora</button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN REGISTRO -->
+            <div class="form-container" id="register-section">
+                <div class="form-header animate-on-scroll">
+                    <h1>Crea tu cuenta</h1>
+                    <p>Únete a la nueva era de la educación</p>
+                </div>
+
+                <!-- Formulario estructurado para registro WP -->
+                <form id="wp-register-form" action="/login/" method="POST" onsubmit="handleAuth(event)" class="animate-on-scroll slide-up-stagger" style="transition-delay: 0.1s;">
+                    <div class="input-group">
+                        <label for="user_login">Nombre de Usuario</label>
+                        <input type="text" id="user_login" name="user_login" placeholder="ej. dev_master" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="user_email">Correo Electrónico</label>
+                        <input type="email" id="user_email" name="user_email" placeholder="tu@correo.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="user_pass">Contraseña</label>
+                        <input type="password" id="user_pass" name="user_pass" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-options" style="margin-bottom: 25px;">
+                        <label class="checkbox-group" style="align-items: flex-start; font-size: 0.8rem;">
+                            <input type="checkbox" name="terms" aria-label="Aceptar términos y política de privacidad" required style="margin-top: 3px; width: auto;"> 
+                            <span>Acepto los <a href="/terminos/" style="color:var(--accent3);">Términos de Servicio</a> y la <a href="/privacidad/" style="color:var(--accent3);">Política de Privacidad</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-auth">Crear Cuenta</button>
+                </form>
+
+                <div class="form-switch animate-on-scroll slide-up-stagger" style="transition-delay: 0.2s;">
+                    ¿Ya tienes una cuenta? <button type="button" onclick="toggleForms()" style="background:none;border:0;color:var(--accent3);font:inherit;cursor:pointer;text-decoration:underline;">Inicia Sesión</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Intersección Observer para animaciones (similar a theme)
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll(".animate-on-scroll").forEach((el) => observer.observe(el));
+        });
+
+        // Alternar entre Login y Registro
+        function toggleForms() {
+            const loginSection = document.getElementById('login-section');
+            const registerSection = document.getElementById('register-section');
+            
+            if (loginSection.style.display === 'none') {
+                loginSection.style.display = 'block';
+                registerSection.style.display = 'none';
+            } else {
+                loginSection.style.display = 'none';
+                registerSection.style.display = 'block';
+            }
+            
+            // Re-trigger animaciones
+            document.querySelectorAll(".animate-on-scroll").forEach(el => {
+                el.classList.remove("visible");
+                setTimeout(() => el.classList.add("visible"), 50);
+            });
+        }
+
+        // Función simulada de autenticación con BD Provisional
+        function handleAuth(e) {
+            e.preventDefault();
+            
+            const formId = e.target.id;
+            
+            if (formId === 'wp-login-form') {
+                const email = e.target.querySelector('input[name="log"]').value;
+                const password = e.target.querySelector('input[name="pwd"]').value;
+                
+                // --- BASE DE DATOS PROVISIONAL ---
+                const mockDB = {
+                    "admin@syneprix.com": { pass: "12345", name: "Luis Dev", type: "Admin" },
+                    "alumno@syneprix.com": { pass: "12345", name: "Alumno Prueba", type: "Estudiante" }
+                };
+
+                const user = mockDB[email];
+
+                if (user && user.pass === password) {
+                    // Éxito
+                    localStorage.setItem('spx_user_state', '2');
+                    localStorage.setItem('spx_current_user', JSON.stringify({ email: email, name: user.name, type: user.type }));
+                    
+                    // Efecto visual de carga
+                    const btn = e.target.querySelector('button[type="submit"]');
+                    btn.innerText = 'Procesando...';
+                    btn.style.opacity = '0.7';
+
+                    setTimeout(() => {
+                        window.location.href = '../aula/'; // Redirigir al aula
+                    }, 1000);
+                } else {
+                    alert('Correo o contraseña incorrectos.\\n\\nUsa una de las cuentas de prueba:\\n1. admin@syneprix.com / 12345\\n2. alumno@syneprix.com / 12345');
+                }
+            } else if (formId === 'wp-register-form') {
+                alert('El registro no está disponible en este entorno de pruebas. Usa la cuenta de prueba existente.');
+            }
+        }
+    </script>
+</body>
+</html>

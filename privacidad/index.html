@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad - SYNEPRIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    * { box-sizing: border-box; }
+    a { color: var(--accent3); text-decoration: none; }
+    a:hover { color: var(--accent2); text-decoration: underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+    
+    .glass-panel {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .text-gradient {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h1 { font-size: 3rem; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -1px; }
+    h2 { font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text); }
+    p, li { color: var(--muted); }
+    ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    
+    .date-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(127, 119, 221, 0.1);
+      color: var(--accent3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 4rem; text-align: center; color: var(--muted); font-size: 0.9rem; }
+    footer a { margin: 0 1rem; }
+    
+    @media (max-width: 768px) {
+      .container { padding: 2rem 1.5rem; }
+      .glass-panel { padding: 1.5rem; }
+      h1 { font-size: 2.5rem; }
+    }
+  
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" style="display: inline-block; margin-bottom: 2rem;">← Volver al Inicio</a>
+    
+    <h1>Política de <span class="text-gradient">Privacidad</span></h1>
+    <span class="date-badge">Última actualización: Junio 2026</span>
+
+    <div class="glass-panel">
+      <h2>1. Introducción</h2>
+      <p>En SYNEPRIX, respetamos su privacidad y estamos comprometidos a proteger los datos personales que nos proporciona. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando visita nuestro sitio web o utiliza nuestros servicios.</p>
+
+      <h2>2. Información que Recopilamos</h2>
+      <p>Recopilamos varios tipos de información con el fin de brindarle y mejorar nuestro servicio:</p>
+      <ul>
+        <li><strong>Datos Personales:</strong> Nombre, dirección de correo electrónico, número de teléfono y otra información de contacto.</li>
+        <li><strong>Datos de Uso:</strong> Información sobre cómo interactúa con nuestro sitio web, como páginas visitadas, tiempo en la página y enlaces en los que hace clic.</li>
+        <li><strong>Información Técnica:</strong> Dirección IP, tipo de navegador, sistema operativo e identificadores de dispositivo.</li>
+      </ul>
+
+      <h2>3. Uso de la Información</h2>
+      <p>Utilizamos la información recopilada para los siguientes propósitos:</p>
+      <ul>
+        <li>Proporcionar, operar y mantener nuestra plataforma.</li>
+        <li>Mejorar, personalizar y expandir nuestros servicios.</li>
+        <li>Comprender y analizar cómo utiliza nuestra plataforma.</li>
+        <li>Desarrollar nuevos productos, servicios y características.</li>
+        <li>Comunicarnos con usted para servicio al cliente, actualizaciones y marketing.</li>
+      </ul>
+
+      <h2>4. Compartir Información</h2>
+      <p>No vendemos, intercambiamos ni alquilamos su información personal a terceros. Podemos compartir su información con proveedores de servicios de confianza que nos ayudan a operar nuestro sitio web y llevar a cabo nuestro negocio, siempre que esas partes acuerden mantener esta información confidencial.</p>
+
+      <h2>5. Seguridad de los Datos</h2>
+      <p>Implementamos medidas de seguridad técnicas y organizativas razonables para proteger sus datos personales contra el acceso, la alteración, la divulgación o la destrucción no autorizados. Sin embargo, ningún método de transmisión a través de Internet es 100% seguro.</p>
+
+      <h2>6. Sus Derechos</h2>
+      <p>Dependiendo de su ubicación, puede tener derecho a acceder, corregir, actualizar o eliminar su información personal. Si desea ejercer estos derechos, comuníquese con nosotros a <a href="mailto:privacidad@syneprix.com">privacidad@syneprix.com</a>.</p>
+
+      <h2>7. Cambios a esta Política</h2>
+      <p>Podemos actualizar nuestra Política de Privacidad de vez en cuando. Le notificaremos sobre cualquier cambio publicando la nueva Política en esta página y actualizando la fecha de "Última actualización".</p>
+    </div>
+
+    <footer>
+      <a href="../terminos/index.html">Términos y Condiciones</a>
+      <a href="../cookies/index.html">Política de Cookies</a>
+      <a href="../contacto/index.html">Contacto</a>
+      <p style="margin-top: 1rem;">© 2026 SYNEPRIX.</p>
+    </footer>
+  </div>
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

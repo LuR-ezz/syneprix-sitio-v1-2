@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutas de Aprendizaje - SYNEPRIX v1.2</title>
+    <style>
+        
+        body {
+            font-family: 'InterVariable', 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        header { border-bottom: 1px solid var(--border); background: rgba(5,5,8,0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--text); letter-spacing: 2px; }
+        .logo span { color: var(--accent2); }
+        .btn-outline { border: 1px solid var(--border); padding: 8px 16px; border-radius: 8px; color: var(--text); text-decoration: none; }
+        
+        .hero { padding: 100px 0 60px; text-align: center; }
+        .hero h1 { font-size: 3rem; color: var(--text); margin-bottom: 20px; }
+        .text-gradient { background: linear-gradient(90deg, var(--accent2), #591dcb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Timeline Vertical Avanzado */
+        .timeline-container { position: relative; padding: 50px 0; max-width: 800px; margin: 0 auto; }
+        .timeline-line { position: absolute; left: 50px; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--accent1), var(--accent2)); border-radius: 4px; }
+        
+        .timeline-node { display: flex; align-items: flex-start; margin-bottom: 60px; position: relative; opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out; }
+        .timeline-node.visible { opacity: 1; transform: translateX(0); }
+        
+        .node-marker { width: 40px; height: 40px; border-radius: 50%; background: #000; border: 4px solid var(--accent2); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--text); z-index: 2; margin-left: 32px; box-shadow: 0 0 20px rgba(208,77,205,0.5); }
+        .node-content { margin-left: 40px; background: var(--glass); padding: 30px; border-radius: 12px; border: 1px solid var(--border); flex: 1; position: relative; }
+        .node-content::before { content: ''; position: absolute; left: -10px; top: 15px; border-width: 10px 10px 10px 0; border-style: solid; border-color: transparent var(--glass) transparent transparent; }
+        
+        .node-title { font-size: 1.5rem; color: var(--text); margin: 0 0 10px 0; }
+        .node-desc { color: var(--muted); line-height: 1.6; }
+        
+        .btn-primary { display: inline-block; background: linear-gradient(90deg, var(--accent1), var(--accent2)); color: var(--text); padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 20px; transition: transform 0.3s; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: scale(1.05); }
+
+    
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+    <div data-component="navbar"></div>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Tu Ruta hacia el <span class="text-gradient">Éxito Tech</span></h1>
+            <p style="color: var(--muted); max-width: 600px; margin: 0 auto;">Diseñamos un ecosistema paso a paso para llevarte desde las bases hasta convertirte en un experto con validación corporativa.</p>
+        </div>
+    </section>
+
+    <section style="padding-bottom: 100px;">
+        <div class="container">
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Nodo 1 -->
+                <div class="timeline-node animate-node">
+                    <div class="node-marker" style="border-color: #591dcb;">1</div>
+                    <div class="node-content">
+                        <h3 class="node-title">Aprende los Fundamentos</h3>
+                        <p class="node-desc">Comienza tu viaje dominando las herramientas líder del mercado como Power BI, Python o UiPath. Nuestras clases teóricas están diseñadas para ir al grano sin relleno, directamente enfocadas en habilidades solicitadas por las empresas.</p>
+                        <ul style="color: var(--muted); margin-top: 15px; padding-left: 20px; line-height: 1.8;">
+                            <li>Acceso inmediato al campus virtual</li>
+                            <li>Clases en alta definición</li>
+                            <li>Materiales descargables</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Nodo 2 -->
+                <div class="timeline-node animate-node">
+                    <div class="node-marker" style="border-color: #8b34ce;">2</div>
+                    <div class="node-content">
+                        <h3 class="node-title">Construye Proyectos Reales</h3>
+                        <p class="node-desc">La teoría no basta. En esta fase te enfrentarás a casos de estudio basados en requerimientos de empresas reales (B2B). Automatizarás un proceso logístico, crearás un dashboard de ventas, o programarás tu primer modelo predictivo.</p>
+                        <div style="background: var(--glass); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem;">
+                            <strong>Resultado:</strong> Un portafolio comprobable en GitHub o Power BI Service.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nodo 3 -->
+                <div class="timeline-node animate-node">
+                    <div class="node-marker" style="border-color: #d04dcd;">3</div>
+                    <div class="node-content">
+                        <h3 class="node-title">Obtén tu Certificación SPX</h3>
+                        <p class="node-desc">Al aprobar la evaluación final, obtendrás tu credencial SPX. Esta no es una simple imagen, es un certificado criptográfico con un ID único que los empleadores de nuestra red B2B pueden verificar directamente en nuestro portal.</p>
+                        <a href="../certificaciones/index.html" class="btn-primary">Ver Criterios de Certificación</a>
+                    </div>
+                </div>
+                
+                <!-- Nodo 4 -->
+                <div class="timeline-node animate-node">
+                    <div class="node-marker" style="border-color: #ff5e94;">4</div>
+                    <div class="node-content">
+                        <h3 class="node-title">Conecta con la Industria</h3>
+                        <p class="node-desc">Tu perfil entra en nuestro radar B2B. Gracias a nuestros convenios corporativos, las empresas acceden a perfiles certificados SPX para llenar sus vacantes de analistas, desarrolladores y automatizadores.</p>
+                        <a href="../index.html#cursos-destacados" class="btn-primary" style="background: transparent; border: 1px solid #d04dcd;">Ver Catálogo y Empezar</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Rebobina la animación
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            document.querySelectorAll('.animate-node').forEach(node => {
+                observer.observe(node);
+            });
+        });
+    </script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../assets/audio/Voz_Syneprix.mp3"></audio>
+    <script src="/js/auth-state.js"></script>
+</body>
+</html>

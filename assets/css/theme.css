@@ -1,0 +1,70 @@
+/* Sistema Global de Temas SYNEPRIX */
+
+/* Tema Oscuro (Permanente) */
+:root {
+    --bg: #0D0428;
+    --accent1: #591dcb;
+    --accent2: #d04dcd;
+    --accent3: #7F77DD;
+    --gradient: linear-gradient(135deg, #591dcb, #d04dcd);
+    --glass: rgba(255,255,255,0.04);
+    --glass-solid: rgba(15, 15, 15, 0.95);
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.2);
+    --muted: #8892a4;
+    --text: #ffffff;
+    --text-inverse: #000000;
+    --shadow: rgba(0,0,0,0.5);
+    --glass-panel-bg: rgba(255,255,255,0.05);
+    --navbar: 70px;
+    --sidebar: 280px;
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--accent2);
+    outline-offset: 3px;
+}
+
+/* Estilos globales */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* Text Gradient Utility */
+.text-gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Footer Global */
+footer { padding: 60px 0 30px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.5); }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; color: var(--accent3); }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: var(--muted); transition: color 0.3s; font-size: 0.9rem; text-decoration: none; }
+.footer-col ul li a:hover { color: var(--text); }
+.footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+    .footer-grid { grid-template-columns: 1fr; }
+}

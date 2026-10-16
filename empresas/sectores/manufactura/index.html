@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatización e IA para Manufactura - SYNEPRIX</title>
+  <meta name="description" content="Conecta tu planta de manufactura con datos en tiempo real y automatiza los reportes de producción con las capacitaciones de SYNEPRIX.">
+  <style>
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'InterVariable', 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent3); text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: var(--accent2); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    header { border-bottom: 1px solid var(--border); background: var(--glass-solid); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; padding: 20px 0; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 700; font-size: 1.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .breadcrumb { padding: 20px 0; color: var(--muted); font-size: 0.9rem; }
+    .breadcrumb a { color: var(--muted); }
+    .breadcrumb a:hover { color: var(--text); }
+
+    .hero { padding: 80px 0; text-align: center; }
+    .hero h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 700; line-height: 1.2; }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 800px; margin: 0 auto 40px; }
+    
+    .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
+    .card { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 30px; transition: transform 0.3s; }
+    .card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
+    .card h3 { color: var(--accent3); margin-bottom: 15px; font-size: 1.3rem; }
+    
+    .success-case { background: linear-gradient(to right, rgba(89, 29, 203, 0.1), rgba(208, 77, 205, 0.1)); border: 1px solid var(--accent2); border-radius: 16px; padding: 40px; text-align: center; margin-bottom: 80px; }
+    .success-case h2 { font-size: 2rem; margin-bottom: 20px; }
+    .success-case p { font-size: 1.2rem; font-style: italic; color: var(--muted); }
+    
+    .btn { display: inline-block; background: var(--gradient); color: var(--text); padding: 10px 20px; border-radius: 30px; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; }
+    .btn:hover { opacity: 0.9; color: var(--text); }
+    .btn-large { padding: 15px 30px; font-size: 1rem; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+    }
+  
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+  <div data-component="navbar"></div>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="../../../index.html">Inicio</a> > <a href="../../index.html">Empresas</a> > Sectores > Manufactura
+    </div>
+
+    <section class="hero">
+      <h1>Automatización e IA para Manufactura</h1>
+      <p>Conecta tu planta con datos en tiempo real y automatiza los reportes de producción.</p>
+    </section>
+
+    <h2 class="section-title">Desafíos y Soluciones Tecnológicas</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Cálculo de OEE manual</h3>
+        <p><strong>Solución:</strong> Implementa Dashboards de OEE dinámicos en <em>Power BI</em> que se actualizan desde tus fuentes de datos industriales.</p>
+      </div>
+      <div class="card">
+        <h3>Reportes de producción tardíos</h3>
+        <p><strong>Solución:</strong> Genera alertas automáticas de turnos con <em>Power Automate</em>, eliminando transcripciones manuales.</p>
+      </div>
+      <div class="card">
+        <h3>Mantenimiento reactivo</h3>
+        <p><strong>Solución:</strong> Usa modelos de <em>IA predictiva</em> básicos para identificar patrones de fallas antes de que detengan la línea.</p>
+      </div>
+    </div>
+
+    <section class="success-case">
+      <h2>Impacto Comprobado</h2>
+      <p>"Planta industrial, México — redujo el tiempo de reporte diario de 2 horas a 10 minutos capacitando a sus supervisores."</p>
+      <br>
+      <a href="../../propuesta/index.html" class="btn btn-large">Solicitar Propuesta para Manufactura</a>
+    </section>
+  </main>
+
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

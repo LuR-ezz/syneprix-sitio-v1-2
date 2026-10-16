@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Automatización e IA para Minería | SYNEPRIX</title>
+  <meta name="description" content="Reduce errores en conciliaciones, optimiza reportes operativos y certifica a tu equipo en tecnologías que transforman la operación minera. SYNEPRIX B2B."/>
+  <meta name="keywords" content="automatización minería, IA sector minero, Power BI minería, n8n conciliaciones, capacitación minera LATAM"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color: var(--text);font-family: 'InterVariable', 'Inter', sans-serif;line-height:1.6;overflow-x:hidden}
+    /* NAVBAR */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:70px;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-text{font-size:1.2rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{color:#ccc;text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+    .nav-links a:hover{color: var(--text)}
+    .nav-actions{display:flex;gap:12px;align-items:center}
+    .btn-ghost{background:none;border:1px solid var(--border);color:#ccc;padding:8px 18px;border-radius:8px;cursor:pointer;font-family: 'InterVariable', 'Inter', sans-serif;font-size:.85rem;font-weight:500;transition:all .2s;text-decoration:none}
+    .btn-ghost:hover{border-color:var(--accent1);color: var(--text)}
+    .btn-primary{background:var(--gradient);color: var(--text);border:none;padding:9px 20px;border-radius:8px;cursor:pointer;font-family: 'InterVariable', 'Inter', sans-serif;font-size:.85rem;font-weight:600;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+    .btn-primary:hover{opacity:.88;transform:translateY(-1px);box-shadow:0 8px 24px rgba(89,29,203,.45)}
+    /* BREADCRUMB */
+    .breadcrumb{padding:90px 5% 0;display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+    .breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+    .breadcrumb a:hover{color:var(--accent3)}
+    .breadcrumb span{color:var(--accent3)}
+    /* HERO */
+    .hero-mineria{
+      padding:60px 5% 100px;position:relative;overflow:hidden;
+      min-height:80vh;display:flex;align-items:center;
+    }
+    .hero-mineria::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(145deg,rgba(89,29,203,.25) 0%,rgba(120,60,20,.15) 50%,rgba(180,120,20,.08) 100%);
+    }
+    .hero-mineria::after{
+      content:'⛏';position:absolute;right:5%;top:50%;transform:translateY(-50%);
+      font-size:18rem;opacity:.04;pointer-events:none;
+    }
+    .hero-inner{position:relative;z-index:1;max-width:680px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(89,29,203,.2);border:1px solid rgba(89,29,203,.4);color:var(--accent3);padding:6px 16px;border-radius:50px;font-size:.78rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:1.5rem;width:fit-content;animation:fadeInUp .6s ease both}
+    .hero-mineria h1{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;margin-bottom:1.4rem;animation:fadeInUp .7s ease .1s both}
+    .hero-mineria h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;margin-bottom:2rem;animation:fadeInUp .7s ease .2s both}
+    .hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;animation:fadeInUp .7s ease .3s both}
+    .btn-primary-lg{font-size:1rem;padding:14px 28px;border-radius:10px}
+    .btn-secondary{background:rgba(255,255,255,.06);border:1px solid var(--border);color: var(--text);padding:12px 24px;border-radius:10px;cursor:pointer;font-family: 'InterVariable', 'Inter', sans-serif;font-size:.9rem;font-weight:600;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+    .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:var(--accent3)}
+    /* SECTIONS */
+    section{padding:80px 5%}
+    .section-label{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent3);margin-bottom:.8rem}
+    .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:1rem;line-height:1.15}
+    .section-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .section-sub{font-size:.95rem;color:var(--muted);max-width:600px;margin-bottom:2.5rem;line-height:1.7}
+    /* PROBLEMS */
+    .problems-section{background:rgba(255,255,255,.015)}
+    .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .problem-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all .3s}
+    .problem-card:hover{border-color:rgba(208,77,205,.4);transform:translateY(-4px)}
+    .problem-icon{font-size:2rem;margin-bottom:1rem;display:block}
+    .problem-title{font-size:1rem;font-weight:700;margin-bottom:.6rem;color: var(--text)}
+    .problem-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+    /* SOLUTIONS */
+    .solution-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+    .solution-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+    .solution-card:hover{border-color:rgba(89,29,203,.5);transform:translateY(-4px);box-shadow:0 16px 40px rgba(89,29,203,.15)}
+    .solution-tag{display:inline-block;background:rgba(89,29,203,.2);color:var(--accent3);font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:1rem}
+    .solution-title{font-size:1rem;font-weight:700;margin-bottom:.6rem}
+    .solution-result{display:flex;align-items:center;gap:8px;font-size:.85rem;color:#4ade80;font-weight:600;margin-top:1rem}
+    .solution-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+    /* CASO USO */
+    .caso-uso{background:rgba(255,255,255,.015)}
+    .caso-real-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:780px;margin:0 auto;position:relative;overflow:hidden}
+    .caso-real-card::before{content:'';position:absolute;inset:0;background:var(--gradient);opacity:.04}
+    .caso-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem}
+    .caso-icon-big{width:64px;height:64px;border-radius:14px;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+    .caso-empresa{font-size:1.1rem;font-weight:700}
+    .caso-meta{font-size:.82rem;color:var(--muted)}
+    .caso-body{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .caso-side h4{font-size:.82rem;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem}
+    .caso-side p{font-size:.9rem;color:var(--muted);line-height:1.7}
+    .caso-result-big{font-size:3rem;font-weight:900;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.4rem}
+    .caso-result-label{font-size:.85rem;color:var(--muted)}
+    /* CURSOS RECOMENDADOS */
+    .cursos-rec{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem}
+    .curso-pill{display:inline-flex;align-items:center;gap:10px;background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1rem 1.5rem;text-decoration:none;color: var(--text);transition:all .3s}
+    .curso-pill:hover{border-color:var(--accent1);background:rgba(89,29,203,.08);transform:translateY(-2px)}
+    .curso-code{font-size:.75rem;font-weight:700;color:var(--accent3);letter-spacing:1px}
+    .curso-name{font-size:.9rem;font-weight:600}
+    /* CTA FINAL */
+    .cta-final{text-align:center;padding:100px 5%;background:rgba(255,255,255,.015)}
+    .cta-final h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;margin-bottom:1rem}
+    .cta-final h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .cta-final p{font-size:1rem;color:var(--muted);margin-bottom:2rem}
+    /* FOOTER */
+    footer{background:rgba(255,255,255,.015);border-top:1px solid var(--border);padding:70px 5% 40px}
+    .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+    .footer-brand-desc{font-size:.85rem;color:var(--muted);line-height:1.8;margin:1rem 0}
+    .footer-social{display:flex;gap:10px;margin-top:1.2rem}
+    .social-btn{width:36px;height:36px;border-radius:8px;background:var(--glass);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;text-decoration:none;transition:all .2s}
+    .social-btn:hover{background:var(--accent1);border-color:var(--accent1)}
+    .footer-col h4{font-size:.9rem;font-weight:700;margin-bottom:1.2rem;color: var(--text)}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+    .footer-col ul li a{font-size:.83rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col ul li a:hover{color:var(--accent3)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid var(--border)}
+    .footer-bottom p{font-size:.8rem;color:var(--muted)}
+    .footer-bottom-links{display:flex;gap:1.5rem}
+    .footer-bottom-links a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-bottom-links a:hover{color: var(--text)}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:1024px){.cards-3{grid-template-columns:1fr 1fr}.caso-body{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:768px){.navbar{padding:0 4%}.nav-links{display:none}.nav-actions .btn-ghost{display:none}section{padding:50px 4%}.hero-mineria{padding:40px 4% 70px}.cards-3{grid-template-columns:1fr}.cursos-rec{flex-direction:column}.footer-grid{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;gap:1rem;text-align:center}}
+  
+    /* Dropdown CSS */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { 
+        display: none; position: absolute; background-color: rgba(5,5,8,0.95); 
+        min-width: 300px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid var(--border);
+        border-radius: 12px; z-index: 1000; top: 100%; left: 0; padding: 10px 0; backdrop-filter: blur(15px);
+    }
+    .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-out; }
+    .dropdown-content a { 
+        color: var(--muted) !important; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+    }
+    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--text) !important; padding-left: 25px; }
+    .dropdown-content .icon { margin-right: 10px; font-size: 1.1rem; vertical-align: middle;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+</style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../../../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../../../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../../../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../../../assets/css/theme.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div data-component="navbar"></div>
+  <div class="nav-actions">
+    <a href="../../../login/index.html" class="btn-ghost">Iniciar sesión</a>
+    <a href="../../propuesta/index.html" class="btn-primary">Hablemos →</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../../../index.html">Inicio</a> ›
+  <a href="../../index.html">Empresas</a> ›
+  <a href="../../index.html">Sectores</a> ›
+  <span>Minería</span>
+</div>
+
+<!-- HERO -->
+<section class="hero-mineria">
+  <div class="hero-inner">
+    <div class="hero-badge">⛏ Sector Minero</div>
+    <h1><span>Automatización e IA</span> para el sector minero</h1>
+    <p class="hero-sub">Reduce errores en conciliaciones, optimiza reportes operativos y certifica a tu equipo en tecnologías que transforman la operación minera.</p>
+    <div class="hero-cta-row">
+      <a href="../../propuesta/index.html" class="btn-primary btn-primary-lg">Solicitar propuesta para mi empresa minera →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS -->
+<section class="problems-section">
+  <div class="section-label">Desafíos del sector</div>
+  <h2 class="section-title">Problemas que <span>resolvemos</span></h2>
+  <p class="section-sub">Los equipos mineros enfrentan retos operativos únicos. Nuestros programas están diseñados para atacarlos directamente.</p>
+  <div class="cards-3">
+    <div class="problem-card">
+      <span class="problem-icon">📋</span>
+      <div class="problem-title">Reportes manuales lentos</div>
+      <div class="problem-desc">Los reportes operativos se generan manualmente en Excel, tomando horas o días. Los datos llegan tarde a la toma de decisiones.</div>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">🔢</span>
+      <div class="problem-title">Conciliaciones complejas</div>
+      <div class="problem-desc">Cruzar datos de producción, inventarios y contabilidad consume días y genera errores costosos que afectan el cierre mensual.</div>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">📉</span>
+      <div class="problem-title">KPIs desactualizados</div>
+      <div class="problem-desc">Los indicadores de operación (toneladas, costos, eficiencia) no están disponibles en tiempo real, limitando las decisiones estratégicas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIONES -->
+<section>
+  <div class="section-label">Nuestras soluciones</div>
+  <h2 class="section-title">Tecnología aplicada a <span>minería</span></h2>
+  <p class="section-sub">Herramientas de nivel industrial implementadas por tu equipo, con acompañamiento experto.</p>
+  <div class="cards-3">
+    <div class="solution-card">
+      <div class="solution-tag">n8n</div>
+      <div class="solution-title">Conciliaciones automáticas</div>
+      <div class="solution-desc">Automatiza el cruce de datos entre sistemas ERP, hojas de cálculo y fuentes externas. Las conciliaciones ocurren solas, sin intervención manual.</div>
+      <div class="solution-result">✓ Cierre de 3 días reducido a 4 horas</div>
+    </div>
+    <div class="solution-card">
+      <div class="solution-tag">Power BI</div>
+      <div class="solution-title">Reportes ejecutivos en tiempo real</div>
+      <div class="solution-desc">Dashboards conectados a tus datos operativos. Producción, costos y KPIs actualizados automáticamente para gerentes y directivos.</div>
+      <div class="solution-result">✓ Visibilidad 100% en tiempo real</div>
+    </div>
+    <div class="solution-card">
+      <div class="solution-tag">IA</div>
+      <div class="solution-title">Detección de anomalías</div>
+      <div class="solution-desc">Modelos de IA que identifican patrones inusuales en producción, costos y equipos antes de que se conviertan en problemas costosos.</div>
+      <div class="solution-result">✓ -40% costos por fallas inesperadas</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASO REAL -->
+<section class="caso-uso">
+  <div class="section-label">Caso real</div>
+  <h2 class="section-title">Resultados <span>documentados</span></h2>
+  <p class="section-sub">Empresa real, resultados verificables. Datos auditados internamente.</p>
+  <div class="caso-real-card">
+    <div class="caso-header">
+      <div class="caso-icon-big">⛏</div>
+      <div>
+        <div class="caso-empresa">Empresa minera mediana — Perú</div>
+        <div class="caso-meta">Sector: Minería metálica · Equipo capacitado: 8 personas · Certificación: SPX-AUTO + SPX-BI</div>
+      </div>
+    </div>
+    <div class="caso-body">
+      <div class="caso-side">
+        <h4>El reto</h4>
+        <p>El equipo de finanzas tardaba 3 días hábiles en cerrar la conciliación mensual entre producción, almacén y contabilidad. Errores frecuentes generaban reprocesos y retrasos en reportes a directivos.</p>
+        <br/>
+        <h4>La solución</h4>
+        <p>Capacitamos a 8 personas en automatización con n8n y visualización con Power BI. Implementaron flujos automáticos de conciliación y un dashboard ejecutivo conectado al ERP.</p>
+      </div>
+      <div class="caso-side" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="caso-result-big">3 días → 4h</div>
+        <div class="caso-result-label">Reducción en tiempo de cierre mensual</div>
+        <br/>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem">
+          <div>
+            <div style="font-size:1.5rem;font-weight:900;color:#4ade80">0</div>
+            <div style="font-size:.78rem;color:var(--muted)">Errores post-implementación</div>
+          </div>
+          <div>
+            <div style="font-size:1.5rem;font-weight:900;color:var(--accent3)">8</div>
+            <div style="font-size:.78rem;color:var(--muted)">Certificados SPX obtenidos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS RECOMENDADOS -->
+<section>
+  <div class="section-label">Formación recomendada</div>
+  <h2 class="section-title">Cursos para el <span>sector minero</span></h2>
+  <p class="section-sub">Los programas SPX que más impacto generan en equipos de operaciones mineras.</p>
+  <div class="cursos-rec">
+    <a href="../../../certificaciones/index.html" class="curso-pill">
+      <div>
+        <div class="curso-code">SPX-AUTO</div>
+        <div class="curso-name">Automatización con n8n y Power Automate</div>
+      </div>
+      <span style="color:var(--accent3)">→</span>
+    </a>
+    <a href="../../../certificaciones/index.html" class="curso-pill">
+      <div>
+        <div class="curso-code">SPX-BI</div>
+        <div class="curso-name">Business Intelligence con Power BI</div>
+      </div>
+      <span style="color:var(--accent3)">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>¿Listo para transformar <span>tu operación minera</span>?</h2>
+  <p>Cuéntanos tu reto y en 24 horas te enviamos una propuesta personalizada.</p>
+  <a href="../../propuesta/index.html" class="btn-primary btn-primary-lg">Solicitar propuesta para mi empresa minera →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="../../../index.html" style="text-decoration:none;display:flex;align-items:center;gap:8px">
+        <span style="font-size:1.3rem">⚡</span>
+        <span style="font-size:1.1rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Syneprix</span>
+      </a>
+      <p class="footer-brand-desc">Transformamos equipos operativos en LATAM con capacitación en IA y automatización que genera resultados medibles.</p>
+      <div class="footer-social"><a href="/contacto/" class="social-btn" aria-label="Contactar a Syneprix">✉</a></div>
+    </div>
+    <div class="footer-col">
+      <h4>Sectores</h4>
+      <ul>
+        <li><a href="index.html">Minería</a></li>
+        <li><a href="../logistica/index.html">Logística</a></li>
+        <li><a href="../manufactura/index.html">Manufactura</a></li>
+        <li><a href="../../index.html">Hub B2B</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Aprender</h4>
+      <ul>
+        <li><a href="../../../index.html#cursos-destacados">Todos los cursos</a></li>
+        <li><a href="../../../certificaciones/index.html">Certificaciones SPX</a></li>
+        <li><a href="../../casos-exito/index.html">Casos de éxito</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Compañía</h4>
+      <ul>
+        <li><a href="../../../nosotros/index.html">Nosotros</a></li>
+        <li><a href="../../propuesta/index.html">Solicitar propuesta</a></li>
+        <li><a href="../../../contacto/index.html">Contacto</a></li>
+        <li><a href="../../../privacidad/index.html">Privacidad</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Syneprix. Todos los derechos reservados.</p>
+    <div class="footer-bottom-links">
+      <a href="../../../privacidad/index.html">Privacidad</a>
+      <a href="../../../terminos/index.html">Términos</a>
+      <a href="../../../cookies/index.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(el => { if(el.isIntersecting){el.target.style.opacity='1';el.target.style.transform='translateY(0)'} });
+  },{threshold:.1});
+  document.querySelectorAll('.problem-card,.solution-card,.curso-pill').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease,transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../../../assets/audio/Voz_Syneprix.mp3"></audio>
+</body>
+</html>

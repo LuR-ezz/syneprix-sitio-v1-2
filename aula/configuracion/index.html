@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuración de Cuenta — SYNEPRIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Navbar Superior de Configuración */
+    .config-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(5, 5, 12, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+    .back-dashboard {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-dashboard:hover {
+      color: var(--text);
+    }
+    .account-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    
+    /* Disposición Principal */
+    .config-layout {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: flex;
+      gap: 60px;
+      padding: 0 40px;
+    }
+
+    /* Sidebar de Configuración */
+    .config-sidebar {
+      width: 250px;
+      flex-shrink: 0;
+    }
+    .config-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .config-nav a {
+      display: block;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .config-nav a.active {
+      background: rgba(89, 29, 203, 0.15);
+      color: var(--accent1);
+      font-weight: 600;
+    }
+    .config-nav a:hover:not(.active) {
+      background: var(--glass);
+      color: var(--text);
+    }
+    .nav-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+    .logout-btn {
+      color: #ef4444 !important; /* Rojo sutil para salir */
+    }
+
+    /* Área de Configuración Principal */
+    .config-content {
+      flex: 1;
+    }
+    .config-header {
+      margin-bottom: 32px;
+    }
+    .config-header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .config-header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Formulario de Perfil */
+    .form-section {
+      background: var(--glass-panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .profile-photo {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .avatar-large {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+    }
+    .photo-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 300px;
+    }
+    .photo-desc a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .form-control {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent1);
+    }
+    
+    .btn-save {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-save:hover {
+      opacity: 0.9;
+    }
+  </style>
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+  <!-- Topbar Configuración -->
+  <header class="config-topbar">
+    <a href="../index.html" class="back-dashboard">&lt; Volver al Dashboard</a>
+    <div class="account-title">Gestionar Cuenta</div>
+    <div style="width: 150px;"></div> <!-- Spacer para centrar el título -->
+  </header>
+
+  <!-- Layout Principal -->
+  <main class="config-layout">
+    
+    <!-- Sidebar -->
+    <aside class="config-sidebar">
+      <ul class="config-nav">
+        <li><a href="./" class="active" aria-current="page">Editar perfil</a></li>
+        <div class="nav-divider"></div>
+        <li><a href="../index.html" class="logout-btn">Cerrar sesión</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido -->
+    <section class="config-content">
+      
+      <div class="config-header">
+        <h1>Editar Perfil</h1>
+        <p>Actualiza tu información personal y foto de perfil.</p>
+      </div>
+
+      <div class="form-section">
+        
+        <div class="profile-photo">
+          <div class="avatar-large">LR</div>
+          <div class="photo-desc">
+            Para mantener un ecosistema rápido y seguro, usamos Gravatar. Cambia tu foto de perfil desde <a href="https://gravatar.com" target="_blank">Gravatar.com</a> utilizando tu correo electrónico actual.
+          </div>
+        </div>
+
+        <form id="profile-form">
+          <div class="form-group">
+            <label for="profile-name">Nombre Completo</label>
+            <input type="text" id="profile-name" name="nombre" autocomplete="name" class="form-control" value="Luis Razer" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="profile-email">Correo Electrónico (Email)</label>
+            <input type="email" id="profile-email" name="email" class="form-control" value="luisrazer2005@gmail.com" readonly style="opacity: 0.7; cursor: not-allowed;">
+          </div>
+          
+          <button type="submit" class="btn-save">Guardar Cambios</button>
+          <p id="profile-status" role="status" style="color: var(--accent3); margin-top: 1rem;"></p>
+        </form>
+
+      </div>
+      
+    </section>
+
+  </main>
+
+    <script>
+      document.getElementById('profile-form')?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('profile-name').value.trim();
+        const currentUser = JSON.parse(localStorage.getItem('spx_current_user') || '{}');
+        localStorage.setItem('spx_current_user', JSON.stringify({ ...currentUser, name }));
+        document.getElementById('profile-status').textContent = 'Cambios guardados en este navegador.';
+      });
+    </script>
+    <script src="/js/auth-state.js"></script>
+</body>
+</html>

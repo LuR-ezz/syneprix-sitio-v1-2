@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificaciones SPX - SYNEPRIX</title>
+    <meta name="description" content="Credenciales que el mercado verifica. Certificaciones SPX en IA, Desarrollo y Negocios en SYNEPRIX.">
+    <style>
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'InterVariable', 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .text-gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            margin-top: 100px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+        .breadcrumb a:hover {
+            color: var(--accent3);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 60px 0 120px;
+            position: relative;
+            align-items: center;
+        }
+        
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--gradient);
+            filter: blur(150px);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--glass-panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--accent2);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin: 0 0 1.5rem 0;
+            font-weight: 700;
+        }
+
+        .hero p.sub {
+            font-size: 1.25rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+        
+        .trust-metrics {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+        @media (max-width: 900px) {
+            .trust-metrics {
+                justify-content: center;
+            }
+        }
+
+        .avatars { display: flex; }
+        .avatars div {
+            width: 32px; height: 32px; border-radius: 50%;
+            border: 2px solid var(--bg); margin-left: -10px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .avatars div:first-child { margin-left: 0; }
+        
+        .hero-visual {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .glass-card-3d {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--glass-panel-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .glass-card-3d:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 32px 64px rgba(208,77,205,0.2);
+        }
+
+        /* Niveles */
+        .niveles-section {
+            padding: 120px 0;
+        }
+        
+        /* Timeline Criteria */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent1), rgba(255,255,255,0.1));
+            box-shadow: 0 0 10px var(--accent1);
+        }
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+        }
+        
+        .step-card {
+            display: flex;
+            align-items: center;
+            background: var(--glass-panel-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-left: 60px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .step-card {
+                margin-left: 50px;
+                padding: 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        .step-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(208,77,205,0.5);
+        }
+        .step-node {
+            position: absolute;
+            left: -48px;
+            width: 24px;
+            height: 24px;
+            background: var(--bg);
+            border: 2px solid var(--accent2);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(208,77,205,0.4);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        @media (max-width: 768px) {
+            .step-node {
+                left: -42px;
+                top: 2rem;
+                transform: none;
+            }
+        }
+        
+        .step-icon {
+            font-size: 2.5rem;
+            margin-right: 25px;
+            min-width: 50px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .step-icon { margin-right: 0; }
+        }
+        
+        .step-content h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+        .step-content p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .nivel-card {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nivel-card:hover {
+            transform: translateX(10px);
+            border-color: var(--border-hover);
+        }
+
+        .nivel-icon {
+            font-size: 3rem;
+            min-width: 80px;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nivel-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .nivel-content p {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* Tracks Grid */
+        .tracks-section {
+            padding: 120px 0;
+        }
+
+        /* 3D Certificate CSS - Light Theme with Animations */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        .cert-3d-container {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 30px 0;
+        }
+        .cert-3d-card {
+            width: 100%;
+            max-width: 680px;
+            aspect-ratio: 1.35 / 1;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f7ff 100%);
+            border: 1px solid #d4d0ec;
+            border-radius: 6px;
+            box-shadow:
+                0 25px 50px rgba(0,0,0,0.25),
+                0 0 0 1px rgba(255,255,255,0.9),
+                inset 0 0 80px rgba(79, 70, 229, 0.03);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease-out;
+            will-change: transform;
+            color: #1e1b4b;
+        }
+        
+        .cert-3d-card:hover {
+            transform: rotateY(0deg) rotateX(0deg) !important;
+        }
+
+        /* Marco interior tipo diploma */
+        .cert-3d-card::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid #4338ca;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            animation: printLayer 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+        .cert-3d-card::after {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 1px solid rgba(67, 56, 202, 0.2);
+            pointer-events: none;
+            opacity: 0;
+            animation: printLayer 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+        
+        .cert-inner {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            padding: 24px 35px 15px;
+            display: flex;
+            flex-direction: column;
+            transform: translateZ(30px);
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(79, 70, 229, 0.04), transparent 50%),
+                radial-gradient(circle at 10% 90%, rgba(14, 165, 233, 0.03), transparent 50%);
+        }
+        
+        .cert-glare {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 8px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6), transparent 60%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 50;
+        }
+        
+        /* Clases de Animación (Cinemática) */
+        .anim-layer {
+            opacity: 0;
+            transform: translateY(10px) translateZ(10px);
+        }
+        
+        .start-anim .anim-layer {
+            animation: printLayer 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        .layer-1 { animation-delay: 0.6s !important; }
+        .layer-2 { animation-delay: 1.0s !important; }
+        .layer-3 { animation-delay: 1.4s !important; }
+        .layer-4 { animation-delay: 1.8s !important; }
+        .layer-5 { animation-delay: 2.2s !important; }
+        .layer-6 { animation-delay: 2.6s !important; }
+
+        @keyframes printLayer {
+            from { opacity: 0; transform: translateY(10px) translateZ(10px); filter: blur(2px); }
+            to { opacity: 1; transform: translateY(0) translateZ(0); filter: blur(0); }
+        }
+
+        /* Utilities para el texto del certificado */
+        .cert-txt-small { font-size: 0.55rem; letter-spacing: 1.5px; color: #64748b; text-transform: uppercase; }
+        .cert-txt-medium { font-size: 0.7rem; font-weight: 600; color: #1e1b4b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cert-title { font-size: 1.8rem; font-weight: 800; color: #312e81; letter-spacing: 5px; margin: 4px 0; }
+        .cert-name { font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: #1e1b4b; line-height: 1.1; font-weight: 400; margin: 6px 0; }
+
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .track-card {
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 4px solid var(--accent1);
+            transition: transform 0.3s ease;
+        }
+
+        .track-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .track-card.ai { border-top-color: #591dcb; }
+        .track-card.dev { border-top-color: #d04dcd; }
+        .track-card.dt { border-top-color: #00d2ff; }
+        .track-card.data { border-top-color: #ff007f; }
+
+        .track-card h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 15px;
+        }
+
+        /* Verificador */
+        .verifier-section {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMGgyMHYyMEgwem0xMCAxMGE1IDUgMCAxIDAgMC0xMCA1IDUgMCAwIDAgMCAxMHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMikiLz48L3N2Zz4=');
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            padding: 15px;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: var(--gradient);
+            color: var(--text);
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Trust Logos */
+        .trust-section {
+            padding: 100px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            opacity: 0.5;
+        }
+
+        .trust-logos span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .nivel-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    
+    /* Dropdown CSS */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { 
+        display: none; position: absolute; background-color: rgba(5,5,8,0.95); 
+        min-width: 300px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid var(--border);
+        border-radius: 12px; z-index: 1000; top: 100%; left: 0; padding: 10px 0; backdrop-filter: blur(15px);
+    }
+    .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-out; }
+    .dropdown-content a { 
+        color: var(--muted) !important; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+    }
+    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--text) !important; padding-left: 25px; }
+    .dropdown-content .icon { margin-right: 10px; font-size: 1.1rem; vertical-align: middle;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+
+        
+        
+
+            box-sizing: border-box;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            padding: 4rem 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent3);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: var(--text);
+        }
+
+        /* Tabla Criterios */
+        .criteria-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 4rem;
+            background: var(--glass);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .criteria-table th, .criteria-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .criteria-table th {
+            background: var(--glass);
+            font-weight: 800;
+            color: var(--accent2);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .criteria-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .level-tag {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border: 1px solid var(--border);
+        }
+
+        /* Process steps */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .process-step {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent1);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent3);
+        }
+
+        .faq-answer {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+    
+    /* === DISEÑO ORGÁNICO: SIN CAJAS Y ANIMACIONES SHOJI === */
+    .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .curso-card, .feature-card, .animate-on-scroll {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.shoji-left {
+        transform: translateX(-100px);
+    }
+    .animate-on-scroll.shoji-right {
+        transform: translateX(100px);
+    }
+    .animate-on-scroll:not(.shoji-left):not(.shoji-right) {
+        transform: translateY(30px);
+    }
+    .animate-on-scroll.visible {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+    }
+
+
+    </style>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="../assets/js/responsive.js" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+    <div data-component="navbar"></div>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content animate-on-scroll">
+                <h1>Credenciales que el <span class="text-gradient">mercado verifica</span></h1>
+                <p class="sub efecto-ola">Valida tus habilidades con certificaciones rigurosas diseñadas en base a las demandas tecnológicas actuales de la industria global.</p>
+                <div class="trust-metrics">
+                    <div class="avatars">
+                        <div style="background: var(--accent1);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                        <div style="background: var(--accent2);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                        <div style="background: #00d2ff;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                        <div style="background: #22c55e;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    </div>
+                    <span>Únete a <strong>+500</strong> profesionales certificados.</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Espacio reservado para el nuevo diseño -->
+                <div class="glass-card-3d" style="justify-content: center; align-items: center; text-align: center; border: 1px dashed rgba(255,255,255,0.2); background: rgba(0,0,0,0.2);">
+                    <div style="font-size: 3rem; margin-bottom: 15px; color: var(--muted);"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                    <h3 style="color: var(--muted); font-size: 1.2rem;">Nuevo Diseño Pendiente</h3>
+                    <p style="color: var(--muted); font-size: 0.9rem;">(Explorando opciones...)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="niveles-section">
+            <h2 class="section-title animate-on-scroll">Niveles de <span class="text-gradient">Certificación</span></h2>
+            
+            <div class="nivel-card glass-panel animate-on-scroll slide-up-stagger">
+                <div class="nivel-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <div class="nivel-content">
+                    <h3>Foundations</h3>
+                    <p>Valida conocimientos fundamentales y teóricos esenciales. Ideal para quienes inician su camino en una nueva disciplina tecnológica o de gestión.</p>
+                </div>
+            </div>
+
+            <div class="nivel-card glass-panel animate-on-scroll slide-up-stagger" style="transition-delay: 0.1s;">
+                <div class="nivel-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                <div class="nivel-content">
+                    <h3>Associate</h3>
+                    <p>Demuestra capacidad práctica para implementar soluciones de complejidad media. Requiere la entrega y evaluación de proyectos aplicados reales.</p>
+                </div>
+            </div>
+
+            <div class="nivel-card glass-panel animate-on-scroll slide-up-stagger" style="transition-delay: 0.2s;" style="border-color: rgba(208,77,205,0.4);">
+                <div class="nivel-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+                <div class="nivel-content">
+                    <h3>Professional</h3>
+                    <p>La máxima distinción. Acredita maestría técnica y capacidad arquitectónica para diseñar, liderar y optimizar sistemas complejos a nivel empresarial.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tracks-section">
+            <h2 class="section-title animate-on-scroll">Tracks de <span class="text-gradient">Especialización</span></h2>
+            <div class="tracks-grid">
+                <div class="track-card ai glass-panel">
+                    <div style="font-size: 3rem;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
+                    <h3>SPX-AI</h3>
+                    <p style="color: var(--muted);">Inteligencia Artificial, LLMs y Agentes Autónomos</p>
+                </div>
+                <div class="track-card dev glass-panel">
+                    <div style="font-size: 3rem;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                    <h3>SPX-DEV</h3>
+                    <p style="color: var(--muted);">Desarrollo Full-Stack y Arquitecturas Cloud</p>
+                </div>
+                <div class="track-card dt glass-panel">
+                    <div style="font-size: 3rem;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                    <h3>SPX-DT</h3>
+                    <p style="color: var(--muted);">Gestión Ágil y Transformación Digital</p>
+                </div>
+                <div class="track-card data glass-panel">
+                    <div style="font-size: 3rem;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                    <h3>SPX-DATA</h3>
+                    <p style="color: var(--muted);">Ingeniería de Datos y Analítica Avanzada</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section" style="padding: 120px 0; border-top: 1px solid var(--border);">
+            <h2 class="section-title animate-on-scroll">Criterios de <span class="text-gradient">Certificación</span></h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 60px; max-width: 700px; margin-inline: auto;" class="animate-on-scroll efecto-ola">
+                Nuestras certificaciones no evalúan la teoría, evalúan tu capacidad de resolver problemas reales en el ecosistema digital.
+            </p>
+            
+            <div class="timeline">
+                
+                <div class="step-card animate-on-scroll shoji-left">
+                    <div class="step-node" style="border-color: #00d2ff; box-shadow: 0 0 12px rgba(0, 210, 255, 0.4);"></div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #00d2ff;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <h3>1. Completitud del 100%</h3>
+                        <p>Visualización completa de todas las video-lecciones, lecturas y recursos obligatorios del track de especialización correspondiente.</p>
+                    </div>
+                </div>
+
+                <div class="step-card animate-on-scroll shoji-right">
+                    <div class="step-node" style="border-color: #22c55e; box-shadow: 0 0 12px rgba(34, 197, 94, 0.4);"></div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #22c55e;"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13.5l1.5 1.5 3-3"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <h3>2. Aprobación Teórica</h3>
+                        <p>Aprobar todos los quizes y exámenes modulares automatizados con una calificación mínima del 80% de aciertos.</p>
+                    </div>
+                </div>
+
+                <div class="step-card animate-on-scroll shoji-left">
+                    <div class="step-node" style="border-color: var(--accent2); box-shadow: 0 0 12px rgba(208, 77, 205, 0.4);"></div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent2);"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <h3>3. Validación Práctica</h3>
+                        <p>Desarrollo y entrega de un proyecto final real (vía repositorio de GitHub), evaluado y aprobado manualmente por un Mentor SYNEPRIX.</p>
+                    </div>
+                </div>
+
+                <div class="step-card animate-on-scroll shoji-right">
+                    <div class="step-node" style="border-color: var(--accent1); box-shadow: 0 0 12px rgba(89, 29, 203, 0.4);"></div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent1);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="step-content">
+                        <h3>4. Identidad Verificada</h3>
+                        <p>Mantener un perfil de cuenta único y adherirse estrictamente al código de honor y ética académica de la plataforma.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <section id="verificador" class="verifier-section">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Verificador Público <span class="text-gradient">de Credenciales</span></h2>
+            <p style="color: var(--muted); margin-bottom: 40px;">Las empresas pueden verificar la autenticidad de tu certificación usando el ID único de tu diploma.</p>
+            
+            <form class="search-box" action="/certificaciones/verificar/" method="get">
+                <label for="public-credential-id" class="sr-only">ID de la certificación</label>
+                <input id="public-credential-id" name="id" type="text" required placeholder="Ingresa el ID de la certificación (Ej. SPX-9876-ABCD)">
+                <button type="submit" class="btn">Verificar</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="trust-section container">
+        <p style="color: var(--muted);">Nuestros egresados trabajan en las mejores empresas del sector</p>
+        <div class="trust-logos">
+            <span>TECHCORP</span>
+            <span>INNOVATE INC</span>
+            <span>GLOBAL SYS</span>
+            <span>NEXTGEN DATA</span>
+        </div>
+    </section>
+
+    <div data-component="footer"></div>
+
+    <script src="/js/auth-state.js"></script>
+
+<!-- ANIMACIONES SHOJI ORGÁNICAS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Asignar clase de animacion a elementos "caja" que no la tengan
+    const candidateSelectors = '.glass-panel, .escuela-card, .testimonio-card, .curso-card, .hero-stat-card, section > .container > div:not(.nav-container)';
+    document.querySelectorAll(candidateSelectors).forEach(el => {
+        if (!el.classList.contains('animate-on-scroll')) {
+            el.classList.add('animate-on-scroll');
+        }
+    });
+
+    // 2. Intercalar shoji-left y shoji-right
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el, index) => {
+        // Solo aplicar si no lo tiene (previniendo dobles aplicaciones)
+        if (!el.classList.contains('shoji-left') && !el.classList.contains('shoji-right')) {
+            if (index % 2 === 0) {
+                el.classList.add('shoji-left');
+            } else {
+                el.classList.add('shoji-right');
+            }
+        }
+    });
+
+    // 3. Crear observer
+    // Si la pagina ya tiene un IntersectionObserver de animate-on-scroll, 
+    // este simplemente asegurara que las clases visible se manejen.
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // Rebote para re-animar
+            }
+        });
+    }, { threshold: 0.15 });
+
+    animateElements.forEach(el => observer.observe(el));
+});
+</script>
+
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="../assets/audio/Voz_Syneprix.mp3"></audio>
+    <script src="/js/scroll-animations.js"></script>
+</body>
+</html>

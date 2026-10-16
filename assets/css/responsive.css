@@ -1,0 +1,120 @@
+/* Sistema Responsivo SYNEPRIX v1.2 */
+
+/* Botón Hamburguesa */
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 992px) {
+    /* Navbar Responsiva */
+    .menu-toggle {
+        display: inline-flex;
+    }
+    
+    .nav-links {
+        display: none; /* Oculto por defecto en movil */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Debajo del header */
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(15px);
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .nav-links.active {
+        display: flex !important; /* Mostrado al hacer click */
+    }
+    
+    .nav-links a, .nav-links .dropdown {
+        margin: 10px 0;
+        width: 100%;
+        text-align: left;
+    }
+    
+    .nav-links .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        padding-left: 15px;
+    }
+    
+    .nav-links .dropdown:hover .dropdown-content,
+    .nav-links .dropdown:focus-within .dropdown-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Correcciones Generales Mobile */
+    .hero h1 {
+        font-size: 2.5rem !important; /* Más pequeño para que quepa */
+    }
+    
+    .hero-3d-wrapper {
+        width: 100% !important;
+        max-width: 350px;
+        height: 350px !important;
+        margin: 20px auto !important;
+    }
+    
+    model-viewer {
+        min-height: 300px !important;
+    }
+
+    /* Ajuste de Grillas */
+    .grid-2x2, .cert-grid, .cta-grid, .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    .hero-inner {
+        padding-top: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 2rem !important;
+    }
+    .impact-stat {
+        font-size: 3rem !important;
+    }
+    .section-title {
+        font-size: 2rem !important;
+    }
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-btns .btn {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 1: Introducción — SYNEPRIX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden; /* Evitar scroll en toda la página */
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Barra Superior de Navegación */
+    .top-navbar {
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      background: rgba(5, 5, 12, 0.95);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .back-btn {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--glass);
+      color: var(--text);
+    }
+    .course-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .prev-btn {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .prev-btn:hover {
+      background: var(--glass);
+      color: var(--text);
+    }
+    .cta-complete {
+      background: var(--gradient);
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 6px;
+      transition: opacity 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .cta-complete:hover {
+      opacity: 0.9;
+    }
+
+    /* Disposición Principal (Pantalla Dividida) */
+    .main-layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar Izquierdo (Temario) */
+    .sidebar {
+      width: 320px;
+      background: rgba(10, 10, 18, 0.95);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    
+    .progress-section {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .progress-bar-bg {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gradient);
+      width: 15%; /* Porcentaje simulado */
+      border-radius: 3px;
+    }
+
+    .curriculum-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+    .module-header {
+      padding: 16px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .lesson-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+    .lesson-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .lesson-item.active {
+      background: rgba(89, 29, 203, 0.15); /* Fondo suave violeta para lección activa */
+      border-left: 3px solid var(--accent1);
+    }
+    
+    .lesson-status {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .lesson-item.completed .lesson-status {
+      background: var(--accent1);
+      border-color: var(--accent1);
+      color: white;
+    }
+    .lesson-item.completed .lesson-status::after {
+      content: "✓";
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    .lesson-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .lesson-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .lesson-duration {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* Área Principal de Contenido (Derecha) */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #08080C;
+      overflow-y: auto;
+    }
+    
+    .video-container {
+      width: 100%;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    /* Simulador de Video */
+    .video-placeholder {
+      color: var(--muted);
+      text-align: center;
+    }
+    .play-icon {
+      font-size: 3rem;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    /* Área debajo del video (Pestañas) */
+    .lesson-details {
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .lesson-heading {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .tab {
+      padding: 12px 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab.active {
+      color: var(--text);
+      border-bottom-color: var(--cyan);
+    }
+    .tab:hover:not(.active) {
+      color: var(--text-dim);
+    }
+    
+    .tab-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    /* Scrollbar para las áreas scrolleables */
+    .curriculum-list::-webkit-scrollbar, .content-area::-webkit-scrollbar { width: 6px; }
+    .curriculum-list::-webkit-scrollbar-thumb, .content-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+  </style>
+    <script src="/assets/js/loadComponents.js" defer></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="top-navbar">
+    <div class="top-left">
+      <a href="../index.html" class="back-btn" title="Volver al Dashboard">🏠</a>
+      <div class="course-title">Especialización en Automatización Industrial</div>
+    </div>
+    <div class="top-right">
+      <a href="#lesson-content" class="prev-btn">&lt; Volver al contenido</a>
+      <button class="cta-complete" type="button" disabled title="Disponible cuando el contenido del curso esté conectado">Continuar próximamente</button>
+    </div>
+  </header>
+
+  <!-- Layout Principal -->
+  <main class="main-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="progress-section">
+        <div class="progress-text">
+          <span>PROGRESO</span>
+          <span>15% COMPLETADO</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+      
+      <div class="curriculum-list">
+        <div class="module-header">MÓDULO 1: FUNDAMENTOS</div>
+        
+        <a href="#lesson-content" class="lesson-item completed">
+          <div class="lesson-status"></div>
+          <div class="lesson-info">
+            <span class="lesson-title">1.1. Introducción a la Automatización</span>
+            <span class="lesson-duration">▶ Video (12:45)</span>
+          </div>
+        </a>
+        
+        <a href="#lesson-content" class="lesson-item active" aria-current="page">
+          <div class="lesson-status"></div>
+          <div class="lesson-info">
+            <span class="lesson-title">1.2. Herramientas de la Industria Actual</span>
+            <span class="lesson-duration">▶ Video (24:44)</span>
+          </div>
+        </a>
+        
+        <a href="#lesson-content" class="lesson-item">
+          <div class="lesson-status"></div>
+          <div class="lesson-info">
+            <span class="lesson-title">1.3. Ejercicio Práctico N°1</span>
+            <span class="lesson-duration">📄 Lectura (10 min)</span>
+          </div>
+        </a>
+
+        <div class="module-header">MÓDULO 2: IMPLEMENTACIÓN</div>
+        
+        <a href="#lesson-content" class="lesson-item">
+          <div class="lesson-status"></div>
+          <div class="lesson-info">
+            <span class="lesson-title">2.1. Despliegue de tu primer flujo</span>
+            <span class="lesson-duration">▶ Video (35:12)</span>
+          </div>
+        </a>
+        
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <section class="content-area" id="lesson-content">
+      <div class="video-container">
+        <div class="video-placeholder">
+          <div class="play-icon">▶</div>
+          <p>Reproductor de Video Placeholder<br><span style="font-size: 0.8rem;">(Aquí irá el embed de Vimeo/YouTube)</span></p>
+        </div>
+      </div>
+      
+      <div class="lesson-details">
+        <h1 class="lesson-heading">1.2. Herramientas de la Industria Actual</h1>
+        
+        <div class="tabs">
+          <div class="tab active">Descripción</div>
+          <div class="tab">Recursos (2)</div>
+          <div class="tab">Comunidad</div>
+        </div>
+        
+        <div class="tab-content">
+          <p>En esta lección exploraremos las herramientas estándar de la industria que ya están siendo utilizadas por las principales organizaciones en LATAM para automatizar sus flujos de trabajo.</p>
+          <p>No nos enfocaremos en la teoría vacía, sino en casos reales de cómo implementar estas tecnologías en un entorno productivo real.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+    <script src="/js/auth-state.js"></script>
+</body>
+</html>

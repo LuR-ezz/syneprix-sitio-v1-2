@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNEPRIX | Educación en Tecnología y Negocios</title>
+    <meta name="description" content="Acelera tu carrera con SYNEPRIX. Cursos premium en Automatización, BI, IA y Desarrollo. Transforma tu futuro hoy.">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        
+        /* 3D Certificate CSS - Light Theme with Animations */
+        .cert-3d-container {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 30px 0;
+        }
+        .cert-3d-card {
+            width: 100%;
+            max-width: 680px;
+            aspect-ratio: 1.35 / 1;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f7ff 100%);
+            border: 1px solid #d4d0ec;
+            border-radius: 6px;
+            box-shadow:
+                0 25px 50px rgba(0,0,0,0.25),
+                0 0 0 1px rgba(255,255,255,0.9),
+                inset 0 0 80px rgba(79, 70, 229, 0.03);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+            cursor: crosshair;
+            color: #1e1b4b;
+        }
+        
+        /* Marco interior tipo diploma */
+        .cert-3d-card::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid #4338ca;
+            border-radius: 4px;
+            pointer-events: none;
+            opacity: 0;
+            animation: printLayer 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+        .cert-3d-card::after {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 1px solid rgba(67, 56, 202, 0.2);
+            pointer-events: none;
+            opacity: 0;
+            animation: printLayer 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+        
+        .cert-inner {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            padding: 24px 35px 15px;
+            display: flex;
+            flex-direction: column;
+            transform: translateZ(30px);
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(79, 70, 229, 0.04), transparent 50%),
+                radial-gradient(circle at 10% 90%, rgba(14, 165, 233, 0.03), transparent 50%);
+        }
+        
+        .cert-glare {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 8px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6), transparent 60%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 50;
+        }
+
+        .hotspot {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: rgba(14, 165, 233, 0.8);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
+            pointer-events: auto;
+            cursor: pointer;
+            z-index: 100;
+            transform: translateZ(50px);
+            transition: transform 0.2s, background 0.2s;
+            animation: pulse 2s infinite;
+        }
+        
+        .hotspot:hover {
+            transform: translateZ(60px) scale(1.2);
+            background: rgba(139, 92, 246, 0.9);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.9);
+            animation: none;
+        }
+        
+        /* Clases de Animación (Cinemática) */
+        .anim-layer {
+            opacity: 0;
+            transform: translateY(10px) translateZ(10px);
+        }
+        
+        .start-anim .anim-layer {
+            animation: printLayer 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        .layer-1 { animation-delay: 0.6s !important; }
+        .layer-2 { animation-delay: 1.0s !important; }
+        .layer-3 { animation-delay: 1.4s !important; }
+        .layer-4 { animation-delay: 1.8s !important; }
+        .layer-5 { animation-delay: 2.2s !important; }
+        .layer-6 { animation-delay: 2.6s !important; }
+
+        @keyframes printLayer {
+            from { opacity: 0; transform: translateY(10px) translateZ(10px); filter: blur(2px); }
+            to { opacity: 1; transform: translateY(0) translateZ(0); filter: blur(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+        
+        /* Utilities para el texto del certificado */
+        .cert-txt-small { font-size: 0.55rem; letter-spacing: 1.5px; color: #64748b; text-transform: uppercase; }
+        .cert-txt-medium { font-size: 0.7rem; font-weight: 600; color: #1e1b4b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cert-title { font-size: 1.8rem; font-weight: 800; color: #312e81; letter-spacing: 5px; margin: 4px 0; }
+        .cert-name { font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: #1e1b4b; line-height: 1.1; font-weight: 400; margin: 6px 0; }
+
+        /* Info hints beneath the 3D card */
+        .cert-info-panel {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+            width: 100%;
+            max-width: 680px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cert-info-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px;
+            background: none;
+            border: none;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+        .cert-info-card.active {
+            opacity: 1;
+        }
+        .cert-info-card svg {
+            flex-shrink: 0;
+        }
+        .cert-info-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.3;
+        }
+        .cert-info-display {
+            margin-top: 20px;
+            text-align: center;
+            max-width: 500px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+            min-height: 60px;
+            transition: color 0.3s;
+        }
+        .cert-info-card p {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .anatomy-grid {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+            .cert-info-panel { gap: 20px; }
+            .cert-3d-card { max-width: 100%; }
+            .cert-name { font-size: 1.8rem; }
+            .cert-title { font-size: 1.4rem; }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'InterVariable', 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-panel { transition: transform 0.3s; }
+        .glass-panel:hover { transform: translateY(-5px); }
+        
+        /* === DISEÑO ORGÁNICO: SIN CAJAS === */
+        .glass-panel, .escuela-card, .hero-stat-card, .testimonio-card, .animate-on-scroll {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+        }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .btn-primary { background: var(--gradient); color: var(--text); border: none; box-shadow: 0 4px 15px rgba(89, 29, 203, 0.4); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(89, 29, 203, 0.6); }
+        .btn-outline { border: 1px solid var(--accent3); color: var(--text); background: transparent; }
+        .btn-outline:hover { background: rgba(127, 119, 221, 0.1); transform: translateY(-2px); }
+        
+        /* Navbar */
+        header { position: sticky; top: 0; z-index: 1000; background: var(--glass-solid); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); padding: 15px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 2px; }
+        .logo span { color: var(--accent2); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent2); }
+        
+        /* ===== HERO PREMIUM ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #0D0428;
+        }
+
+        /* Grid de fondo estilo Vercel */
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(89,29,203,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(89,29,203,0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
+        }
+
+        /* Orbes de luz de fondo */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(89,29,203,0.5), transparent 70%);
+            top: -100px; left: -100px;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(208,77,205,0.4), transparent 70%);
+            bottom: -100px; right: -50px;
+            animation: orbFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.05); }
+        }
+
+        /* Layout interno del hero */
+        .hero-inner {
+            position: relative; z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 40px;
+            width: 100%;
+            padding-top: 60px;
+        }
+        .hero-text { max-width: 800px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
+        .hero-3d-wrapper { flex-shrink: 0; width: 100%; max-width: 1000px; position: relative; display: flex; align-items: center; justify-content: center; }
+
+        /* Badge animado */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 18px;
+            background: rgba(89,29,203,0.15);
+            border: 1px solid rgba(89,29,203,0.5);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        .badge::before {
+            content: '';
+            width: 8px; height: 8px;
+            background: var(--accent2);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent2);
+            animation: dotBlink 1.5s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(89,29,203,0); }
+            50% { box-shadow: 0 0 20px rgba(89,29,203,0.3); }
+        }
+        @keyframes dotBlink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        /* Tipografia Hero */
+        .hero h1 {
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        /* Reveal por línea */
+        .hero h1 .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: lineReveal 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .hero h1 .line:nth-child(1) { animation-delay: 0.1s; }
+        .hero h1 .line:nth-child(2) { animation-delay: 0.25s; }
+        .hero h1 .line:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes lineReveal {
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 36px;
+            opacity: 0;
+            animation: lineReveal 0.7s 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+
+        .pills { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+        .pill {
+            background: var(--glass-panel-bg);
+            border: 1px solid var(--border);
+            padding: 7px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            opacity: 0;
+            animation: lineReveal 0.5s ease forwards;
+        }
+        .pill:nth-child(1){animation-delay:0.7s}
+        .pill:nth-child(2){animation-delay:0.8s}
+        .pill:nth-child(3){animation-delay:0.9s}
+        .pill:nth-child(4){animation-delay:1.0s}
+        .pill:hover { background: rgba(89,29,203,0.2); border-color: var(--accent1); transform: translateY(-2px); }
+
+        .hero-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+            opacity: 0; animation: lineReveal 0.7s 1.1s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+
+        /* ===== OBJETO 3D CSS ===== */
+        .scene { width: 100%; height: 100%; perspective: 900px; display: flex; align-items: center; justify-content: center; }
+        .cube {
+            width: 200px; height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cubeRotate 14s linear infinite;
+        }
+        @keyframes cubeRotate {
+            0%   { transform: rotateX(15deg) rotateY(0deg); }
+            100% { transform: rotateX(15deg) rotateY(360deg); }
+        }
+        .cube-face {
+            position: absolute; width: 200px; height: 200px;
+            border: 1px solid rgba(89,29,203,0.6);
+            background: rgba(89,29,203,0.06);
+            backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cube-face::before {
+            content: '';
+            position: absolute; inset: 15px;
+            border: 1px solid rgba(208,77,205,0.2);
+            border-radius: 4px;
+        }
+        /* Neon edge glow en las aristas */
+        .cube-face::after {
+            content:'';
+            position:absolute;
+            inset:0;
+            box-shadow: inset 0 0 30px rgba(89,29,203,0.15);
+        }
+        .face-front  { transform: translateZ(100px); }
+        .face-back   { transform: translateZ(-100px) rotateY(180deg); }
+        .face-left   { transform: translateX(-100px) rotateY(-90deg); }
+        .face-right  { transform: translateX(100px)  rotateY(90deg); }
+        .face-top    { transform: translateY(-100px) rotateX(90deg); }
+        .face-bottom { transform: translateY(100px)  rotateX(-90deg); }
+
+        .face-front .face-icon { font-size: 3.5rem; opacity: 0.9; }
+        .cube-label {
+            position: absolute;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(208,77,205,0.7);
+            text-transform: uppercase;
+            bottom: 20px;
+        }
+
+        /* Anillos orbitales alrededor del cubo */
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(89,29,203,0.4);
+            top: 50%; left: 50%;
+        }
+        .orbit-ring-1 {
+            width: 280px; height: 280px;
+            margin: -140px 0 0 -140px;
+            animation: ringRotate 8s linear infinite;
+        }
+        .orbit-ring-2 {
+            width: 340px; height: 340px;
+            margin: -170px 0 0 -170px;
+            animation: ringRotate 12s linear infinite reverse;
+            border-color: rgba(208,77,205,0.2);
+            border-style: dashed;
+        }
+        @keyframes ringRotate {
+            from { transform: rotate(0deg) rotateX(75deg); }
+            to   { transform: rotate(360deg) rotateX(75deg); }
+        }
+
+        /* Puntos de datos flotantes alrededor */
+        .data-dot {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(89,29,203,0.8);
+        }
+        .data-dot-1 { width:10px;height:10px; top:20px; right:40px; animation: dotFloat 4s ease-in-out infinite; }
+        .data-dot-2 { width:6px;height:6px;  bottom:40px; left:20px; animation: dotFloat 5s 1s ease-in-out infinite; }
+        .data-dot-3 { width:8px;height:8px;  top:50%; right:5px;   animation: dotFloat 3.5s 0.5s ease-in-out infinite; }
+        @keyframes dotFloat {
+            0%,100%{transform:translateY(0);opacity:1}
+            50%{transform:translateY(-12px);opacity:0.5}
+        }
+
+        /* Tarjeta flotante de stat en el Hero */
+        .hero-stat-card {
+            position: absolute;
+            background: var(--glass-solid);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-radius: 14px;
+            padding: 14px 20px;
+            font-size: 0.8rem;
+            z-index: 3;
+        }
+        .hero-stat-card .sc-val {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        .hero-stat-card .sc-label { color: var(--muted); margin-top: 2px; }
+        .hsc-1 { bottom: 20px; left: -30px; animation: cardFloat 5s ease-in-out infinite; }
+        .hsc-2 { top: 30px; right: -20px; animation: cardFloat 6s 1s ease-in-out infinite; }
+        @keyframes cardFloat {
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-10px)}
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 992px) {
+            .hero-inner { flex-direction: column; text-align: center; }
+            .hero-3d-wrapper { width: 100%; height: 450px; max-width: 450px; margin: 0 auto; }
+            .hero-text { max-width: 100%; }
+            .pills, .hero-btns { justify-content: center; }
+            .hsc-1, .hsc-2 { display: none; }
+        }
+
+        /* Tech Slider */
+        .tech-slider { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--glass); overflow: hidden; white-space: nowrap; }
+        .tech-track { display: inline-block; animation: scroll 20s linear infinite; }
+        .tech-item { display: inline-block; font-size: 1.5rem; font-weight: 700; color: var(--muted); margin: 0 40px; text-transform: uppercase; letter-spacing: 2px; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Convenios Slider */
+        .convenios { padding: 80px 0; border-top: 1px solid var(--border); background: var(--glass); text-align: center; }
+        .convenios-title { font-size: 1.1rem; font-weight: 700; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+        .convenios-slider { overflow: hidden; white-space: nowrap; position: relative; padding: 20px 0; }
+        .convenios-slider::before, .convenios-slider::after { content: ''; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2; }
+        .convenios-slider::before { left: 0; background: linear-gradient(to right, var(--bg) 0%, transparent 100%); }
+        .convenios-slider::after { right: 0; background: linear-gradient(to left, var(--bg) 0%, transparent 100%); }
+        .flag-pill {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; margin: 0 10px;
+            background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px; color: var(--text); font-size: 0.9rem; font-weight: 500;
+            transition: all 0.3s ease; backdrop-filter: blur(5px);
+        }
+        .flag-pill:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .flag-pill img { width: 22px; height: 16px; object-fit: cover; border-radius: 2px; }
+        .convenios-track { display: inline-block; animation: scroll-convenios 35s linear infinite; }
+        .convenio-logo { display: inline-flex; align-items: center; justify-content: center; height: 70px; padding: 0 40px; margin: 0 15px; vertical-align: middle; transition: all 0.3s; background: var(--glass); border-radius: 12px; border: 1px solid var(--border); }
+        .convenio-logo img { filter: brightness(0) invert(1) opacity(0.5); transition: all 0.3s; }
+        .convenio-logo:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(89,29,203,0.15); }
+        .convenio-logo:hover img { filter: brightness(0) invert(1) opacity(1); }
+        .convenio-logo span { color: var(--accent2); }
+        @keyframes scroll-convenios { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Escuelas (Grid 2x2) */
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 50px; }
+        .escuelas { padding: 100px 0; }
+        .grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .escuela-card { 
+            padding: 40px; 
+            text-align: left; 
+            position: relative;
+            background: transparent !important; /* Oculta el fondo default del glass-panel */
+            border: none !important;
+            border-radius: 24px;
+            overflow: hidden; /* Contiene la luz solo en el borde */
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* El rayo de luz que recorre el borde (oculto por defecto) */
+        .escuela-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 75%, var(--accent1) 90%, transparent 100%);
+            animation: rotateLED 8s linear infinite;
+            z-index: -2;
+            opacity: 0; /* Totalmente apagado por defecto */
+            transition: opacity 0.4s ease, animation-duration 0.4s ease;
+        }
+
+        /* Variación de colores según la tarjeta */
+        .escuela-card:nth-child(2)::before { background: conic-gradient(from 0deg, transparent 75%, var(--accent2) 90%, transparent 100%); animation-delay: -2s; }
+        .escuela-card:nth-child(3)::before { background: conic-gradient(from 0deg, transparent 75%, var(--accent3) 90%, transparent 100%); animation-delay: -4s; }
+        .escuela-card:nth-child(4)::before { background: conic-gradient(from 0deg, transparent 75%, var(--accent1) 90%, transparent 100%); animation-delay: -6s; }
+        
+        /* El fondo interior súper oscuro que bloquea el centro y deja 1px de borde brillante */
+        .escuela-card::after {
+            content: '';
+            position: absolute;
+            inset: 1px; /* 1px de grosor para el borde luminoso */
+            background: #0B0420; /* Fondo muy oscuro, casi negro, estilo la referencia */
+            border-radius: inherit;
+            z-index: -1;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        /* Efecto de resplandor al pasar el mouse (estilo logos de convenios) */
+        .escuela-card:hover {
+            transform: translateY(-8px) scale(1.02) !important; /* Se levanta sutilmente */
+            box-shadow: 0 15px 35px rgba(89, 29, 203, 0.25) !important; /* Resplandor suave morado */
+            z-index: 10; /* Flota sobre los demás sin mover el grid */
+        }
+        
+        /* Enciende la luz al hacer hover */
+        .escuela-card:hover::before {
+            opacity: 1;
+            animation-duration: 4s; /* Gira más rápido al interactuar */
+        }
+
+        .escuela-icon { margin-bottom: 25px; color: var(--accent2); }
+        .escuela-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .escuela-card p { color: var(--muted); margin-bottom: 25px; }
+        .escuela-card:hover .escuela-img-container img { transform: scale(1.05); }
+        
+        /* Certificaciones */
+        .certificaciones { padding: 100px 0; background: radial-gradient(circle at top right, rgba(89, 29, 203, 0.1), transparent 50%); }
+        .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .cert-card { padding: 40px 30px; text-align: center; position: relative; overflow: hidden; }
+        .cert-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient); }
+        .cert-level { font-size: 0.9rem; font-weight: 700; color: var(--accent3); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .cert-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; }
+
+        /* Stat Impacto */
+        .impacto { padding: 80px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--glass); text-align: center; }
+        .impact-stat { font-size: 5rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+        .impact-text { font-size: 1.2rem; color: var(--muted); font-weight: 500; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* CTA Dual */
+        .cta-dual { padding: 100px 0; }
+        .cta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .cta-card { padding: 50px; text-align: center; }
+        .cta-card h2 { font-size: 2rem; margin-bottom: 15px; }
+        .cta-card p { color: var(--muted); margin-bottom: 30px; }
+
+        /* Footer */
+        footer { padding: 60px 0 30px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.5); }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; color: var(--accent3); }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: var(--muted); transition: color 0.3s; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--text); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .grid-2x2, .cert-grid, .cta-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; } /* Mobile menu simplified */
+        }
+    
+    /* Dropdown CSS */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { 
+        display: none; position: absolute; background-color: rgba(5,5,8,0.95); 
+        min-width: 300px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid var(--border);
+        border-radius: 12px; z-index: 1000; top: 100%; left: 0; padding: 10px 0; backdrop-filter: blur(15px);
+    }
+    .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.2s ease-out; }
+    .dropdown-content a { 
+        color: var(--muted) !important; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.85rem; font-weight: 500; transition: all 0.2s;
+    }
+    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); color: var(--text) !important; padding-left: 25px; }
+    .dropdown-content .icon { margin-right: 10px; font-size: 1.1rem; vertical-align: middle;}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Scroll Animations were moved to assets/css/animations.css */
+    /* Preloader GCORE Style */
+    #gcore-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #gcore-preloader svg {
+        height: 120px;
+        overflow: visible;
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+        will-change: transform, opacity;
+    }
+    #preloader-icon {
+        transform: scale(1.5);
+        transform-origin: 11% 50%;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+        opacity: 0;
+    }
+    #preloader-letters path {
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+    .no-scroll {
+        overflow: hidden !important;
+    }
+</style>
+    <!-- Import Map para dependencias de Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <!-- Script 3D personalizado para el Hero (Three.js) -->
+    <script type="module" src="assets/js/hero-3d.js"></script>
+    <!-- Tipografia Corporativa Inter -->
+    <link rel="stylesheet" href="assets/fonts/inter/inter.css">
+    <!-- Estilos Responsivos -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- Script Responsivo -->
+    <script src="assets/js/responsive.js" defer></script>
+    <script src="/assets/js/loadComponents.js?v=20261014-restored" defer></script>
+    <!-- Sistema de Temas -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader Avanzado (Secuencia Isotipo -> Letras -> Zoom Masivo) -->
+    <div id="gcore-preloader">
+        <svg id="preloader-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 1086.63">
+            <g id="preloader-letters" fill="#fff">
+                <path d="M990.77,532.19c-5.71-12.27-13.76-22.87-24.15-31.81-10.39-8.94-22.49-16.48-36.29-22.61-13.8-6.13-28.71-10.99-44.72-14.56l-34.5-8.43c-10.56-2.55-20.53-5.75-29.9-9.58-9.37-3.83-16.86-8.86-22.49-15.08-5.62-6.22-8.43-14.01-8.43-23.38,0-8.52,2.43-16.1,7.28-22.74,4.85-6.64,11.96-11.84,21.34-15.59,9.37-3.75,20.61-5.62,33.73-5.62,19.42,0,34.96,4.18,46.63,12.52h0c11.22,8.1,13.46,23.92,4.93,34.82l-.55.7h90.55c-.34-22.31-6.39-42.03-18.14-59.15-11.75-17.12-28.11-30.49-49.06-40.12-20.95-9.62-45.48-14.44-73.59-14.44s-52.17,4.77-73.72,14.31c-21.55,9.54-38.5,22.91-50.85,40.12-12.35,17.21-18.53,37.31-18.53,60.3,0,27.6,9.11,49.79,27.34,66.57,18.23,16.78,43.44,29.09,75.64,36.92l41.91,10.48c13.97,3.24,25.81,6.99,35.52,11.24,9.71,4.26,17.16,9.33,22.36,15.2,5.19,5.88,7.79,13.16,7.79,21.85,0,9.71-2.9,18.23-8.69,25.55-5.79,7.32-13.84,12.99-24.15,16.99-10.31,4-22.45,6.01-36.41,6.01s-26.49-2.13-37.56-6.39c-11.07-4.25-19.93-10.69-26.57-19.29-.28-.37-.57-.79-.86-1.25-5.87-9.52-2.53-22.08,6.78-28.28l3.81-2.54h-97.13c.68,26.92,7.32,49.57,19.93,67.97,12.61,18.4,30.19,32.29,52.77,41.65,22.57,9.37,49.1,14.06,79.6,14.06s57.24-4.69,79.21-14.06c21.98-9.36,38.75-22.61,50.34-39.73,11.58-17.12,17.38-37.18,17.38-60.18,0-16.01-2.86-30.15-8.56-42.42Z"/>
+                <path d="M1930.56,541.32c0-24.08-3.39-44.98-10.16-62.71-6.77-17.72-16.18-32.49-28.22-44.28-12.04-11.79-26-20.61-41.89-26.46-15.89-5.85-33.03-8.78-51.42-8.78-27.26,0-51.01,6.11-71.24,18.31-20.24,12.21-35.87,29.18-46.91,50.92-11.04,21.74-16.56,47.08-16.56,76.01s5.56,55.19,16.68,76.76c11.12,21.57,27.05,38.21,47.79,49.92,20.73,11.71,45.4,17.56,74,17.56,21.9,0,41.26-3.18,58.07-9.53,16.81-6.35,30.98-15.17,42.02-26.96,16-17.1,21.6-38.89,23.58-53.31h-68.23c-2.68,7.19-6.56,13.25-11.66,18.19-5.11,4.94-11.25,8.66-18.44,11.17-7.19,2.5-15.22,3.76-24.08,3.76-13.04,0-24.46-2.76-34.24-8.28-9.78-5.51-17.4-13.79-22.83-24.83-4.91-9.97-7.48-22.17-7.96-36.37h191.7v-21.07ZM1739.09,515.23c.86-9.49,3.05-18.16,6.6-25.96,4.68-10.29,11.58-18.44,20.69-24.46,9.11-6.02,20.19-9.03,33.24-9.03s23.7,2.97,32.49,8.91c8.78,5.94,15.38,14.3,19.82,25.08,3.1,7.55,5.05,16.07,5.98,25.46h-118.82Z"/>
+                <path d="M1507.43,398.84c-35.28,0-63.09,22.8-72.57,50.79h-3.48v-50.54c-41.56,0-75.25,33.69-75.25,75.25v214.22h75.25v-150.42c0-29.29,22.92-54.5,52.21-54.95,29.69-.46,53.9,23.46,53.9,53.05v152.32h75.25v-152.33c-1.87-77.46-23.51-137.41-105.31-137.41Z"/>
+                <path d="M2196.33,414.92c-17.23-10.7-36.21-16.05-56.94-16.05-15.89,0-29.1,2.68-39.63,8.03-10.54,5.35-19.03,11.96-25.46,19.82-6.44,7.86-11.41,15.47-14.93,22.83h-3.51v-47.16h0c-40.87,0-74,33.13-74,74v311.3s0,0,0,0c41.56,0,75.25-33.69,75.25-75.25v-74.5h2.26c3.51,7.52,8.57,15.09,15.18,22.7,6.61,7.61,15.18,14.01,25.71,19.19,10.53,5.18,23.41,7.78,38.63,7.78,21.57,0,40.97-5.56,58.2-16.68,17.22-11.12,30.86-27.42,40.89-48.91,10.03-21.49,15.05-47.79,15.05-78.89s-5.14-58.61-15.43-80.02c-10.28-21.4-24.04-37.46-41.26-48.16ZM2169.12,586.51c-4.6,12.71-11.38,22.66-20.32,29.85-8.95,7.19-19.94,10.78-32.99,10.78s-23.58-3.51-32.61-10.53c-9.03-7.02-15.93-16.85-20.69-29.48-4.76-12.62-7.15-27.38-7.15-44.27s2.34-31.81,7.02-44.27c4.68-12.46,11.54-22.16,20.57-29.1,9.03-6.94,19.98-10.41,32.86-10.41s24.24,3.6,33.11,10.79c8.86,7.19,15.59,17.06,20.19,29.6,4.6,12.54,6.9,27.01,6.9,43.4s-2.3,30.94-6.9,43.65Z"/>
+                <path d="M2449.32,398.84c-15.72,0-29.64,4.43-41.77,13.3-12.13,8.87-20.78,21.99-25.96,39.38h-3.01v-48.91h0c-40.18,0-72.75,32.57-72.75,72.75v213.22h75.25v-165.06c0-11.71,2.55-21.95,7.65-30.73,5.1-8.78,12.25-15.64,21.45-20.57,9.2-4.93,19.48-7.4,30.85-7.4,5.69,0,11.71.34,18.06,1,6.35.67,11.2,1.59,14.55,2.76v-67.23c-3.35-.84-7.27-1.46-11.79-1.88-4.51-.41-8.7-.63-12.54-.63Z"/>
+                <g>
+                    <path d="M2517.72,688.57h75.25v-289.7h-36.4c-21.45,0-38.85,17.39-38.85,38.85v250.86Z"/>
+                    <path d="M2626.6,323.63h41.6v75.24h-75.24v-41.6c0-18.57,15.07-33.64,33.64-33.64Z"/>
+                    <path d="M2826.77,540.89l89.42-142.05h-53.18c-18.01,0-34.58,9.85-43.19,25.67l-41.65,76.56-52.94-102.24h-33.61v23.46h-37.13l72.93,117.57-93.18,148.7h53.08c18.07,0,34.68-9.91,43.26-25.81l45.66-84.58,46.65,84.9c8.64,15.72,25.15,25.49,43.09,25.49h54.36l-93.57-147.68Z"/>
+                </g>
+                <path d="M1269.82,402.6c-20.06,0-37.81,13-43.87,32.12l-59.09,186.57-58.16-187.15c-5.83-18.76-23.19-31.55-42.84-31.55h-43.37l99.64,265.93c3.48,9.3,6.41,18.97,5.1,28.82-1,9.33-3.79,17.85-8.87,22.69-4.77,4.55-9.66,8.48-20.41,8.89h-68.77v60.62h64.52c18.65,0,34.56-4.15,47.72-10.14,13.16-6,24.15-14.49,32.98-25.49,8.83-10.99,16.07-23.99,21.74-38.98l118.68-312.33h-45.01Z"/>
+            </g>
+            <path id="preloader-icon" fill="#591dcc" d="M414.21,464.29l-156.68,66.73c-23.63,9.85-44.72-18.45-28.52-38.28l159.4-195.01h-183.87l-109.71,179.98c-51.01,83.69,35.66,183.45,125.66,144.63l156.68-66.73c23.63-9.85,44.72,18.45,28.52,38.28l-159.4,195.01h183.87l109.71-179.98c51.01-83.69-35.66-183.45-125.66-144.63Z"/>
+        </svg>
+    </div>
+    
+    <script>
+        // Lógica Avanzada del Preloader (Escala Isotipo -> Letras Letra por Letra -> Fade Out Normal)
+        document.body.classList.add('no-scroll');
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('gcore-preloader');
+            const icon = document.getElementById('preloader-icon');
+            const lettersGroup = document.getElementById('preloader-letters');
+            
+            // Extraer y ordenar las letras de izquierda a derecha de forma dinámica
+            const letterPaths = Array.from(lettersGroup.querySelectorAll('path'));
+            letterPaths.sort((a, b) => a.getBBox().x - b.getBBox().x);
+            
+            // 1. Ícono escala de grande a normal
+            setTimeout(() => {
+                icon.style.transform = 'scale(1)';
+                icon.style.opacity = '1';
+                
+                // 2. Las letras aparecen secuencialmente
+                setTimeout(() => {
+                    let totalLettersDelay = 0;
+                    letterPaths.forEach((path, index) => {
+                        const delay = index * 120; // 120ms de retraso por letra
+                        setTimeout(() => {
+                            path.style.opacity = '1';
+                        }, delay);
+                        totalLettersDelay = delay;
+                    });
+                    
+                    // 3. Desvanecer el preloader (sin zoom masivo) para revelar el Hero
+                    setTimeout(() => {
+                        preloader.style.opacity = '0';
+                        preloader.style.visibility = 'hidden';
+                        setTimeout(() => {
+                            document.body.classList.remove('no-scroll');
+                        }, 800); // 800ms es lo que dura la transición CSS de opacidad
+                    }, totalLettersDelay + 600); // Pausa de 600ms tras aparecer la última letra
+                }, 700); // Espera 700ms a que el ícono termine de escalar
+            }, 100);
+        });
+    </script>
+
+
+    <div data-component="navbar"></div>
+
+    <section class="hero" id="hero" style="align-items: flex-start; padding-top: 40px;">
+        <!-- Fondo de cuadrícula animada -->
+        <div class="hero-grid"></div>
+        <!-- Orbes de luz (Efecto Parallax) -->
+        <div class="hero-orb hero-orb-1" data-speed="0.2"></div>
+        <div class="hero-orb hero-orb-2" data-speed="0.4"></div>
+
+        <div class="container" style="display: flex; flex-direction: column; justify-content: flex-start; height: auto;">
+            <div class="hero-inner" style="flex-direction: column; text-align: center; gap: 20px; margin-top: 0;">
+
+                <!-- Columna central: Texto -->
+                <div class="hero-text animate-on-scroll slide-up-stagger" style="max-width: 900px; margin: 0 auto; align-items: center;">
+                    
+                    <h1 style="margin: 0; font-size: 3.2rem; line-height: 1.1;">
+                        <span class="line">Domina IA, Automatización</span>
+                        <span class="line">y Data con programas diseñados</span>
+                        <span class="line">para el <span class="text-gradient">mercado laboral</span></span>
+                    </h1>
+
+                    <p class="hero-sub efecto-ola" style="font-size: 1.1rem; max-width: 700px; margin: 15px auto;">
+                        Los casos se construyen desde problemas frecuentes de negocio para que puedas transferirlos inmediatamente a tu entorno laboral.
+                    </p>
+
+                    <div class="pills" style="justify-content: center;">
+                        <span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>Automatización</span>
+                        <span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>BI & Analytics</span>
+                        <span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>IA Empresarial</span>
+                        <span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>RPA</span>
+                    </div>
+
+                    <div class="hero-btns" style="justify-content: center; margin-top: 20px;">
+                        <a href="#contacto" class="btn btn-primary" style="font-size:1.1rem; padding:14px 32px; box-shadow: 0 10px 20px rgba(89,29,203,0.3);">Solicitar asesoría</a>
+                        <a href="#cursos-destacados" class="btn btn-outline" style="font-size:1.1rem; padding:14px 32px;">Explorar Programas</a>
+                    </div>
+                </div>
+
+                <!-- Columna inferior: Animación SAYKS -->
+                <div class="hero-3d-wrapper animate-on-scroll slide-up-stagger" style="max-width: 900px; width: 100%; margin: -20px auto 0; animation-delay: 0.3s; transform: scale(0.9);">
+                    <div data-component="sayks-animation"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="convenios">
+        <div class="container">
+            <h3 class="convenios-title">Respaldados por Líderes de la Industria</h3>
+        </div>
+        <div class="convenios-slider">
+            <div class="convenios-track">
+                <!-- High-Res Vector Logos -->
+                <div class="convenio-logo"><img src="https://cdn.talently.tech/talently-logo.svg" alt="Talently" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://cdn.prod.website-files.com/6255854a3f29166e78b0d067/69e1593da0155822d71e4435_UBITS.svg.svg" alt="Ubits" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://images.ctfassets.net/un655fb9wln6/5drzJqeJykwoS5uqQRr4in/6a1e399130f279aee935213d5df437a5/Copy_of_Logo-RGB-Color_2x.png" alt="Make" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://www.softtek.com/hubfs/Softtek/logos/SofttekLogo-4web.svg" alt="Softtek" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://www.nttdata.com/global/en/-/media/assets/images/header_logo.svg?iar=0&rev=010dc1bd851f4d2aaaaf407cf338776b" alt="NTT DATA" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="assets/img/intercorp-logo.svg" alt="Intercorp" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://www.camaralima.org.pe/wp-content/uploads/2025/05/LOGO-2025.png" alt="CCL" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="assets/img/Logo%20-%20Alcet%20(1).svg" alt="Alcet" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://institutodeingenieria.org/images/logo3i.svg" alt="Instituto Internacional de Ingeniería" style="height: 45px; filter: brightness(0) invert(1);"></div>
+                
+                <!-- Duplicate for Marquee -->
+                <div class="convenio-logo"><img src="https://cdn.talently.tech/talently-logo.svg" alt="Talently" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://cdn.prod.website-files.com/6255854a3f29166e78b0d067/69e1593da0155822d71e4435_UBITS.svg.svg" alt="Ubits" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://images.ctfassets.net/un655fb9wln6/5drzJqeJykwoS5uqQRr4in/6a1e399130f279aee935213d5df437a5/Copy_of_Logo-RGB-Color_2x.png" alt="Make" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://www.softtek.com/hubfs/Softtek/logos/SofttekLogo-4web.svg" alt="Softtek" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://www.nttdata.com/global/en/-/media/assets/images/header_logo.svg?iar=0&rev=010dc1bd851f4d2aaaaf407cf338776b" alt="NTT DATA" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="assets/img/intercorp-logo.svg" alt="Intercorp" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://www.camaralima.org.pe/wp-content/uploads/2025/05/LOGO-2025.png" alt="CCL" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="assets/img/Logo%20-%20Alcet%20(1).svg" alt="Alcet" style="height: 35px;"></div>
+                <div class="convenio-logo"><img src="https://institutodeingenieria.org/images/logo3i.svg" alt="Instituto Internacional de Ingeniería" style="height: 45px; filter: brightness(0) invert(1);"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Franja de Estadísticas (Estilo Póster Asimétrico / Tech Editorial) -->
+    <section class="estadisticas" style="padding: 150px 0; background: var(--bg); position: relative; z-index: 2; overflow: hidden;">
+        <div class="container" style="position: relative;">
+            
+            <style>
+                .poster-stat { position: relative; display: flex; align-items: center; margin-bottom: 80px; }
+                .poster-stat:last-child { margin-bottom: 0; }
+                .poster-stat.right { justify-content: flex-end; text-align: right; }
+                
+                .poster-number {
+                    font-size: clamp(150px, 20vw, 400px);
+                    line-height: 0.8;
+                    font-weight: 900;
+                    color: transparent;
+                    -webkit-text-stroke: 2px rgba(255,255,255,0.05);
+                    position: absolute;
+                    z-index: 0;
+                    user-select: none;
+                    transition: -webkit-text-stroke 0.5s ease, filter 0.5s ease;
+                    /* Se fuerza una fuente de sistema para evitar los cruces/rectángulos internos de las fuentes web custom */
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                }
+                
+                .poster-text {
+                    position: relative;
+                    z-index: 1;
+                    padding: 0 5%;
+                }
+                
+                .poster-stat:hover .poster-number {
+                    -webkit-text-stroke: 2px var(--accent-color);
+                    filter: drop-shadow(0 0 20px var(--accent-color));
+                }
+            </style>
+
+            <!-- Stat 1 (Left) -->
+            <div class="poster-stat animate-on-scroll slide-up" style="--accent-color: var(--accent1);">
+                <div class="poster-number" style="left: -5%; top: 50%; transform: translateY(-50%);">500+</div>
+                <div class="poster-text">
+                    <div class="stat-counter" data-target="500" data-suffix="+" style="font-size: 5rem; font-weight: 800; color: var(--accent1); margin-bottom: 5px; line-height: 1; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">0+</div>
+                    <div style="color: #fff; font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Profesionales<br>formados</div>
+                </div>
+            </div>
+
+            <!-- Stat 2 (Right) -->
+            <div class="poster-stat right animate-on-scroll slide-up" style="--accent-color: var(--accent2); transition-delay: 0.1s;">
+                <div class="poster-number" style="right: -5%; top: 50%; transform: translateY(-50%);">5</div>
+                <div class="poster-text">
+                    <div class="stat-counter" data-target="5" style="font-size: 5rem; font-weight: 800; color: var(--accent2); margin-bottom: 5px; line-height: 1; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">0</div>
+                    <div style="color: #fff; font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Cursos<br>Especializados</div>
+                </div>
+            </div>
+
+            <!-- Stat 3 (Left) -->
+            <div class="poster-stat animate-on-scroll slide-up" style="--accent-color: var(--accent3); transition-delay: 0.2s;">
+                <div class="poster-number" style="left: 10%; top: 50%; transform: translateY(-50%);">6</div>
+                <div class="poster-text" style="padding-left: 15%;">
+                    <div class="stat-counter" data-target="6" style="font-size: 5rem; font-weight: 800; color: var(--accent3); margin-bottom: 5px; line-height: 1; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">0</div>
+                    <div style="color: #fff; font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Países de<br>LATAM</div>
+                </div>
+            </div>
+
+            <!-- Stat 4 (Right) -->
+            <div class="poster-stat right animate-on-scroll slide-up" style="--accent-color: var(--accent1); transition-delay: 0.3s;">
+                <div class="poster-number" style="right: 10%; top: 50%; transform: translateY(-50%);">4</div>
+                <div class="poster-text" style="padding-right: 15%;">
+                    <div class="stat-counter" data-target="4" style="font-size: 5rem; font-weight: 800; color: var(--accent1); margin-bottom: 5px; line-height: 1; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">0</div>
+                    <div style="color: #fff; font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);">Certificaciones<br>SPX</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección de Industrias Reales -->
+    <section class="gancho bento-section" style="position: relative; padding: 120px 0; background: var(--bg); overflow: hidden;">
+        <!-- Glowing Orb Parallax -->
+        <div class="hero-orb" data-speed="0.15" style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(89,29,203,0.1) 0%, transparent 70%); filter: blur(80px); pointer-events: none; z-index: 0;"></div>
+        
+        <div class="container" style="position: relative; z-index: 1;">
+            
+            <div class="animate-on-scroll slide-up-stagger" style="text-align: center; margin-bottom: 70px;">
+                <h4 style="color: var(--accent1); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;">Aplicación Práctica</h4>
+                <h2 style="font-size: 2.8rem; font-weight: 800; line-height: 1.2;">IA, Automatización y Data <br><span class="text-gradient">aplicadas a industrias reales</span></h2>
+            </div>
+
+            <!-- Cuadrícula Inferior: Industrias -->
+            <div class="bento-grid-industries" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <!-- Finanzas -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.1s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        Finanzas
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Alertas de riesgo</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Reportes regulatorios</li>
+                    </ul>
+                </div>
+                <!-- Logística -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.2s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        Logística
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Tracking automatizado</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Predicción de demanda</li>
+                    </ul>
+                </div>
+                <!-- Operaciones -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.3s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+                        Operaciones
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Control de SLA</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Optimización de turnos</li>
+                    </ul>
+                </div>
+                <!-- Marketing -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.4s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                        Marketing
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Segmentación con IA</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Dashboards de campañas</li>
+                    </ul>
+                </div>
+                <!-- RR.HH. -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.5s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        RR.HH.
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Onboarding digital</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Analítica de rotación</li>
+                    </ul>
+                </div>
+                <!-- Minería -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.6s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Minería
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Indicadores HSE</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Monitoreo operacional</li>
+                    </ul>
+                </div>
+                <!-- Consultoría -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.7s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                        Consultoría
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Diagnósticos express</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Entregables automatizados</li>
+                    </ul>
+                </div>
+                <!-- TI & Ciberseguridad -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.8s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        TI & Ciberseguridad
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Detección de amenazas con IA</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Soporte automatizado</li>
+                    </ul>
+                </div>
+                <!-- Educación -->
+                <div class="glass-panel industry-card animate-on-scroll slide-up-stagger" style="padding: 30px; background: rgba(15,15,20,0.8); border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.9s;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                        Educación
+                    </h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">&bull; Análisis de rendimiento</li>
+                        <li style="position: relative; padding-left: 15px;">&bull; Calificaciones automáticas</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        
+        <style>
+            .industry-card {
+                position: relative;
+                overflow: hidden;
+                border: none !important;
+                background: transparent !important;
+                border-radius: 16px;
+                z-index: 1;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .industry-card::before {
+                content: '';
+                position: absolute;
+                top: -50%; left: -50%;
+                width: 200%; height: 200%;
+                background: conic-gradient(from 0deg, transparent 75%, rgba(138, 43, 226, 0.5) 90%, rgba(180, 100, 255, 1) 100%);
+                animation: rotateLED 6s linear infinite;
+                z-index: -2;
+                opacity: 0.6;
+                transition: opacity 0.3s ease, animation-duration 0.3s ease;
+            }
+            .industry-card::after {
+                content: '';
+                position: absolute;
+                inset: 1px; /* 1px border width */
+                background: #0D0428; /* Fondo opaco para bloquear la luz central */
+                border-radius: inherit;
+                z-index: -1;
+            }
+            @keyframes rotateLED {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            /* Desfase para que no vayan todos al mismo tiempo */
+            .industry-card:nth-child(1)::before { animation-delay: 0s; }
+            .industry-card:nth-child(2)::before { animation-delay: -1s; }
+            .industry-card:nth-child(3)::before { animation-delay: -2s; }
+            .industry-card:nth-child(4)::before { animation-delay: -3s; }
+            .industry-card:nth-child(5)::before { animation-delay: -4s; }
+            .industry-card:nth-child(6)::before { animation-delay: -5s; }
+            .industry-card:nth-child(7)::before { animation-delay: -6s; }
+
+            .industry-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 20px rgba(89, 29, 203, 0.2);
+            }
+            .industry-card:hover::before {
+                opacity: 1;
+                animation-duration: 3s; /* Acelera un poco al pasar el mouse */
+            }
+            .industry-card ul li::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 8px;
+                width: 6px;
+                height: 6px;
+                background: var(--gradient);
+                border-radius: 50%;
+            }
+            .industry-card ul li {
+                padding-left: 15px !important;
+            }
+        </style>
+    </section>
+
+    <section id="cursos-destacados" class="escuelas" style="padding: 100px 0; position: relative; z-index: 2;">
+        <div class="container">
+            <h2 class="section-title">Catálogo de Cursos</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px;">
+                <div class="glass-panel escuela-card animate-on-scroll" style="display: flex; flex-direction: column;">
+                    <div class="escuela-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+                    </div>
+                    <h3>Automatización Inteligente</h3>
+                    <p>Domina RPA, flujos de trabajo inteligentes y optimización de procesos corporativos.</p>
+                    <a href="cursos/automatizacion-inteligente/index.html" class="text-gradient" style="font-weight:600; margin-top: auto;">Ver curso →</a>
+                </div>
+                <div class="glass-panel escuela-card animate-on-scroll" style="display: flex; flex-direction: column;">
+                    <div class="escuela-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <h3>Transformación Digital</h3>
+                    <p>Liderazgo, metodologías ágiles y gestión de productos digitales en la era de la IA.</p>
+                    <a href="/cursos/gestion-transformacion-digital/" class="text-gradient" style="font-weight:600; margin-top: auto;">Ver curso →</a>
+                </div>
+                <div class="glass-panel escuela-card animate-on-scroll" style="display: flex; flex-direction: column;">
+                    <div class="escuela-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3>IA Empresarial Aplicada</h3>
+                    <p>Crea soluciones con Machine Learning, Deep Learning y Generative AI.</p>
+                    <a href="/cursos/ia-empresarial-aplicada/" class="text-gradient" style="font-weight:600; margin-top: auto;">Ver curso →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="nosotros" style="padding: 120px 0; position: relative;">
+        <!-- Elementos decorativos -->
+        <div style="position: absolute; right: 0; top: 20%; width: 400px; height: 400px; background: radial-gradient(circle, var(--accent2) 0%, transparent 70%); opacity: 0.15; filter: blur(50px); pointer-events: none;"></div>
+        
+        <div class="container">
+            <style>
+                .map-node {
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    transform: translate(-50%, -50%);
+                    z-index: 2;
+                    cursor: pointer;
+                }
+                .map-node.active, .map-node:hover {
+                    z-index: 20; /* Levantar el nodo entero para que no sea tapado por otros nodos */
+                }
+                .node-dot {
+                    width: 12px;
+                    height: 12px;
+                    background: var(--accent2);
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 50%; left: 50%;
+                    transform: translate(-50%, -50%);
+                    box-shadow: 0 0 10px var(--accent2);
+                    transition: transform 0.3s ease;
+                }
+                .hub .node-dot {
+                    width: 16px; height: 16px;
+                    background: var(--accent1);
+                    box-shadow: 0 0 20px var(--accent1);
+                }
+                .pulse-ring {
+                    width: 40px;
+                    height: 40px;
+                    border: 2px solid var(--accent2);
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 50%; left: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+                }
+                .hub .pulse-ring {
+                    border-color: var(--accent1);
+                    width: 60px; height: 60px;
+                    animation: pulseRing 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite alternate;
+                }
+                @keyframes pulseRing {
+                    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+                    100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+                }
+                
+                .map-tooltip {
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(10px);
+                    background: rgba(13, 4, 40, 0.85);
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 12px;
+                    padding: 15px;
+                    width: 220px;
+                    display: flex;
+                    gap: 15px;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+                    pointer-events: none;
+                }
+                .map-node:hover .map-tooltip,
+                .map-node.active .map-tooltip {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateX(-50%) translateY(0);
+                    z-index: 10;
+                }
+                .map-node:hover .node-dot,
+                .map-node.active .node-dot {
+                    transform: translate(-50%, -50%) scale(1.5);
+                }
+                .map-tooltip .flag {
+                    width: 32px;
+                    height: 24px;
+                    object-fit: cover;
+                    border-radius: 4px;
+                    border: 1px solid rgba(255,255,255,0.15);
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                    flex-shrink: 0;
+                }
+                .map-tooltip .info h5 {
+                    margin: 0 0 5px 0;
+                    color: #fff;
+                    font-size: 1rem;
+                }
+                .map-tooltip .info span {
+                    display: inline-block;
+                    background: var(--gradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    font-weight: 800;
+                    font-size: 0.9rem;
+                    margin-bottom: 5px;
+                }
+                .map-tooltip .info p {
+                    margin: 0;
+                    font-size: 0.75rem;
+                    color: var(--muted);
+                    line-height: 1.4;
+                }
+
+                /* Animación de las líneas conectando países */
+                .map-line {
+                    stroke-dasharray: 10 10;
+                    animation: flowEnergy 20s linear infinite;
+                    opacity: 0.5;
+                }
+                @keyframes flowEnergy {
+                    to { stroke-dashoffset: -1000; }
+                }
+
+                .nosotros-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 60px;
+                    align-items: center;
+                }
+                
+                @media (max-width: 992px) {
+                    .nosotros-grid {
+                        grid-template-columns: 1fr;
+                        text-align: center;
+                    }
+                    .nosotros-grid > .animate-on-scroll > div {
+                        align-items: center;
+                        text-align: left;
+                    }
+                }
+
+                .map-wrapper-box {
+                    position: relative; 
+                    width: 100%; 
+                    max-width: 400px;
+                    margin: 0 auto;
+                    aspect-ratio: 808.9/1000.0; 
+                    border-radius: 24px; 
+                    border: 1px solid rgba(255,255,255,0.05); 
+                    overflow: visible;
+                    background: radial-gradient(circle at center, rgba(13, 4, 40, 0.5) 0%, transparent 100%);
+                }
+            </style>
+            <!-- Dos columnas -->
+            <div class="nosotros-grid">
+                
+                <!-- Columna Izquierda: Textos -->
+                <div class="animate-on-scroll">
+                    <h2 style="font-size: 3.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 30px;">
+                        Forjando a los <span class="text-gradient">Líderes Digitales</span> que la industria demanda.
+                    </h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 40px; margin-top: 40px;">
+                        <div style="display: flex; gap: 20px;">
+                            <div style="min-width: 52px; width: 52px; height: 52px; background: rgba(89,29,203,0.15); border: 1px solid rgba(89,29,203,0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.4rem; margin-bottom: 10px; color: var(--text);">De la Teoría a la Práctica</h4>
+                                <p style="color: var(--muted); line-height: 1.6;">Acortamos la brecha entre el conocimiento académico y las demandas del mercado. En SYNEPRIX, el aprendizaje se mide en implementaciones, no en exámenes.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 20px;">
+                            <div style="min-width: 52px; width: 52px; height: 52px; background: rgba(208,77,205,0.15); border: 1px solid rgba(208,77,205,0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.4rem; margin-bottom: 10px; color: var(--text);">Inmersión de Alto Impacto</h4>
+                                <p style="color: var(--muted); line-height: 1.6;">Creamos programas enfocados en impacto inmediato para profesionales que buscan liderar el futuro con las herramientas del mañana.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Columna Derecha: Mapa Interactivo -->
+                <div class="animate-on-scroll map-wrapper-box">
+                    
+                    <!-- SVG Base Mapa de Latinoamérica (Dotted Outline) -->
+                    <svg viewBox="0 0 808.9 1000.0" preserveAspectRatio="none" style="position: absolute; top:0; left:0; width: 100%; height: 100%; opacity: 0.4; z-index: 0; filter: drop-shadow(0 0 8px var(--accent1));">
+                        <!-- Mapa de Latinoamérica Mejorado -->
+                        <path d="M507.0,993.0 L497.4,993.7 L492.5,987.7 L486.5,987.3 L476.2,987.3 L475.9,950.2 L479.8,957.6 L484.7,970.0 L497.4,980.3 L511.2,984.5 L507.0,993.0 Z M511.9,562.5 L517.9,570.3 L521.8,561.8 L532.8,562.2 L534.5,564.3 L552.6,581.6 L560.7,583.4 L572.3,591.5 L582.6,595.8 L584.0,600.3 L574.5,617.0 L584.4,620.1 L595.3,621.9 L603.1,620.1 L611.9,611.7 L613.7,601.8 L618.3,599.6 L623.2,606.0 L623.2,614.8 L614.8,620.8 L608.4,625.4 L597.1,636.4 L584.0,651.6 L581.5,660.8 L579.1,672.8 L579.1,684.1 L576.9,686.9 L576.2,694.4 L575.5,700.7 L587.9,711.0 L586.8,719.1 L592.8,724.4 L592.5,730.4 L583.0,746.3 L568.5,753.0 L548.7,755.8 L537.7,754.4 L539.8,761.9 L538.1,771.4 L539.8,778.1 L533.8,782.7 L523.9,784.5 L514.4,779.5 L510.5,783.1 L511.9,796.1 L518.6,800.0 L523.9,795.8 L526.8,802.8 L517.9,807.1 L509.8,815.2 L508.4,829.0 L506.3,836.4 L497.1,836.4 L489.3,843.8 L486.5,854.1 L496.0,864.7 L505.6,867.5 L502.0,880.6 L490.4,889.1 L484.0,906.7 L475.2,912.8 L470.9,919.8 L474.1,936.4 L480.8,945.6 L476.6,944.6 L467.4,942.1 L443.7,940.0 L439.8,930.8 L439.8,919.1 L433.5,920.2 L429.9,914.5 L429.2,898.3 L436.6,891.9 L439.8,882.4 L438.8,874.9 L443.7,862.6 L447.2,843.8 L446.2,835.7 L450.8,832.9 L449.7,827.9 L445.1,825.1 L448.3,819.5 L443.7,814.2 L441.6,798.6 L445.5,796.1 L443.7,780.2 L446.2,766.8 L448.7,755.5 L454.7,750.9 L451.5,738.9 L451.5,727.6 L458.9,719.4 L458.9,709.5 L464.6,697.9 L464.6,686.9 L461.7,684.8 L457.5,664.7 L463.5,653.0 L462.4,642.0 L466.0,631.8 L472.3,621.6 L479.4,614.5 L476.6,610.2 L478.3,606.7 L478.3,588.7 L488.9,583.4 L492.1,572.1 L491.1,569.6 L499.2,560.1 L511.9,562.5 Z M274.8,162.5 L274.8,161.1 L275.8,160.7 L277.6,161.8 L281.1,155.4 L282.9,155.4 L282.9,156.8 L285.0,156.8 L284.7,159.7 L283.3,164.3 L284.0,165.7 L282.9,169.6 L283.6,170.6 L282.6,175.6 L280.4,178.4 L278.7,178.7 L276.9,182.3 L273.7,182.3 L274.8,170.6 L274.8,162.5 Z M532.8,562.2 L521.8,561.8 L517.9,570.3 L511.9,562.5 L499.2,560.1 L491.1,569.6 L484.0,571.0 L480.1,556.5 L474.8,544.5 L478.0,534.6 L472.7,530.0 L471.6,522.6 L466.7,515.5 L472.7,504.6 L468.8,496.1 L470.9,492.6 L469.2,488.7 L473.0,483.7 L473.0,474.9 L473.8,467.8 L475.9,464.6 L467.4,448.4 L474.5,449.1 L479.8,449.1 L481.9,445.9 L490.4,442.0 L495.7,438.1 L508.4,436.4 L507.3,444.1 L508.7,448.0 L507.7,454.4 L518.3,463.6 L529.6,465.3 L533.1,468.9 L539.8,471.0 L544.1,473.8 L550.1,473.8 L555.7,476.7 L556.4,482.7 L558.2,485.5 L558.2,490.1 L555.4,490.1 L559.3,502.1 L578.0,502.5 L576.6,508.5 L577.7,512.3 L583.0,515.2 L585.4,521.9 L583.7,530.0 L580.8,534.3 L581.9,540.3 L578.7,542.4 L578.7,539.2 L569.5,533.9 L560.3,533.9 L543.4,536.7 L538.4,545.9 L538.4,551.6 L534.5,564.3 L532.8,562.2 Z M584.0,651.6 L597.1,636.4 L608.4,625.4 L614.8,620.8 L623.2,614.8 L623.2,606.0 L618.3,599.6 L613.7,601.8 L615.5,595.8 L616.9,589.0 L616.9,583.4 L613.3,581.3 L609.5,583.0 L605.9,582.7 L604.9,578.4 L603.8,568.5 L602.0,565.4 L595.3,562.5 L591.4,564.7 L581.2,562.5 L581.5,548.4 L578.7,542.4 L581.9,540.3 L580.8,534.3 L583.7,530.0 L585.4,521.9 L583.0,515.2 L577.7,512.3 L576.6,508.5 L578.0,502.5 L559.3,502.1 L555.4,490.1 L558.2,490.1 L558.2,485.5 L556.4,482.7 L555.7,476.7 L550.1,473.8 L544.1,473.8 L539.8,471.0 L533.1,468.9 L529.6,465.3 L518.3,463.6 L507.7,454.4 L508.7,448.0 L507.3,444.1 L508.4,436.4 L495.7,438.1 L490.4,442.0 L481.9,445.9 L479.8,449.1 L474.5,449.1 L467.4,448.4 L461.7,450.2 L457.1,449.1 L457.8,433.9 L449.7,439.5 L441.2,439.5 L437.4,434.2 L431.0,433.5 L433.1,429.3 L427.5,423.3 L423.6,414.5 L426.0,412.3 L426.0,408.4 L432.0,405.6 L431.0,400.0 L433.5,396.8 L434.2,392.2 L445.5,385.5 L453.6,383.4 L454.7,381.9 L463.9,382.7 L468.1,355.4 L468.4,351.2 L466.7,345.5 L462.4,342.0 L462.4,334.9 L468.1,333.2 L469.9,334.2 L470.2,330.7 L464.6,329.6 L464.6,323.3 L483.6,323.6 L486.8,320.1 L489.7,323.3 L491.4,329.3 L493.2,327.9 L498.8,333.2 L506.3,332.5 L508.4,329.6 L515.5,327.2 L519.7,325.8 L520.8,321.5 L527.8,318.7 L527.1,316.6 L519.0,315.9 L517.6,309.5 L517.9,302.8 L513.7,300.3 L515.5,299.6 L522.5,300.7 L530.3,303.1 L533.1,301.0 L540.2,299.2 L551.1,295.7 L555.0,291.8 L553.6,289.0 L558.6,288.6 L561.0,291.1 L559.6,295.4 L563.2,296.8 L565.3,301.4 L562.5,304.9 L561.0,313.0 L563.5,318.0 L564.2,322.6 L570.2,327.2 L575.2,327.9 L576.2,325.8 L579.4,325.4 L583.7,323.6 L586.8,321.2 L592.5,321.9 L594.6,321.5 L600.3,322.6 L601.0,320.5 L599.2,318.3 L600.3,315.5 L604.2,316.6 L609.1,315.5 L614.4,317.6 L619.0,319.4 L621.8,316.9 L623.9,317.3 L625.4,320.1 L630.0,319.4 L633.8,315.5 L637.0,308.4 L642.7,299.2 L646.2,298.9 L648.3,304.6 L654.0,321.5 L659.3,323.3 L659.6,330.0 L652.2,338.1 L655.0,341.0 L672.4,342.7 L672.7,352.3 L680.5,345.9 L692.5,349.4 L709.1,355.4 L713.7,361.1 L712.3,366.7 L723.6,363.6 L742.7,368.9 L757.2,368.5 L772.0,376.6 L784.4,387.6 L791.8,390.4 L800.3,390.8 L803.8,394.0 L807.4,406.7 L808.8,412.7 L804.9,428.9 L799.9,435.3 L786.2,449.4 L779.8,460.8 L772.7,469.2 L770.3,469.6 L767.4,477.0 L768.1,496.1 L765.3,511.6 L764.2,518.7 L761.1,522.6 L759.7,536.4 L749.4,550.2 L748.0,561.1 L739.9,565.7 L737.7,572.1 L726.8,572.1 L711.6,576.0 L704.5,580.9 L693.6,584.1 L681.9,592.6 L673.8,603.5 L672.4,611.7 L673.8,617.7 L672.0,629.0 L669.9,634.3 L663.2,640.3 L652.2,660.4 L643.4,669.6 L636.7,674.9 L632.4,686.2 L625.7,692.9 L623.2,686.2 L627.5,680.6 L621.8,672.8 L614.1,666.4 L604.2,659.0 L600.3,659.4 L590.4,650.5 L584.0,651.6 Z M475.9,950.2 L476.2,987.3 L486.5,987.3 L492.5,987.7 L489.3,994.7 L480.8,1000.0 L475.9,999.3 L470.2,997.9 L463.1,993.0 L452.9,990.5 L440.5,981.0 L430.3,971.8 L416.9,953.4 L425.0,956.9 L438.8,967.9 L451.8,973.9 L456.8,966.1 L460.0,954.8 L469.2,948.1 L475.9,950.2 Z M480.1,556.5 L484.0,571.0 L491.1,569.6 L492.1,572.1 L488.9,583.4 L478.3,588.7 L478.3,606.7 L476.6,610.2 L479.4,614.5 L472.3,621.6 L466.0,631.8 L462.4,642.0 L463.5,653.0 L457.5,664.7 L461.7,684.8 L464.6,686.9 L464.6,697.9 L458.9,709.5 L458.9,719.4 L451.5,727.6 L451.5,738.9 L454.7,750.9 L448.7,755.5 L446.2,766.8 L443.7,780.2 L445.5,796.1 L441.6,798.6 L443.7,814.2 L448.3,819.5 L445.1,825.1 L449.7,827.9 L450.8,832.9 L446.2,835.7 L447.2,843.8 L443.7,862.6 L438.8,874.9 L439.8,882.4 L436.6,891.9 L429.2,898.3 L429.9,914.5 L433.5,920.2 L439.8,919.1 L439.8,930.8 L443.7,940.0 L467.4,942.1 L476.6,944.6 L468.1,944.6 L463.1,948.4 L454.3,954.5 L452.9,969.6 L448.7,970.0 L437.7,964.7 L426.4,953.4 L426.4,953.4 L414.0,944.2 L410.8,934.0 L413.7,924.8 L408.7,914.5 L407.7,888.7 L411.9,874.6 L422.2,863.3 L407.3,859.0 L416.5,846.7 L420.0,823.7 L431.0,828.3 L435.9,800.4 L429.2,796.8 L426.4,813.4 L420.0,811.7 L423.2,792.6 L426.4,768.6 L431.0,759.7 L428.2,747.7 L427.5,733.6 L431.7,733.2 L437.7,713.4 L444.4,694.4 L448.7,677.0 L446.2,659.7 L449.0,650.2 L448.0,636.4 L453.6,622.6 L455.4,601.4 L458.6,579.1 L461.7,555.5 L461.0,538.1 L458.9,523.7 L463.9,520.8 L466.7,515.5 L471.6,522.6 L472.7,530.0 L478.0,534.6 L474.8,544.5 L480.1,556.5 Z M409.8,341.7 L405.5,339.5 L401.0,336.0 L398.1,337.8 L389.6,336.4 L387.5,332.1 L385.4,332.5 L375.9,326.8 L374.4,323.6 L378.0,322.9 L377.6,318.0 L379.7,314.4 L384.7,313.7 L388.9,307.7 L392.8,302.4 L388.9,300.0 L391.1,294.3 L388.6,285.5 L390.7,282.6 L389.3,274.5 L385.4,269.2 L386.5,264.3 L389.6,265.0 L391.4,262.1 L389.3,256.1 L390.3,254.7 L395.6,255.1 L402.7,248.0 L407.0,246.9 L407.0,243.8 L408.7,235.3 L414.4,230.7 L420.7,230.7 L421.4,228.6 L429.2,229.3 L437.0,224.3 L440.5,221.9 L445.5,217.3 L449.0,218.0 L451.5,220.4 L449.7,224.0 L443.4,225.4 L440.9,230.3 L437.0,233.5 L434.2,237.1 L432.8,244.1 L430.3,250.1 L435.2,250.8 L436.6,255.1 L438.8,257.5 L439.5,261.4 L438.4,265.0 L438.8,267.1 L440.9,268.2 L443.4,271.3 L456.1,270.6 L461.7,271.7 L468.8,280.2 L472.7,279.1 L479.8,279.8 L485.4,278.8 L488.6,280.2 L486.8,285.5 L484.7,289.0 L484.0,296.1 L486.1,302.4 L488.9,305.6 L488.9,307.7 L484.0,312.7 L487.5,314.8 L490.4,318.0 L493.2,327.9 L491.4,329.3 L489.7,323.3 L486.8,320.1 L483.6,323.6 L464.6,323.3 L464.6,329.6 L470.2,330.7 L469.9,334.2 L468.1,333.2 L462.4,334.9 L462.4,342.0 L466.7,345.5 L468.4,351.2 L468.1,355.4 L463.9,382.7 L458.9,377.4 L455.7,377.0 L462.1,367.1 L454.7,362.5 L448.7,363.2 L445.1,361.4 L439.8,364.3 L432.4,362.9 L426.7,352.6 L422.2,350.1 L419.0,345.5 L412.6,341.0 L409.8,341.7 Z M335.2,259.3 L329.9,257.2 L328.1,255.1 L329.2,253.3 L328.9,251.2 L326.0,248.7 L322.1,246.6 L319.0,245.5 L318.3,242.4 L315.8,240.6 L316.1,243.8 L314.4,245.9 L311.9,243.1 L309.1,242.4 L307.7,240.2 L307.7,237.1 L309.1,233.9 L306.2,232.8 L308.4,230.7 L309.8,229.3 L316.5,232.1 L318.6,230.7 L321.8,231.7 L323.2,233.5 L326.4,234.2 L328.5,232.1 L331.0,237.8 L334.9,241.6 L339.5,245.9 L335.6,246.9 L335.6,250.8 L337.7,252.2 L336.3,253.3 L336.6,255.1 L335.9,257.2 L335.2,259.3 Z M361.4,373.8 L366.7,366.4 L364.5,362.2 L361.0,366.7 L355.0,362.2 L357.1,359.7 L355.4,350.5 L358.9,349.1 L360.7,343.1 L364.2,336.7 L363.5,332.8 L368.8,330.7 L375.9,326.8 L385.4,332.5 L387.5,332.1 L389.6,336.4 L398.1,337.8 L401.0,336.0 L405.5,339.5 L409.8,341.7 L411.2,349.1 L408.4,355.4 L397.4,365.7 L385.8,369.6 L379.7,378.4 L378.0,384.8 L372.3,389.0 L368.1,384.1 L364.2,383.0 L360.0,383.7 L360.0,380.2 L362.8,377.7 L361.4,373.8 Z M265.2,204.2 L260.3,202.4 L254.3,202.1 L249.7,200.3 L244.4,196.1 L244.7,192.9 L245.8,190.8 L244.4,188.6 L249.0,180.5 L261.7,180.5 L262.1,177.0 L260.3,176.3 L259.2,174.1 L255.7,171.7 L252.2,168.1 L256.4,168.1 L256.4,162.5 L265.6,162.5 L274.8,162.5 L274.8,170.6 L273.7,182.3 L276.9,182.3 L280.1,184.0 L280.8,182.6 L283.6,184.0 L279.4,187.9 L274.4,190.8 L274.1,192.5 L274.8,194.6 L272.7,197.1 L270.2,197.8 L270.9,198.9 L269.1,199.9 L265.6,202.8 L265.2,204.2 Z M633.8,315.5 L630.0,319.4 L625.4,320.1 L623.9,317.3 L621.8,316.9 L619.0,319.4 L614.4,317.6 L616.9,313.4 L617.9,308.8 L619.7,304.6 L615.8,298.9 L615.1,292.2 L620.1,283.7 L623.6,284.8 L630.7,287.2 L640.9,295.4 L642.7,299.2 L637.0,308.4 L633.8,315.5 Z M563.2,257.9 L569.5,261.4 L575.5,267.8 L575.9,273.1 L579.8,273.1 L585.1,278.0 L589.0,281.6 L587.2,290.4 L581.2,292.9 L581.9,295.4 L580.1,300.3 L584.4,307.4 L587.5,307.4 L588.6,313.0 L594.6,321.5 L592.5,321.9 L586.8,321.2 L583.7,323.6 L579.4,325.4 L576.2,325.8 L575.2,327.9 L570.2,327.2 L564.2,322.6 L563.5,318.0 L561.0,313.0 L562.5,304.9 L565.3,301.4 L563.2,296.8 L559.6,295.4 L561.0,291.1 L558.6,288.6 L553.6,289.0 L546.9,281.6 L549.7,278.8 L549.4,274.5 L555.4,272.7 L557.9,271.0 L554.7,267.1 L555.4,263.6 L563.2,257.9 Z M292.8,211.6 L291.0,208.4 L287.9,207.7 L288.6,203.5 L287.2,202.4 L285.4,201.7 L281.1,203.1 L280.8,201.7 L277.6,199.9 L275.5,197.8 L272.7,197.1 L274.8,194.6 L274.1,192.5 L274.4,190.8 L279.4,187.9 L283.6,184.0 L284.7,184.4 L286.8,182.6 L289.6,182.3 L290.7,183.3 L292.1,182.6 L296.7,183.7 L301.3,183.3 L304.5,182.3 L305.5,181.2 L308.7,181.6 L311.2,182.3 L313.7,181.9 L315.4,181.2 L320.0,182.6 L321.4,182.6 L324.6,184.7 L327.4,186.9 L331.0,188.6 L333.5,191.5 L330.3,191.1 L328.9,192.5 L325.3,193.9 L322.8,193.9 L320.7,195.0 L319.0,194.6 L317.2,193.2 L316.1,193.6 L314.7,195.7 L314.0,195.7 L313.7,197.8 L310.5,200.7 L308.4,201.7 L307.7,203.1 L304.5,201.0 L302.4,203.8 L300.6,203.8 L298.1,203.8 L298.5,208.8 L297.1,208.8 L295.6,211.3 L292.8,211.6 Z M196.3,77.3 L192.4,86.9 L190.7,94.6 L190.0,108.8 L188.9,114.1 L190.7,119.7 L193.9,125.0 L195.6,133.2 L202.3,140.9 L204.5,146.9 L208.3,151.9 L218.9,154.7 L222.8,158.9 L231.3,156.1 L239.1,155.1 L246.2,153.3 L252.5,151.5 L258.9,147.3 L261.0,141.3 L261.7,132.4 L263.5,129.3 L270.2,126.4 L280.4,124.0 L289.3,124.3 L295.3,123.6 L297.8,125.7 L297.4,131.0 L292.1,137.0 L289.6,143.4 L291.4,145.2 L290.0,149.8 L287.5,157.9 L285.0,155.1 L282.9,155.4 L281.1,155.4 L277.6,161.8 L275.8,160.7 L274.8,161.1 L274.8,162.5 L265.6,162.5 L256.4,162.5 L256.4,168.1 L252.2,168.1 L255.7,171.7 L259.2,174.1 L260.3,176.3 L262.1,177.0 L261.7,180.5 L249.0,180.5 L244.4,188.6 L245.8,190.8 L244.7,192.9 L244.4,196.1 L233.4,185.1 L228.1,181.6 L220.4,179.1 L214.7,179.8 L206.9,183.7 L202.0,184.7 L194.9,181.9 L187.5,180.2 L178.3,175.2 L171.2,173.8 L159.9,169.2 L151.8,164.3 L149.3,161.4 L143.7,160.7 L133.8,157.5 L129.5,152.9 L119.3,146.9 L114.3,140.2 L111.9,135.3 L115.0,134.2 L114.0,131.4 L116.5,128.6 L116.5,125.0 L113.3,120.1 L112.2,115.8 L109.0,110.5 L100.2,99.9 L90.3,91.4 L85.7,84.7 L77.2,80.5 L75.5,77.7 L76.9,71.0 L71.9,68.5 L66.3,63.2 L63.8,55.4 L58.5,54.3 L52.9,48.7 L48.3,43.0 L47.5,39.5 L42.2,31.0 L39.1,22.2 L39.1,17.9 L32.0,13.3 L28.8,13.7 L23.2,10.5 L21.4,15.5 L23.2,20.8 L24.2,29.6 L27.4,34.2 L34.8,42.0 L36.2,44.4 L38.0,45.2 L39.1,49.0 L40.8,49.0 L43.0,56.1 L45.8,58.9 L47.9,62.8 L54.3,68.5 L57.4,78.7 L60.3,83.3 L63.1,88.6 L63.5,94.3 L68.4,94.6 L72.3,99.6 L75.8,104.2 L75.5,106.3 L71.2,110.2 L69.8,110.2 L67.0,103.5 L60.6,97.5 L53.6,92.2 L48.6,89.3 L49.0,81.6 L47.5,75.5 L42.6,72.4 L35.9,67.4 L34.8,68.8 L32.4,66.0 L26.0,63.2 L20.3,56.8 L21.0,56.1 L24.9,56.5 L28.8,52.6 L29.2,47.3 L21.4,39.5 L15.7,36.3 L12.2,29.3 L8.7,21.8 L4.1,12.6 L-0.2,2.0 L11.1,1.3 L23.5,-0.1 L22.8,2.4 L37.7,8.0 L59.9,16.2 L79.4,15.8 L87.1,15.8 L87.1,11.2 L104.1,11.2 L108.0,15.5 L112.9,19.0 L118.6,24.0 L122.1,30.0 L124.2,36.0 L129.5,39.5 L137.7,43.0 L143.7,33.8 L151.8,33.8 L158.9,38.4 L163.8,45.9 L167.0,52.6 L173.0,58.9 L175.1,66.7 L177.6,71.7 L185.4,75.2 L192.4,77.7 L196.3,77.3 Z M308.4,230.7 L304.8,227.5 L300.6,223.6 L298.1,220.1 L294.2,216.9 L289.3,212.3 L290.3,210.9 L291.7,212.3 L292.8,211.6 L295.6,211.3 L297.1,208.8 L298.5,208.8 L298.1,203.8 L300.6,203.8 L302.4,203.8 L304.5,201.0 L307.7,203.1 L308.4,201.7 L310.5,200.7 L313.7,197.8 L314.0,195.7 L314.7,195.7 L316.1,193.6 L317.2,193.2 L319.0,194.6 L320.7,195.0 L322.8,193.9 L325.3,193.9 L328.9,192.5 L330.3,191.1 L333.5,191.5 L332.7,192.2 L332.4,194.6 L333.1,198.2 L331.0,201.7 L329.9,206.0 L329.6,210.2 L330.3,212.7 L330.3,217.3 L328.9,218.3 L327.8,222.6 L328.5,225.4 L326.7,227.9 L327.1,230.7 L328.5,232.1 L326.4,234.2 L323.2,233.5 L321.8,231.7 L318.6,230.7 L316.5,232.1 L309.8,229.3 L308.4,230.7 Z M385.4,269.2 L381.9,266.4 L379.7,261.1 L382.2,258.3 L379.7,257.5 L378.0,254.4 L373.0,251.5 L368.8,252.2 L366.7,255.8 L362.8,258.3 L360.7,258.6 L359.6,260.7 L364.5,266.0 L361.7,267.1 L360.3,268.5 L355.7,269.2 L353.9,263.2 L352.9,265.0 L349.7,264.3 L347.6,260.4 L343.7,259.7 L340.9,258.6 L336.6,258.6 L336.6,260.7 L335.2,259.3 L335.9,257.2 L336.6,255.1 L336.3,253.3 L337.7,252.2 L335.6,250.8 L335.6,246.9 L339.5,245.9 L343.0,249.4 L342.6,251.5 L346.9,251.9 L347.6,251.2 L350.4,253.7 L355.0,253.0 L359.2,250.5 L365.3,248.4 L368.8,245.5 L374.1,245.9 L373.7,246.9 L379.0,247.3 L383.6,249.1 L386.8,251.9 L390.3,254.7 L389.3,256.1 L391.4,262.1 L389.6,265.0 L386.5,264.3 L385.4,269.2 Z M466.7,515.5 L463.9,520.8 L458.9,523.7 L449.0,517.7 L448.3,513.4 L428.9,503.2 L411.2,491.9 L403.8,485.5 L399.5,477.4 L401.3,474.5 L392.8,461.1 L383.3,442.7 L374.1,422.9 L369.9,418.3 L366.7,410.9 L359.2,404.6 L352.2,400.7 L355.4,396.1 L350.8,386.9 L353.6,379.8 L361.4,373.8 L362.8,377.7 L360.0,380.2 L360.0,383.7 L364.2,383.0 L368.1,384.1 L372.3,389.0 L378.0,384.8 L379.7,378.4 L385.8,369.6 L397.4,365.7 L408.4,355.4 L411.2,349.1 L409.8,341.7 L412.6,341.0 L419.0,345.5 L422.2,350.1 L426.7,352.6 L432.4,362.9 L439.8,364.3 L445.1,361.4 L448.7,363.2 L454.7,362.5 L462.1,367.1 L455.7,377.0 L458.9,377.4 L463.9,382.7 L454.7,381.9 L453.6,383.4 L445.5,385.5 L434.2,392.2 L433.5,396.8 L431.0,400.0 L432.0,405.6 L426.0,408.4 L426.0,412.3 L423.6,414.5 L427.5,423.3 L433.1,429.3 L431.0,433.5 L437.4,434.2 L441.2,439.5 L449.7,439.5 L457.8,433.9 L457.1,449.1 L461.7,450.2 L467.4,448.4 L475.9,464.6 L473.8,467.8 L473.0,474.9 L473.0,483.7 L469.2,488.7 L470.9,492.6 L468.8,496.1 L472.7,504.6 L466.7,515.5 Z M534.5,564.3 L538.4,551.6 L538.4,545.9 L543.4,536.7 L560.3,533.9 L569.5,533.9 L578.7,539.2 L578.7,542.4 L581.5,548.4 L581.2,562.5 L591.4,564.7 L595.3,562.5 L602.0,565.4 L603.8,568.5 L604.9,578.4 L605.9,582.7 L609.5,583.0 L613.3,581.3 L616.9,583.4 L616.9,589.0 L615.5,595.8 L613.7,601.8 L611.9,611.7 L603.1,620.1 L595.3,621.9 L584.4,620.1 L574.5,617.0 L584.0,600.3 L582.6,595.8 L572.3,591.5 L560.7,583.4 L552.6,581.6 L534.5,564.3 Z M287.9,207.7 L286.8,210.2 L281.1,209.8 L277.6,208.8 L273.7,207.0 L268.1,206.3 L265.2,204.2 L265.6,202.8 L269.1,199.9 L270.9,198.9 L270.2,197.8 L272.7,197.1 L275.5,197.8 L277.6,199.9 L280.8,201.7 L281.1,203.1 L285.4,201.7 L287.2,202.4 L288.6,203.5 L287.9,207.7 Z M589.0,281.6 L600.6,283.3 L601.7,281.6 L609.5,280.9 L620.1,283.7 L615.1,292.2 L615.8,298.9 L619.7,304.6 L617.9,308.8 L617.2,313.4 L614.4,317.6 L609.1,315.5 L604.2,316.6 L600.3,315.5 L599.2,318.3 L601.0,320.5 L600.3,322.6 L594.6,321.5 L588.6,313.0 L587.5,307.4 L584.4,307.4 L580.1,300.3 L581.9,295.4 L581.2,292.9 L587.2,290.4 L589.0,281.6 Z M584.0,651.6 L590.4,650.5 L600.3,659.4 L604.2,659.0 L614.1,666.4 L621.8,672.8 L627.5,680.6 L623.2,686.2 L625.7,692.9 L621.5,700.4 L610.5,706.7 L603.1,704.6 L597.8,705.7 L589.0,700.7 L582.2,701.1 L576.2,694.4 L576.9,686.9 L579.1,684.1 L579.1,672.8 L581.5,660.8 L584.0,651.6 Z M449.7,224.0 L449.4,226.1 L443.4,227.5 L446.9,231.7 L446.5,237.1 L442.3,243.1 L445.8,250.8 L450.1,250.1 L452.5,243.1 L449.4,239.5 L449.0,231.7 L461.0,227.9 L459.6,223.3 L463.1,220.1 L466.7,227.2 L473.8,227.2 L480.1,232.8 L480.5,236.0 L489.3,236.0 L499.5,234.9 L505.2,239.5 L512.6,240.9 L518.3,237.8 L518.3,235.3 L530.6,234.6 L542.3,234.6 L533.8,237.4 L537.4,242.0 L545.1,242.7 L552.6,247.7 L554.3,255.8 L559.3,255.4 L563.2,257.9 L555.4,263.6 L554.7,267.1 L557.9,271.0 L555.4,272.7 L549.4,274.5 L549.7,278.8 L546.9,281.6 L553.6,289.0 L555.0,291.8 L551.1,295.7 L540.2,299.2 L533.1,301.0 L530.3,303.1 L522.5,300.7 L515.5,299.6 L513.7,300.3 L517.9,302.8 L517.6,309.5 L519.0,315.9 L527.1,316.6 L527.8,318.7 L520.8,321.5 L519.7,325.8 L515.5,327.2 L508.4,329.6 L506.3,332.5 L498.8,333.2 L493.2,327.9 L490.4,318.0 L487.5,314.8 L484.0,312.7 L488.9,307.7 L488.9,305.6 L486.1,302.4 L484.0,296.1 L484.7,289.0 L486.8,285.5 L488.6,280.2 L485.4,278.8 L479.8,279.8 L472.7,279.1 L468.8,280.2 L461.7,271.7 L456.1,270.6 L443.4,271.3 L440.9,268.2 L438.8,267.1 L438.4,265.0 L439.5,261.4 L438.8,257.5 L436.6,255.1 L435.2,250.8 L430.3,250.1 L432.8,244.1 L434.2,237.1 L437.0,233.5 L440.9,230.3 L443.4,225.4 L449.7,224.0 Z" 
+                              fill="none" 
+                              stroke="var(--accent2)" 
+                              stroke-width="2" 
+                              stroke-dasharray="4 6"
+                              stroke-linejoin="round" 
+                              stroke-linecap="round" />
+                    </svg>
+
+
+
+                    <!-- Nodos (Países) -->
+                    <!-- PERÚ (HUB CENTRAL) -->
+                    <div class="map-node hub" style="top: 42%; left: 52%;">
+                        <div class="node-dot"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="map-tooltip">
+                            <img src="https://flagcdn.com/w40/pe.png" alt="Perú" class="flag">
+                            <div class="info">
+                                <h5>Hub Central (Perú)</h5>
+                                <span>+1,200 Alumnos</span>
+                                <p>Sede principal de operaciones y laboratorios tecnológicos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MÉXICO -->
+                    <div class="map-node" style="top: 10%; left: 17%;">
+                        <div class="node-dot"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="map-tooltip" style="bottom: auto; top: 30px; transform: translateX(-50%);">
+                            <img src="https://flagcdn.com/w40/mx.png" alt="México" class="flag">
+                            <div class="info">
+                                <h5>México</h5>
+                                <span>+850 Alumnos</span>
+                                <p>Crecimiento exponencial en la zona norte.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLOMBIA -->
+                    <div class="map-node" style="top: 30%; left: 54%;">
+                        <div class="node-dot"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="map-tooltip">
+                            <img src="https://flagcdn.com/w40/co.png" alt="Colombia" class="flag">
+                            <div class="info">
+                                <h5>Colombia</h5>
+                                <span>+600 Alumnos</span>
+                                <p>Comunidad activa de desarrolladores de IA.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CHILE -->
+                    <div class="map-node" style="top: 80%; left: 53%;">
+                        <div class="node-dot"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="map-tooltip" style="bottom: auto; top: 30px; transform: translateX(-50%);">
+                            <img src="https://flagcdn.com/w40/cl.png" alt="Chile" class="flag">
+                            <div class="info">
+                                <h5>Chile</h5>
+                                <span>+450 Alumnos</span>
+                                <p>Impulsando la transformación empresarial del sur.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ARGENTINA -->
+                    <div class="map-node" style="top: 76%; left: 63%;">
+                        <div class="node-dot"></div>
+                        <div class="pulse-ring"></div>
+                        <div class="map-tooltip" style="bottom: auto; top: 30px; transform: translateX(-50%);">
+                            <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="flag">
+                            <div class="info">
+                                <h5>Argentina</h5>
+                                <span>+500 Alumnos</span>
+                                <p>Talento en constante especialización y demanda.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const nodes = document.querySelectorAll('.map-node');
+                    let autoPlayActive = true;
+                    let autoPlayTimeouts = [];
+                    
+                    // Manejar click para mantener el recuadro activo por 3s
+                    nodes.forEach(node => {
+                        node.addEventListener('click', () => {
+                            // Si el usuario hace click, detenemos la animación inicial para no interrumpirlo
+                            autoPlayActive = false;
+                            autoPlayTimeouts.forEach(t => clearTimeout(t));
+
+                            // Limpiar timeouts y estado activo de todos los nodos
+                            nodes.forEach(n => {
+                                n.classList.remove('active');
+                                if (n.tooltipTimeout) clearTimeout(n.tooltipTimeout);
+                            });
+                            
+                            // Activar el nodo clickeado
+                            node.classList.add('active');
+                            
+                            // Mantenerlo abierto 3 segundos
+                            node.tooltipTimeout = setTimeout(() => {
+                                node.classList.remove('active');
+                            }, 3000);
+                        });
+                    });
+
+                    // Activar todos los países secuencialmente en bucle infinito
+                    const mapWrapper = document.querySelector('.map-wrapper-box');
+                    if (mapWrapper && nodes.length > 0) {
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting && autoPlayActive) {
+                                    
+                                    function playSequence() {
+                                        if (!autoPlayActive) return;
+                                        
+                                        let delay = 500;
+                                        nodes.forEach((n) => {
+                                            let t1 = setTimeout(() => {
+                                                if (!autoPlayActive) return;
+                                                
+                                                // Limpiar otros
+                                                nodes.forEach(x => x.classList.remove('active'));
+                                                n.classList.add('active');
+                                                
+                                                // Cerrar después de 2.5 segundos
+                                                let t2 = setTimeout(() => {
+                                                    if (autoPlayActive) {
+                                                        n.classList.remove('active');
+                                                    }
+                                                }, 2500);
+                                                autoPlayTimeouts.push(t2);
+                                                
+                                            }, delay);
+                                            
+                                            autoPlayTimeouts.push(t1);
+                                            delay += 3000; // Siguiente país 3 segundos después
+                                        });
+                                        
+                                        // Volver a llamar a la secuencia al terminar el ciclo (delay actual)
+                                        let nextCycle = setTimeout(playSequence, delay + 500);
+                                        autoPlayTimeouts.push(nextCycle);
+                                    }
+
+                                    // Iniciar el bucle
+                                    playSequence();
+                                    
+                                    observer.disconnect(); // Ejecutar solo la primera vez que entra en pantalla
+                                }
+                            });
+                        }, { threshold: 0.5 });
+                        observer.observe(mapWrapper);
+                    }
+                });
+            </script>
+        </div>
+    </section>
+
+    <section id="diferenciacion" class="diferenciacion" style="padding: 120px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden;">
+        <!-- Deco -->
+        <div style="position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--accent1), transparent);"></div>
+        <div style="position: absolute; right: -10%; top: -10%; width: 500px; height: 500px; background: radial-gradient(circle, var(--accent1) 0%, transparent 70%); opacity: 0.1; filter: blur(80px); pointer-events: none;"></div>
+        
+        <div class="container">
+            <div class="animate-on-scroll" style="text-align: center; margin-bottom: 80px;">
+                <span style="color: var(--accent2); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; display: block; margin-bottom: 15px;">El Ecosistema SYNEPRIX</span>
+                <h2 class="section-title" style="margin-bottom: 20px; font-size: 3.5rem;">¿Por qué somos <span class="text-gradient">diferentes?</span></h2>
+                <p style="color: var(--muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">No somos una universidad ni un repositorio masivo. Somos el puente directo entre tu potencial y la realidad corporativa del futuro.</p>
+            </div>
+            
+            <style>
+                .bento-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-auto-rows: minmax(300px, auto);
+                    gap: 30px;
+                }
+                .bento-card {
+                    background: rgba(13, 4, 40, 0.4);
+                    border: 1px solid rgba(255, 255, 255, 0.05);
+                    border-radius: 30px;
+                    padding: 50px;
+                    position: relative;
+                    overflow: hidden;
+                    backdrop-filter: blur(20px);
+                    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    z-index: 1;
+                }
+                .bento-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; right: 0; bottom: 0;
+                    border-radius: 30px;
+                    padding: 2px;
+                    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+                    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    -webkit-mask-composite: xor;
+                    mask-composite: exclude;
+                    pointer-events: none;
+                }
+                .bento-card:hover {
+                    transform: translateY(-10px) scale(1.02);
+                    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+                }
+                .bento-card:hover .bento-bg-glow {
+                    opacity: 0.3;
+                    transform: scale(1.2);
+                }
+                .bento-card:hover .bento-icon {
+                    transform: scale(1.1) rotate(5deg);
+                }
+                .bento-bg-glow {
+                    position: absolute;
+                    width: 300px;
+                    height: 300px;
+                    border-radius: 50%;
+                    filter: blur(60px);
+                    opacity: 0.1;
+                    transition: all 0.5s ease;
+                    z-index: -1;
+                }
+                .vs-badge {
+                    position: absolute;
+                    top: 40px;
+                    right: 40px;
+                    padding: 8px 16px;
+                    background: rgba(255,255,255,0.03);
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 30px;
+                    font-size: 0.8rem;
+                    color: var(--muted);
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                }
+                .bento-icon {
+                    width: 60px;
+                    height: 60px;
+                    margin-bottom: auto; /* Pushes content to bottom */
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 16px;
+                    background: rgba(255,255,255,0.03);
+                    border: 1px solid rgba(255,255,255,0.05);
+                    transition: all 0.5s ease;
+                }
+                .bento-large { grid-column: span 2; }
+                .bento-small { grid-column: span 1; }
+                
+                @media (max-width: 992px) {
+                    .bento-grid { grid-template-columns: 1fr; }
+                    .bento-large, .bento-small { grid-column: span 1; }
+                }
+            </style>
+
+            <div class="bento-grid">
+                <!-- Card 1 -->
+                <div class="bento-card bento-large animate-on-scroll">
+                    <div class="bento-bg-glow" style="bottom: -50px; right: -50px; background: var(--accent1);"></div>
+                    <div class="vs-badge">VS. UNIVERSIDAD TRADICIONAL</div>
+                    <div class="bento-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3 style="font-size: 2.2rem; color: #fff; margin: 30px 0 15px 0;">Actualización en<br><span style="color: var(--accent1);">Semanas, no en Años</span></h3>
+                    <p style="color: var(--muted); line-height: 1.6; font-size: 1.1rem; max-width: 90%;">Olvídate de los currículos inflexibles de 5 años. Nuestros programas evolucionan al ritmo de la tecnología, garantizando que aprendas exactamente lo que las empresas top exigen hoy mismo.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bento-card bento-small animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="bento-bg-glow" style="top: -50px; left: -50px; background: var(--accent2);"></div>
+                    <div class="vs-badge" style="top: auto; bottom: 40px; right: 40px; font-size: 0.7rem;">VS. PLATAFORMAS</div>
+                    <div class="bento-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    </div>
+                    <h3 style="font-size: 1.8rem; color: #fff; margin: 30px 0 15px 0;">Profundidad<br><span style="color: var(--accent2);">Real</span></h3>
+                    <p style="color: var(--muted); line-height: 1.6; margin-bottom: 30px;">Mientras otros priorizan el volumen, nosotros nos enfocamos en el impacto corporativo. Menos teoría genérica.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bento-card bento-small animate-on-scroll">
+                    <div class="bento-bg-glow" style="bottom: -50px; left: -50px; background: var(--accent3);"></div>
+                    <div class="vs-badge" style="top: auto; bottom: 40px; right: 40px; font-size: 0.7rem;">VS. BOOTCAMPS</div>
+                    <div class="bento-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3 style="font-size: 1.8rem; color: #fff; margin: 30px 0 15px 0;">Perfil<br><span style="color: var(--accent3);">Ejecutivo</span></h3>
+                    <p style="color: var(--muted); line-height: 1.6; margin-bottom: 30px;">Transformamos profesionales de Finanzas, Operaciones y Negocios en líderes técnicos. No formamos Juniors.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bento-card bento-large animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="bento-bg-glow" style="top: -50px; right: -50px; background: var(--accent1);"></div>
+                    <div class="vs-badge">VS. CURSOS CORPORATIVOS</div>
+                    <div class="bento-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3 style="font-size: 2.2rem; color: #fff; margin: 30px 0 15px 0;">Rigor y Validaciones<br><span class="text-gradient">de Mercado</span></h3>
+                    <p class="efecto-ola" style="color: var(--muted); line-height: 1.6; font-size: 1.1rem; max-width: 90%;">Los programas internos rara vez tienen el rigor técnico de la industria externa. Aportamos perspectiva global, casos hiper-reales y certificaciones validadas por los líderes del ecosistema digital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-slider">
+        <div class="tech-track">
+            <!-- Tech twice for seamless loop -->
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" height="40" /></span>
+            <span class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" height="40" style="filter: invert(1);"/></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" height="40" /></span>
+
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" height="40" /></span>
+            <span class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" height="40" style="filter: invert(1);"/></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" height="40" /></span>
+            <span class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" height="40" /></span>
+        </div>
+    </div>
+
+
+
+    <section id="certificaciones" class="certificaciones">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 40px;">Certificaciones SPX</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: center; width: 100%;" class="anatomy-grid animate-on-scroll">
+                
+                <!-- LEFT: Info Panel -->
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <p style="text-align: left; margin-bottom: 25px; font-size: 1.1rem; color: var(--muted); max-width: 100%;">
+                        Valida tus habilidades frente al mercado laboral con credenciales técnicas basadas en proyectos reales. Selecciona los puntos interactivos para descubrir la arquitectura de confianza detrás de cada diploma.
+                    </p>
+                    
+                    <div class="cert-info-panel" id="certInfoPanel" style="flex-direction: column; gap: 15px; margin-top: 0; align-items: flex-start; justify-content: flex-start; max-width: 100%;">
+                        <div class="cert-info-card" data-for="alcet" style="padding-left: 0;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <h4>Sello ALCET</h4>
+                        </div>
+                        <div class="cert-info-card" data-for="track" style="padding-left: 0;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            <h4>Track & Nivel</h4>
+                        </div>
+                        <div class="cert-info-card" data-for="iie" style="padding-left: 0;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent1)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            <h4>Sello IIE</h4>
+                        </div>
+                        <div class="cert-info-card" data-for="hash" style="padding-left: 0;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <h4>Código Único</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-info-display" id="certInfoDisplay" style="text-align: left; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); min-height: 80px;">
+                        Haz clic en los puntos interactivos del certificado o en las opciones de la izquierda para descubrir los detalles.
+                    </div>
+                    
+                    <div style="margin-top: 15px; margin-bottom: 25px; padding: 15px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; display: inline-block;">
+                        <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Válido y reconocido en:</div>
+                        
+                        <!-- Carrusel de banderas tipo Cartas -->
+                        <div class="flags-carousel" style="position: relative; height: 32px; width: 140px; margin-left: 10px;">
+                            <img src="https://flagcdn.com/w40/pe.png" class="carousel-flag" data-idx="0">
+                            <img src="https://flagcdn.com/w40/mx.png" class="carousel-flag" data-idx="1">
+                            <img src="https://flagcdn.com/w40/co.png" class="carousel-flag" data-idx="2">
+                            <img src="https://flagcdn.com/w40/cl.png" class="carousel-flag" data-idx="3">
+                            <img src="https://flagcdn.com/w40/ar.png" class="carousel-flag" data-idx="4">
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <a href="certificaciones/index.html" class="btn btn-primary" style="padding: 12px 24px; font-size: 1rem;">Ver Criterios de Certificación</a>
+                    </div>
+                </div>
+                
+                <!-- RIGHT: Certificado 3D -->
+                <div style="width: 100%;">
+                    <div class="cert-3d-container" style="padding: 0;">
+                        <div class="cert-3d-card" id="cert3D">
+                            <div class="cert-glare" id="certGlare"></div>
+                            
+                            <div class="cert-inner">
+                                <!-- Capa 1: Logos Top -->
+                                <div class="anim-layer layer-1" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                    <div style="position: relative; display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 42px; height: 42px; border-radius: 50%; border: 2px solid #4f46e5; display: flex; align-items: center; justify-content: center; background: rgba(79, 70, 229, 0.08);">
+                                            <span style="font-weight: 800; font-size: 0.5rem; color: #4f46e5; letter-spacing: 0.5px;">ALCET</span>
+                                        </div>
+                                        <div class="hotspot map-node" data-info="alcet" style="top: -3px; left: -8px; width: 16px; height: 16px;">
+                                            <div class="node-dot" style="width: 10px; height: 10px;"></div>
+                                            <div class="pulse-ring" style="width: 24px; height: 24px;"></div>
+                                            <div class="map-tooltip" style="bottom: auto; top: 25px; transform: translateX(-20%); text-align: left; width: 220px; z-index: 100;">
+                                                <div class="info">
+                                                    <h5 style="margin-bottom: 5px;">Sello ALCET</h5>
+                                                    <p>Audita el plan de estudios y emite el código de validación regional.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="display: flex; justify-content: flex-end;">
+                                            <img src="assets/img/Logo - Principal - MyB.svg" alt="Syneprix" style="height: 28px;">
+                                        </div>
+                                        <div style="font-size: 0.5rem; letter-spacing: 2px; color: #94a3b8; font-weight: 600; text-align: right;">GLOBAL EDUCATION</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Capa 2: Header Texts -->
+                                <div class="anim-layer layer-2" style="text-align: center; margin-top: 8px;">
+                                    <div class="cert-txt-small">OTORGA EL PRESENTE</div>
+                                    <div class="cert-title">CERTIFICADO</div>
+                                    <div class="cert-txt-small" style="font-style: italic; text-transform: none; font-size: 0.6rem;">A</div>
+                                </div>
+                                
+                                <!-- Capa 3: El Nombre -->
+                                <div class="anim-layer layer-3" style="text-align: center; border-bottom: 1px solid #c7d2e8; margin: 0 40px; padding-bottom: 4px;">
+                                    <div class="cert-name">Ana María Martínez López</div>
+                                </div>
+                                
+                                <!-- Capa 4: El Programa -->
+                                <div class="anim-layer layer-4" style="text-align: center; margin-top: 10px;">
+                                    <div class="cert-txt-small" style="margin-bottom: 6px;">POR HABER COMPLETADO Y APROBADO EXITOSAMENTE EL PROGRAMA DE</div>
+                                    <div style="font-size: 1.05rem; font-weight: 800; color: #1e1b4b; position: relative; display: inline-block;">
+                                        Inteligencia Artificial Aplicada
+                                        <div class="hotspot map-node" data-info="track" style="top: -6px; right: -28px; width: 16px; height: 16px;">
+                                            <div class="node-dot" style="width: 10px; height: 10px;"></div>
+                                            <div class="pulse-ring" style="width: 24px; height: 24px;"></div>
+                                            <div class="map-tooltip" style="bottom: auto; top: 25px; transform: translateX(-80%); text-align: left; width: 220px; z-index: 100;">
+                                                <div class="info">
+                                                    <h5 style="margin-bottom: 5px;">Track & Nivel</h5>
+                                                    <p>Define la especialización y seniority certificado del profesional.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cert-txt-small" style="margin-top: 6px;">CON UNA DURACIÓN DE 120 HORAS ACADÉMICAS</div>
+                                </div>
+                                
+                                <!-- Capas 5 y 6: Footer -->
+                                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-bottom: 5px;">
+                                    
+                                    <!-- Firma IIE -->
+                                    <div class="anim-layer layer-5" style="text-align: center; width: 140px; position: relative;">
+                                        <div style="border-bottom: 1px solid #b0b8c9; padding-bottom: 3px; margin-bottom: 3px; display: flex; justify-content: center;">
+                                            <div style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #1e1b4b; opacity: 0.7; line-height: 1; transform: rotate(-4deg);">F. Hernández</div>
+                                        </div>
+                                        <div class="cert-txt-medium" style="font-size: 0.6rem;">Instituto Internacional<br>de Ingeniería</div>
+                                        <div class="cert-txt-small" style="color: #7c3aed; font-size: 0.4rem; margin-top: 1px;">FIRMA AUTORIZADA</div>
+                                        <div class="hotspot map-node" data-info="iie" style="bottom: 10px; left: -12px; width: 16px; height: 16px;">
+                                            <div class="node-dot" style="width: 10px; height: 10px;"></div>
+                                            <div class="pulse-ring" style="width: 24px; height: 24px;"></div>
+                                            <div class="map-tooltip" style="bottom: 30px; top: auto; transform: translateX(-20%); text-align: left; width: 220px; z-index: 100;">
+                                                <div class="info">
+                                                    <h5 style="margin-bottom: 5px;">Sello IIE</h5>
+                                                    <p>Evalúa el proyecto aplicativo bajo criterios reales de ingeniería.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Laureles + QR -->
+                                    <div class="anim-layer layer-6" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative;">
+                                        <div style="width: 42px; height: 42px; border: 1.5px dashed #6366f1; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #312e81; font-weight: 700; line-height: 1;">
+                                            <span style="font-size: 0.3rem; letter-spacing: 1px;">EDICIÓN</span>
+                                            <span style="font-size: 0.65rem;">2024</span>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 6px; text-align: left;">
+                                            <div style="width: 28px; height: 28px; background: #e2e0f0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 3px; border-radius: 3px;">
+                                                <div style="background: #312e81;"></div><div style="background: #312e81;"></div><div style="background: #312e81;"></div><div style="background: #e2e0f0;"></div>
+                                            </div>
+                                            <div>
+                                                <div class="cert-txt-small" style="font-size: 0.4rem;">CÓDIGO DE VERIFICACIÓN</div>
+                                                <div class="cert-txt-medium" style="font-size: 0.55rem; color: #312e81; font-family: monospace; letter-spacing: 1px;">SYX-7G8K-L3M9</div>
+                                            </div>
+                                        </div>
+                                        <div class="hotspot map-node" data-info="hash" style="bottom: 5px; right: -18px; width: 16px; height: 16px;">
+                                            <div class="node-dot" style="width: 10px; height: 10px;"></div>
+                                            <div class="pulse-ring" style="width: 24px; height: 24px;"></div>
+                                            <div class="map-tooltip" style="bottom: 30px; top: auto; transform: translateX(-80%); text-align: left; width: 220px; z-index: 100;">
+                                                <div class="info">
+                                                    <h5 style="margin-bottom: 5px;">Código Único</h5>
+                                                    <p>Hash criptográfico que permite verificación instantánea.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Firma Syneprix -->
+                                    <div class="anim-layer layer-5" style="text-align: center; width: 140px;">
+                                        <div style="border-bottom: 1px solid #b0b8c9; padding-bottom: 3px; margin-bottom: 3px; display: flex; justify-content: center;">
+                                            <div style="font-family: 'Great Vibes', cursive; font-size: 1.5rem; color: #1e1b4b; opacity: 0.7; line-height: 1; transform: rotate(-3deg);">A. Rivera</div>
+                                        </div>
+                                        <div class="cert-txt-medium" style="font-size: 0.6rem;">SYNEPRIX<br>GLOBAL EDUCATION</div>
+                                        <div class="cert-txt-small" style="color: #7c3aed; font-size: 0.4rem; margin-top: 1px;">DIRECCIÓN ACADÉMICA</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="testimonios" style="position: relative; padding: 120px 0; overflow: hidden;">
+        <!-- Efecto Glow de fondo -->
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 500px; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0) 70%); filter: blur(60px); z-index: 0; pointer-events: none;"></div>
+        
+        <div class="container" style="position: relative; z-index: 1;">
+            <div style="text-align: center; margin-bottom: 60px; display: flex; flex-direction: column; align-items: center;">
+                <h4 style="color: var(--accent1); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;">Lo que dicen nuestros alumnos</h4>
+                <h2 class="section-title" style="margin-bottom: 0; font-size: 2.8rem;">Testimonios</h2>
+                <div style="width: 60px; height: 4px; background: var(--gradient); border-radius: 2px; margin-top: 20px;"></div>
+            </div>
+            
+            <!-- Contenedor del Carrusel -->
+            <div id="testi-carousel" style="display: flex; gap: 30px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 20px; -ms-overflow-style: none; scrollbar-width: none;">
+                <!-- Ocultar barra de scroll en Chrome/Safari -->
+                <style>#testi-carousel::-webkit-scrollbar { display: none; }</style>
+
+                <!-- Card 1 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "El nivel de profundidad y la orientación a resultados de SYNEPRIX es algo que no había visto en otras plataformas. Pude implementar automatizaciones en mi empresa la misma semana."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Carlos Mendoza" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Carlos Mendoza</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Gerente de Operaciones</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "Pasé de hacer reportes manuales en Excel a construir dashboards interactivos en Power BI. El curso fue directo al grano y muy aplicable a mi día a día."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="Lucía Fernández" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Lucía Fernández</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Analista Financiera</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "La certificación me ayudó a conseguir un ascenso. Las empresas valoran mucho que el aprendizaje aquí sea a través de proyectos corporativos reales y no solo teoría."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Andrés Silva" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Andrés Silva</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Consultor de TI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "La metodología basada en proyectos me permitió armar un portafolio sólido que presenté en mi última entrevista. ¡Conseguí el trabajo!"
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=9" alt="Sofía Ramírez" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Sofía Ramírez</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Data Engineer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "Antes veía la IA como algo muy lejano. Hoy integro agentes de automatización en los procesos diarios de mi equipo reduciendo carga operativa."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Martín Gómez" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Martín Gómez</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Director de Innovación</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "El soporte de los mentores es invaluable. No estás viendo videos grabados sin rumbo, hay una comunidad real respaldando tu crecimiento en cada módulo."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=44" alt="Valeria Castro" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Valeria Castro</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">UX Researcher</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "Aplicar modelos predictivos parecía magia, pero el track de Data Science lo desglosa paso a paso. Mi equipo redujo costos en un 20% gracias a esto."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=53" alt="Diego Vargas" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Diego Vargas</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Analista de Datos</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "Recomiendo los programas a ojos cerrados. La certificación IIE pesó muchísimo cuando busqué oportunidades y clientes en el extranjero."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=47" alt="Camila Ortiz" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Camila Ortiz</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Product Manager</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="glass-panel" style="flex: 0 0 calc(33.333% - 20px); min-width: 320px; scroll-snap-align: start; padding: 40px 30px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; position: relative;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.4)'; this.style.background='rgba(255, 255, 255, 0.04)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'; this.style.background='rgba(255, 255, 255, 0.02)';">
+                    <div style="display:flex; gap:4px; margin-bottom:20px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#8b5cf6" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.6; font-style: italic; margin-bottom: 30px; min-height: 100px;">
+                        "Lo que aprendes el lunes, lo aplicas el martes en tu trabajo. Esa inmediatez y relevancia es lo que diferencia a SYNEPRIX de otras escuelas tech."
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="https://i.pravatar.cc/150?img=60" alt="Javier Robles" style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #8b5cf6;">
+                        <div>
+                            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;">Javier Robles</div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 2px;">Tech Lead</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Controles de navegación -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 50px;">
+                <button id="testi-prev" type="button" aria-label="Testimonio anterior" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div class="testi-dot active" style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent1); transition: 0.3s;"></div>
+                <div class="testi-dot" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: 0.3s;"></div>
+                <div class="testi-dot" style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: 0.3s;"></div>
+                <button id="testi-next" type="button" aria-label="Testimonio siguiente" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const carousel = document.getElementById('testi-carousel');
+                    const btnPrev = document.getElementById('testi-prev');
+                    const btnNext = document.getElementById('testi-next');
+                    const dots = document.querySelectorAll('.testi-dot');
+                    
+                    if (carousel && btnPrev && btnNext) {
+                        let isAnimating = false;
+
+                        const fadeScroll = (direction) => {
+                            if (isAnimating) return;
+                            isAnimating = true;
+                            
+                            // Desplazar una vista completa (ej. 3 tarjetas en escritorio)
+                            const scrollAmount = carousel.clientWidth;
+                            
+                            // Efecto de desvanecimiento de salida (se va en la dirección del clic)
+                            carousel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                            carousel.style.opacity = '0';
+                            carousel.style.transform = `translateX(${direction === 'next' ? '-50px' : '50px'})`;
+                            
+                            setTimeout(() => {
+                                // Salto de scroll instantáneo e invisible
+                                carousel.style.scrollBehavior = 'auto';
+                                
+                                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                                if (direction === 'next') {
+                                    // Si estamos al final, volver al principio
+                                    if (carousel.scrollLeft >= maxScroll - 10) {
+                                        carousel.scrollTo({ left: 0 });
+                                    } else {
+                                        carousel.scrollBy({ left: scrollAmount });
+                                    }
+                                } else {
+                                    // Si estamos al principio, ir al final
+                                    if (carousel.scrollLeft <= 10) {
+                                        carousel.scrollTo({ left: maxScroll });
+                                    } else {
+                                        carousel.scrollBy({ left: -scrollAmount });
+                                    }
+                                }
+                                
+                                // Colocar el contenedor en el lado opuesto para la entrada
+                                carousel.style.transition = 'none';
+                                carousel.style.transform = `translateX(${direction === 'next' ? '50px' : '-50px'})`;
+                                
+                                // Forzar repintado del navegador (reflow)
+                                void carousel.offsetWidth;
+                                
+                                // Efecto de desvanecimiento de entrada
+                                carousel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                                carousel.style.opacity = '1';
+                                carousel.style.transform = 'translateX(0)';
+                                
+                                setTimeout(() => {
+                                    carousel.style.scrollBehavior = 'smooth';
+                                    isAnimating = false;
+                                }, 300);
+                            }, 300);
+                        };
+                        
+                        btnNext.addEventListener('click', () => fadeScroll('next'));
+                        btnPrev.addEventListener('click', () => fadeScroll('prev'));
+
+                        // Actualizar puntitos decorativos según scroll
+                        carousel.addEventListener('scroll', () => {
+                            if(carousel.scrollWidth <= carousel.clientWidth) return;
+                            const scrollRatio = carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
+                            let activeIndex = 0;
+                            if (scrollRatio > 0.33 && scrollRatio <= 0.66) activeIndex = 1;
+                            else if (scrollRatio > 0.66) activeIndex = 2;
+
+                            dots.forEach((dot, index) => {
+                                if (index === activeIndex) {
+                                    dot.style.width = '10px';
+                                    dot.style.height = '10px';
+                                    dot.style.background = 'var(--accent1)';
+                                } else {
+                                    dot.style.width = '8px';
+                                    dot.style.height = '8px';
+                                    dot.style.background = 'rgba(255,255,255,0.2)';
+                                }
+                            });
+                        });
+                    }
+                });
+            </script>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto" style="position: relative; padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); overflow: hidden;">
+        <!-- Glowing background -->
+        <div style="position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(89, 29, 203, 0.15) 0%, rgba(89, 29, 203, 0) 70%); filter: blur(80px); z-index: 0; pointer-events: none;"></div>
+        
+        <!-- Faint Background Text -->
+        <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); font-size: 15vw; font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.03); z-index: 0; pointer-events: none; line-height: 1; user-select: none; font-family: 'Inter', sans-serif; text-transform: uppercase;">
+            CONTACTO
+        </div>
+
+        <div class="container" style="position: relative; z-index: 1;">
+            <!-- Uso flexWrap para emular un comportamiento responsive sin media queries extra, aunque grid auto-fit también funciona -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto;">
+                
+                <!-- Left Column: Info -->
+                <div class="animate-on-scroll">
+                    <div style="display: inline-block; padding: 6px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.85rem; margin-bottom: 25px; display: flex; align-items: center; gap: 8px; width: fit-content; cursor: default;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        Contacto Directo
+                    </div>
+                    <h2 style="font-size: 3.2rem; font-weight: 700; margin-bottom: 20px; line-height: 1.1;">Ponte en<br>contacto</h2>
+                    <p style="color: var(--muted); font-size: 1.1rem; margin-bottom: 40px; max-width: 400px;">
+                        ¿Tienes preguntas o estás listo para transformar tu empresa con IA y automatización?
+                    </p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <!-- Contact Pill 1 -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(16, 185, 129, 0.3)';" onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 1rem;">Escríbenos</div>
+                                    <div style="color: var(--muted); font-size: 0.9rem;">contacto@syneprix.com</div>
+                                </div>
+                            </div>
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Pill 2 -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(16, 185, 129, 0.3)';" onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 1rem;">Llámanos</div>
+                                    <div style="color: var(--muted); font-size: 0.9rem;">+51 (999) 123-456</div>
+                                </div>
+                            </div>
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Contact Pill 3 -->
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(16, 185, 129, 0.3)';" onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.borderColor='rgba(255,255,255,0.05)';">
+                            <div style="display: flex; align-items: center; gap: 20px;">
+                                <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                </div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 1rem;">Atención Global</div>
+                                    <div style="color: var(--muted); font-size: 0.9rem;">Operación 100% Remota</div>
+                                </div>
+                            </div>
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Form -->
+                <div class="glass-panel animate-on-scroll" style="padding: 40px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+                    <form action="/contacto/" method="get" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <label for="home-contact-name" class="sr-only">Nombre completo</label>
+                            <input id="home-contact-name" name="nombre" type="text" autocomplete="name" required placeholder="Nombre completo" style="width: 100%; padding: 18px 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); color: #fff; border-radius: 12px; outline: none; font-family: inherit; font-size: 1rem; transition: border-color 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='rgba(255,255,255,0.05)'">
+                        </div>
+                        <div>
+                            <label for="home-contact-email" class="sr-only">Correo electrónico</label>
+                            <input id="home-contact-email" name="email" type="email" autocomplete="email" required placeholder="Correo electrónico" style="width: 100%; padding: 18px 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); color: #fff; border-radius: 12px; outline: none; font-family: inherit; font-size: 1rem; transition: border-color 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='rgba(255,255,255,0.05)'">
+                        </div>
+                        <div>
+                            <label for="home-contact-program" class="sr-only">Programa de interés</label>
+                            <select id="home-contact-program" name="asunto" required style="width: 100%; padding: 18px 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); color: var(--muted); border-radius: 12px; outline: none; font-family: inherit; font-size: 1rem; transition: border-color 0.3s; appearance: none; cursor: pointer;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='rgba(255,255,255,0.05)'" onchange="this.style.color='#fff'">
+                                <option value="" style="background: #111;">¿Qué programa te interesa?</option>
+                                <option value="rpa" style="background: #111;">Automatización Inteligente</option>
+                                <option value="bi" style="background: #111;">BI & Analítica de Negocios</option>
+                                <option value="ia" style="background: #111;">IA Empresarial Aplicada</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="home-contact-message" class="sr-only">Mensaje</label>
+                            <textarea id="home-contact-message" name="mensaje" required placeholder="Mensaje" rows="4" style="width: 100%; padding: 18px 20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); color: #fff; border-radius: 12px; outline: none; font-family: inherit; font-size: 1rem; resize: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='#10b981'" onblur="this.style.borderColor='rgba(255,255,255,0.05)'"></textarea>
+                        </div>
+
+                        <!-- Botón Submit estilo Miro -->
+                        <button type="submit" style="width: 100%; font-size: 1.1rem; font-weight: 700; padding: 18px; margin-top: 10px; background: #fff; color: #000; border: none; border-radius: 12px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 20px rgba(255,255,255,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" onmousedown="this.style.opacity='0.8'" onmouseup="this.style.opacity='1'">
+                            Enviar Solicitud
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div data-component="footer"></div>
+
+    <script src="/js/auth-state.js"></script>
+    
+    <script src="/js/scroll-animations.js"></script>
+
+    <!-- Audio de Pronunciación -->
+    <audio id="syneprixVoice" src="assets/audio/Voz_Syneprix.mp3"></audio>
+
+    <!-- 3D Physics Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.getElementById('cert3D');
+            const container = document.querySelector('.cert-3d-container');
+            const glare = document.getElementById('certGlare');
+            
+            if (container && card) {
+                container.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    // Max rotation 12 degrees
+                    const rotateX = ((y - centerY) / centerY) * -12;
+                    const rotateY = ((x - centerX) / centerX) * 12;
+                    
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    
+                    glare.style.opacity = '1';
+                    glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.15), transparent 60%)`;
+                });
+                
+                container.addEventListener('mouseleave', () => {
+                    card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                    card.style.transition = `transform 0.5s ease-out`;
+                    glare.style.opacity = '0';
+                    setTimeout(() => { card.style.transition = `transform 0.1s ease-out`; }, 500);
+                });
+                
+                
+                // Intersection Observer for Cinematic Animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            card.classList.add('start-anim');
+                        } else {
+                            card.classList.remove('start-anim');
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(card);
+
+                // Hotspot logic — click to select info card
+                const hotspots = document.querySelectorAll('.hotspot');
+                const infoCards = document.querySelectorAll('.cert-info-card');
+                const infoDisplay = document.getElementById('certInfoDisplay');
+                
+                const infoData = {
+                    'alcet': 'Audita el plan de estudios y emite el código de validación regional.',
+                    'track': 'Define la especialización y seniority certificado del profesional.',
+                    'iie': 'Evalúa el proyecto aplicativo bajo criterios reales de ingeniería.',
+                    'hash': 'Hash criptográfico que permite verificación instantánea.'
+                };
+                
+                function setActiveInfo(key) {
+                    infoCards.forEach(c => {
+                        if (c.getAttribute('data-for') === key) {
+                            c.classList.add('active');
+                        } else {
+                            c.classList.remove('active');
+                        }
+                    });
+                    
+                    // Highlight the hotspot explicitly using the .active class
+                    hotspots.forEach(spot => {
+                        if(spot.getAttribute('data-info') === key) {
+                            spot.classList.add('active');
+                            spot.style.zIndex = '200'; // Elevarlo para que el recuadro no se solape
+                        } else {
+                            spot.classList.remove('active');
+                            spot.style.zIndex = '';
+                        }
+                    });
+                    
+                    if(key && infoData[key]) {
+                        infoDisplay.textContent = infoData[key];
+                        infoDisplay.style.color = 'var(--text)';
+                    } else {
+                        infoDisplay.textContent = 'Haz clic en los puntos interactivos del certificado o en las opciones de la izquierda para descubrir los detalles.';
+                        infoDisplay.style.color = 'var(--muted)';
+                    }
+                }
+
+                let autoPlayCert = true;
+                const certKeys = ['alcet', 'track', 'iie', 'hash'];
+                
+                hotspots.forEach(spot => {
+                    spot.addEventListener('click', (e) => {
+                        autoPlayCert = false; // Interrumpir autoplay
+                        setActiveInfo(e.target.getAttribute('data-info'));
+                    });
+                });
+                
+                infoCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        autoPlayCert = false; // Interrumpir autoplay
+                        setActiveInfo(card.getAttribute('data-for'));
+                    });
+                });
+
+                // Auto-play secuencial del certificado al hacer scroll
+                const certSection = document.querySelector('.certificaciones');
+                if (certSection) {
+                    const certObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting && autoPlayCert) {
+                                let delay = 1000;
+                                certKeys.forEach((key) => {
+                                    setTimeout(() => {
+                                        if (autoPlayCert) setActiveInfo(key);
+                                    }, delay);
+                                    delay += 3000; // Siguiente punto en 3 segundos
+                                });
+                                // Limpiar al final
+                                setTimeout(() => {
+                                    if (autoPlayCert) setActiveInfo(null);
+                                }, delay);
+                                
+                                certObserver.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    certObserver.observe(certSection);
+                }
+
+                // Animación Carrusel de Banderas (Cartas)
+                const flags = document.querySelectorAll('.carousel-flag');
+                let currentFront = 0;
+                
+                function updateFlags() {
+                    flags.forEach((flag, i) => {
+                        let dist = (i - currentFront + flags.length) % flags.length;
+                        
+                        flag.style.transition = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                        flag.style.position = 'absolute';
+                        flag.style.top = '0';
+                        flag.style.left = '0';
+                        flag.style.width = '48px';
+                        flag.style.height = '32px';
+                        flag.style.borderRadius = '4px';
+                        flag.style.border = '1px solid rgba(255,255,255,0.2)';
+                        flag.style.objectFit = 'cover';
+                        
+                        if (dist === 0) { // Al frente
+                            flag.style.transform = 'translateX(0) scale(1)';
+                            flag.style.zIndex = 50;
+                            flag.style.opacity = 1;
+                            flag.style.filter = 'brightness(1)';
+                            flag.style.boxShadow = '-5px 0 15px rgba(0,0,0,0.4)';
+                        } else if (dist === 1) { // Segunda
+                            flag.style.transform = 'translateX(25px) scale(0.9)';
+                            flag.style.zIndex = 40;
+                            flag.style.opacity = 0.8;
+                            flag.style.filter = 'brightness(0.7)';
+                            flag.style.boxShadow = '-5px 0 10px rgba(0,0,0,0.3)';
+                        } else if (dist === 2) { // Tercera
+                            flag.style.transform = 'translateX(50px) scale(0.8)';
+                            flag.style.zIndex = 30;
+                            flag.style.opacity = 0.5;
+                            flag.style.filter = 'brightness(0.5)';
+                            flag.style.boxShadow = 'none';
+                        } else if (dist === 3) { // Cuarta
+                            flag.style.transform = 'translateX(75px) scale(0.7)';
+                            flag.style.zIndex = 20;
+                            flag.style.opacity = 0.2;
+                            flag.style.filter = 'brightness(0.3)';
+                            flag.style.boxShadow = 'none';
+                        } else { // Se retira por detrás / izquierda
+                            flag.style.transform = 'translateX(-30px) scale(0.9) rotateY(-20deg)';
+                            flag.style.zIndex = 10;
+                            flag.style.opacity = 0;
+                            flag.style.filter = 'brightness(0.5)';
+                            flag.style.boxShadow = 'none';
+                        }
+                    });
+                }
+                
+                if (flags.length > 0) {
+                    updateFlags();
+                    setInterval(() => {
+                        currentFront = (currentFront + 1) % flags.length;
+                        updateFlags();
+                    }, 2500); // Cambiar carta cada 2.5s
+                }
+
+            }
+        });
+    </script>
+    <script>
+        // Aplicar material de cristal y animaciones al mono 3D
+        const modelViewer = document.querySelector('#glass-monkey');
+
+        if (modelViewer) modelViewer.addEventListener('load', () => {
+            const material = modelViewer.model.materials[0];
+            if (material) {
+                // Cristalización eliminada a petición del usuario.
+            }
+
+            // Crear un entorno de degradado dinámico (Fake HDRI)
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+            
+            // Degradado de la marca: Morado -> Cyan
+            const gradient = ctx.createLinearGradient(0, 0, 1024, 0);
+            gradient.addColorStop(0, '#591dcb');   // Morado profundo
+            gradient.addColorStop(0.3, '#050508'); // Oscuro al medio
+            gradient.addColorStop(0.7, '#050508'); // Oscuro al medio
+            gradient.addColorStop(1, '#0ea5e9');   // Cyan eléctrico
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1024, 512);
+            
+            // Asignar este degradado espectacular como luz y reflejo del objeto
+            modelViewer.environmentImage = canvas.toDataURL('image/png');
+        });
+
+        // Interacción divertida al hacer click (ya que no tiene lengua)
+        if (modelViewer) modelViewer.addEventListener('click', () => {
+            modelViewer.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            modelViewer.style.transform = 'scale(1.2) translateY(-30px)';
+            setTimeout(() => {
+                modelViewer.style.transform = 'scale(1) translateY(0)';
+            }, 400);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+/* Home refresh: scoped so the visual trial does not affect inner pages. */
+.home-refresh {
+    --home-surface: rgba(255, 255, 255, 0.045);
+    --home-surface-strong: rgba(18, 10, 43, 0.88);
+    --home-line: rgba(255, 255, 255, 0.1);
+    --home-line-strong: rgba(161, 128, 255, 0.32);
+    --home-muted: #a9b0c3;
+    --home-radius: 24px;
+    --home-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    background:
+        radial-gradient(circle at 8% 10%, rgba(89, 29, 203, 0.12), transparent 26rem),
+        #0d0428;
+    overflow-x: clip;
+}
+
+.home-refresh main,
+.home-refresh section { isolation: isolate; }
+
+.home-refresh section:not(.hero) {
+    padding-block: clamp(5rem, 9vw, 8rem) !important;
+    scroll-margin-top: 90px;
+}
+
+.home-refresh section > .container { width: min(1180px, calc(100% - 40px)); }
+
+.home-refresh .section-title,
+.home-refresh section h2 {
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+}
+
+.home-refresh section p { color: var(--home-muted); }
+
+/* Smooth, short, once-only reveals. JS adds data-home-reveal progressively. */
+.home-refresh.motion-enabled [data-home-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition:
+        opacity 680ms var(--home-ease),
+        transform 680ms var(--home-ease);
+    transition-delay: var(--home-delay, 0ms) !important;
+    will-change: opacity, transform;
+}
+
+.home-refresh.motion-enabled [data-home-reveal="left"] { transform: translate3d(-20px, 0, 0); }
+.home-refresh.motion-enabled [data-home-reveal="right"] { transform: translate3d(20px, 0, 0); }
+.home-refresh.motion-enabled [data-home-reveal].is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+/* Neutralize the previous heavy blur and 100px transforms on the home only. */
+.home-refresh .animate-on-scroll,
+.home-refresh .animate-on-scroll.slide-up,
+.home-refresh .animate-on-scroll.slide-left,
+.home-refresh .animate-on-scroll.slide-right,
+.home-refresh .animate-on-scroll.slide-up-stagger {
+    opacity: 1;
+    transform: none;
+    filter: none !important;
+    scale: none !important;
+}
+
+/* Hero: keep the connected central component, refine its surrounding hierarchy. */
+.home-refresh .hero {
+    min-height: calc(100svh - 24px);
+    padding: clamp(6.5rem, 11vw, 8.5rem) 0 3rem !important;
+    background:
+        linear-gradient(180deg, rgba(8, 3, 26, 0.18), rgba(13, 4, 40, 0.82)),
+        radial-gradient(circle at 50% 32%, rgba(89, 29, 203, 0.2), transparent 36rem);
+}
+
+.home-refresh .hero .container { width: min(1220px, calc(100% - 32px)); }
+.home-refresh .hero-text { max-width: 900px; margin-inline: auto; text-align: center; }
+.home-refresh .hero h1 { font-size: clamp(2.75rem, 6vw, 5.65rem) !important; line-height: 0.98 !important; letter-spacing: -0.055em; }
+.home-refresh .hero p { max-width: 680px; margin-inline: auto; font-size: clamp(1rem, 1.7vw, 1.2rem); line-height: 1.7; }
+.home-refresh .hero .btn { min-height: 48px; border-radius: 999px; transition: transform 240ms var(--home-ease), box-shadow 240ms ease, border-color 240ms ease; }
+.home-refresh .hero .btn:hover { transform: translateY(-3px); }
+.home-refresh .hero-3d-wrapper {
+    margin-top: clamp(0.5rem, 2vw, 1.5rem) !important;
+    transform: none !important;
+    max-width: 1040px !important;
+}
+
+/* Partner strip */
+.home-refresh .convenios {
+    padding-block: 1.25rem !important;
+    border-block: 1px solid var(--home-line);
+    background: rgba(5, 2, 18, 0.42);
+}
+.home-refresh .convenios-title { color: #8f98ad; font-size: 0.75rem; letter-spacing: 0.18em; margin-bottom: 1.25rem; }
+.home-refresh .convenios-slider { mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.home-refresh .convenios-track { animation-duration: 42s; }
+.home-refresh .convenios-slider:hover .convenios-track { animation-play-state: paused; }
+.home-refresh .convenio-logo { opacity: 0.65; filter: saturate(0.55); transition: opacity 200ms ease, filter 200ms ease; }
+.home-refresh .convenio-logo:hover { opacity: 1; filter: saturate(1); }
+
+/* Metrics become a compact, readable editorial grid. */
+.home-refresh .estadisticas {
+    background: linear-gradient(180deg, rgba(255,255,255,0.018), transparent) !important;
+}
+.home-refresh .estadisticas .container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    padding: 1px;
+    border: 1px solid var(--home-line);
+    border-radius: var(--home-radius);
+    overflow: hidden;
+    background: var(--home-line);
+}
+.home-refresh .poster-stat,
+.home-refresh .poster-stat.right {
+    min-height: 250px;
+    margin: 0 !important;
+    padding: 2rem;
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: left;
+    background: rgba(9, 5, 28, 0.94);
+    overflow: hidden;
+}
+.home-refresh .poster-number {
+    inset: 1rem auto auto 1.2rem !important;
+    transform: none !important;
+    font-size: clamp(5rem, 9vw, 9rem) !important;
+    opacity: 0.8;
+}
+.home-refresh .poster-text { padding: 0 !important; }
+.home-refresh .stat-counter { font-size: clamp(2.8rem, 5vw, 4.6rem) !important; text-shadow: none !important; }
+.home-refresh .poster-text > div:last-child { font-size: 0.78rem !important; line-height: 1.5; letter-spacing: 0.14em !important; text-shadow: none !important; color: #d9dcec !important; }
+
+/* Industries and courses */
+.home-refresh .bento-section { background: radial-gradient(circle at 50% 30%, rgba(89,29,203,.1), transparent 34rem) !important; }
+.home-refresh .bento-grid-industries { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 14px !important; }
+.home-refresh .industry-card,
+.home-refresh .escuela-card {
+    border: 1px solid var(--home-line) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018)) !important;
+    box-shadow: inset 0 1px rgba(255,255,255,.035);
+    transition: transform 260ms var(--home-ease), border-color 260ms ease, background 260ms ease !important;
+}
+.home-refresh .industry-card { min-height: 180px; padding: 1.65rem !important; }
+.home-refresh .industry-card:hover,
+.home-refresh .escuela-card:hover { transform: translateY(-4px) !important; border-color: var(--home-line-strong) !important; }
+.home-refresh .industry-card h4 { margin-bottom: 1.2rem !important; }
+.home-refresh .industry-card li { line-height: 1.55; color: #aab2c5; }
+.home-refresh .escuelas { background: rgba(5, 2, 18, 0.24); }
+.home-refresh .escuelas .container > div { gap: 16px !important; }
+.home-refresh .escuela-card { min-height: 300px; padding: 2rem; }
+.home-refresh .escuela-card .escuela-icon { width: 54px; height: 54px; border-radius: 15px; }
+.home-refresh .escuela-card a { padding-top: 1.5rem; text-decoration: none; }
+.home-refresh .escuela-card:focus-within { outline: 2px solid var(--accent2); outline-offset: 4px; }
+
+/* About, differentiation, certification */
+.home-refresh .nosotros { background: linear-gradient(180deg, transparent, rgba(208,77,205,.035)); }
+.home-refresh .nosotros-grid { gap: clamp(3rem, 7vw, 6rem) !important; align-items: center; }
+.home-refresh .nosotros-grid h2 { font-size: clamp(2.6rem, 5vw, 4.5rem) !important; }
+.home-refresh .map-wrapper-box {
+    border: 1px solid var(--home-line) !important;
+    border-radius: var(--home-radius) !important;
+    box-shadow: 0 28px 80px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.06);
+}
+.home-refresh .diferenciacion { background: rgba(5,2,18,.32); }
+.home-refresh .diferenciacion .container > div:first-child { margin-bottom: clamp(2.5rem, 5vw, 4.5rem) !important; }
+.home-refresh .diferenciacion h2 { font-size: clamp(2.5rem, 5vw, 4.2rem) !important; }
+.home-refresh .diferenciacion .glass-panel {
+    border-color: var(--home-line) !important;
+    border-radius: var(--home-radius) !important;
+    box-shadow: inset 0 1px rgba(255,255,255,.04);
+}
+.home-refresh .tech-slider { border-block: 1px solid var(--home-line); background: rgba(5,2,18,.62); }
+.home-refresh .certificaciones { background: linear-gradient(180deg, rgba(89,29,203,.045), transparent); }
+.home-refresh .anatomy-grid { padding: clamp(1.5rem, 4vw, 3.5rem); border: 1px solid var(--home-line); border-radius: 28px; background: rgba(255,255,255,.025); }
+.home-refresh .cert-info-card { width: 100%; min-height: 50px; padding: 0 1rem !important; border: 1px solid transparent; border-radius: 12px; cursor: pointer; transition: background 180ms ease, border-color 180ms ease; }
+.home-refresh .cert-info-card:hover,
+.home-refresh .cert-info-card.active { background: rgba(127,119,221,.11); border-color: rgba(127,119,221,.25); }
+.home-refresh .cert-3d-container { filter: drop-shadow(0 28px 50px rgba(0,0,0,.34)); }
+
+/* Testimonials */
+.home-refresh .testimonios { background: rgba(5,2,18,.28); }
+.home-refresh #testi-carousel { gap: 16px !important; padding: 6px 4px 26px !important; scroll-padding-inline: 4px; }
+.home-refresh .home-testimonial-card {
+    flex-basis: calc(33.333% - 11px) !important;
+    padding: 2rem !important;
+    border: 1px solid var(--home-line) !important;
+    border-radius: 20px !important;
+    background: rgba(255,255,255,.035) !important;
+    box-shadow: none !important;
+    transition: transform 240ms var(--home-ease), border-color 240ms ease, background 240ms ease !important;
+}
+.home-refresh .home-testimonial-card:hover { transform: translateY(-4px) !important; border-color: var(--home-line-strong) !important; background: rgba(255,255,255,.055) !important; }
+.home-refresh #testi-prev,
+.home-refresh #testi-next { width: 48px !important; height: 48px !important; border-color: var(--home-line) !important; color: white; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease !important; }
+.home-refresh #testi-prev:hover,
+.home-refresh #testi-next:hover { background: rgba(255,255,255,.08) !important; border-color: rgba(255,255,255,.25) !important; transform: translateY(-2px); }
+
+/* Contact */
+.home-refresh .contacto { background: linear-gradient(180deg, transparent, rgba(89,29,203,.08)); }
+.home-refresh .contacto .container > div { gap: clamp(2rem, 6vw, 5rem) !important; }
+.home-refresh .contacto h2 { font-size: clamp(2.8rem, 5vw, 4.5rem) !important; }
+.home-refresh .contacto .glass-panel { padding: clamp(1.5rem, 4vw, 2.5rem) !important; border-color: var(--home-line) !important; background: rgba(255,255,255,.04) !important; box-shadow: 0 28px 70px rgba(0,0,0,.28) !important; }
+.home-refresh .contacto input,
+.home-refresh .contacto textarea,
+.home-refresh .contacto select {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid var(--home-line) !important;
+    border-radius: 12px !important;
+    background: rgba(5,2,18,.72) !important;
+    color: #fff !important;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.home-refresh .contacto textarea { min-height: 118px; }
+.home-refresh .contacto input:focus,
+.home-refresh .contacto textarea:focus,
+.home-refresh .contacto select:focus { border-color: var(--accent3) !important; box-shadow: 0 0 0 4px rgba(127,119,221,.16); outline: none; }
+.home-refresh .contacto button[type="submit"] { min-height: 52px; border-radius: 14px !important; transition: transform 200ms var(--home-ease), box-shadow 200ms ease !important; }
+.home-refresh .contacto button[type="submit"]:hover { transform: translateY(-3px) !important; box-shadow: 0 12px 30px rgba(255,255,255,.12) !important; }
+
+/* Faster intro and stable transitions. */
+.home-refresh #gcore-preloader { transition: opacity 420ms ease, visibility 420ms ease !important; }
+
+@media (max-width: 900px) {
+    .home-refresh .estadisticas .container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .home-refresh .bento-grid-industries { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .home-refresh .anatomy-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    .home-refresh .home-testimonial-card { flex-basis: min(78vw, 430px) !important; }
+}
+
+@media (max-width: 620px) {
+    .home-refresh section:not(.hero) { padding-block: 4.5rem !important; }
+    .home-refresh section > .container { width: min(100% - 28px, 1180px); }
+    .home-refresh .hero { min-height: auto; padding-top: 6rem !important; }
+    .home-refresh .estadisticas .container,
+    .home-refresh .bento-grid-industries { grid-template-columns: 1fr !important; }
+    .home-refresh .poster-stat { min-height: 190px; }
+    .home-refresh .industry-card { min-height: 160px; }
+    .home-refresh .home-testimonial-card { min-width: 86vw !important; }
+    .home-refresh .contacto .container > div { grid-template-columns: 1fr !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-refresh { scroll-behavior: auto; }
+    .home-refresh *,
+    .home-refresh *::before,
+    .home-refresh *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+    .home-refresh [data-home-reveal] { opacity: 1 !important; transform: none !important; }
+}

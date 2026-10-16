@@ -696,10 +696,11 @@
     <!-- Sistema de Temas -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/home-refresh.css?v=20261016">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- Preloader Avanzado (Secuencia Isotipo -> Letras -> Zoom Masivo) -->
+<body class="home-refresh">
+    <!-- Intro breve de marca -->
     <div id="gcore-preloader">
         <svg id="preloader-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 1086.63">
             <g id="preloader-letters" fill="#fff">
@@ -720,43 +721,58 @@
     </div>
     
     <script>
-        // Lógica Avanzada del Preloader (Escala Isotipo -> Letras Letra por Letra -> Fade Out Normal)
+        // Intro breve en la primera visita de la sesión; las siguientes cargas entran directo.
         document.body.classList.add('no-scroll');
-        window.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const preloader = document.getElementById('gcore-preloader');
             const icon = document.getElementById('preloader-icon');
             const lettersGroup = document.getElementById('preloader-letters');
-            
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let introSeen = false;
+            try {
+                introSeen = sessionStorage.getItem('syneprix-intro-seen') === 'true';
+            } catch (error) {
+                introSeen = false;
+            }
+
+            const finishIntro = () => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                preloader.style.pointerEvents = 'none';
+                window.setTimeout(() => document.body.classList.remove('no-scroll'), 420);
+            };
+
+            if (reducedMotion || introSeen) {
+                finishIntro();
+                return;
+            }
+
+            try {
+                sessionStorage.setItem('syneprix-intro-seen', 'true');
+            } catch (error) {
+                // La animación sigue funcionando si el navegador bloquea el almacenamiento.
+            }
+
             // Extraer y ordenar las letras de izquierda a derecha de forma dinámica
             const letterPaths = Array.from(lettersGroup.querySelectorAll('path'));
             letterPaths.sort((a, b) => a.getBBox().x - b.getBBox().x);
-            
-            // 1. Ícono escala de grande a normal
+
             setTimeout(() => {
                 icon.style.transform = 'scale(1)';
                 icon.style.opacity = '1';
-                
-                // 2. Las letras aparecen secuencialmente
+
                 setTimeout(() => {
                     let totalLettersDelay = 0;
                     letterPaths.forEach((path, index) => {
-                        const delay = index * 120; // 120ms de retraso por letra
+                        const delay = index * 45;
                         setTimeout(() => {
                             path.style.opacity = '1';
                         }, delay);
                         totalLettersDelay = delay;
                     });
-                    
-                    // 3. Desvanecer el preloader (sin zoom masivo) para revelar el Hero
-                    setTimeout(() => {
-                        preloader.style.opacity = '0';
-                        preloader.style.visibility = 'hidden';
-                        setTimeout(() => {
-                            document.body.classList.remove('no-scroll');
-                        }, 800); // 800ms es lo que dura la transición CSS de opacidad
-                    }, totalLettersDelay + 600); // Pausa de 600ms tras aparecer la última letra
-                }, 700); // Espera 700ms a que el ícono termine de escalar
-            }, 100);
+                    setTimeout(finishIntro, totalLettersDelay + 220);
+                }, 280);
+            }, 40);
         });
     </script>
 
@@ -2272,7 +2288,7 @@
 
     <script src="/js/auth-state.js"></script>
     
-    <script src="/js/scroll-animations.js"></script>
+    <script src="/assets/js/home-motion.js?v=20261016"></script>
 
     <!-- Audio de Pronunciación -->
     <audio id="syneprixVoice" src="assets/audio/Voz_Syneprix.mp3"></audio>
